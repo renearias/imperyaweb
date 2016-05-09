@@ -72,15 +72,15 @@
 		</div>
 	</div>
 </div>
-<div class="container invoice-data">
-	<h2>Detalles de la Factura</h2>
+<div class="container invoice-data">	
+	<h2>Detalles de la Factura {{client_id}}</h2>
 	<div class="row">
 		<div class="col-xs-2">			
-			<input type="text" placeholder="ID Cliente">
+			<input [(ngModel)]="client_id" type="text" placeholder="ID Cliente">
 		</div>
 	</div>
-	<h3>Productos</h3>
-	 <form [ngFormModel]="myForm" (submit)="onSubmit()">
+	<form [ngFormModel]="myForm" (submit)="onSubmit()">
+	<h3>Productos</h3>	 
       <div class="row">
       	<div class="col-xs-2">
 			<input [ngFormControl]="item_id" type="text" placeholder="ID Producto">
@@ -131,13 +131,13 @@
 							<span>{{todo.quantity}}</span>
 						</td>
 						<td>
-							<span>{{todo.price}}</span>
+							<span>{{todo.price | number:'.1-2'}}</span>
 						</td>
 						<td>
-							<span>{{todo.discount}}</span>
+							<span>{{todo.discount | percent:'.2'}}</span>
 						</td>
 						<td>
-							<span>{{todo.total}}</span>
+							<span>{{todo.total | number:'.1-2'}}</span>
 						</td>
 						<td>
 							<button (click)="removeTodo(todo)">
@@ -157,7 +157,7 @@
 					<p class="text-left">Subtotal</p>
 				</div>
 				<div class="col-xs-6">
-					<p class="text-right">{{sub_total}}</p>
+					<p class="text-right">{{sub_total | number:'.1-2'}}</p>
 				</div>
 			</div>
 			<div class="row">
@@ -165,7 +165,7 @@
 					<p class="text-left">IVA 12%</p>
 				</div>
 				<div class="col-xs-6">
-					<p class="text-right">480</p>
+					<p class="text-right">{{iva | number:'.1-2'}}</p>
 				</div>
 			</div>
 			<div class="row">
@@ -173,12 +173,12 @@
 					<p class="text-left">Total</p>
 				</div>
 				<div class="col-xs-6">
-					<p class="text-right">3520</p>
+					<p class="text-right">{{total | number:'.1-2'}}</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<button type="button" class="btn btn-default btn-md"> 
+					<button (click)="saveInvoice()" type="button" class="btn btn-default btn-md"> 
 					  Guardar
 					</button>
 				</div>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
 import {Validators} from 'angular2/common';
-import {TodoItem} from '../../models';
+import {TodoItem, InvoiceItem} from '../../models';
 
 @Component({
 	selector: 'invoice',
@@ -12,6 +12,7 @@ import {TodoItem} from '../../models';
 export class InvoicePage {
 	
 	todos: Array<TodoItem>;
+	invoice: Array<InvoiceItem>;
 
 	fb: FormBuilder;
 	myForm: ControlGroup;
@@ -21,13 +22,17 @@ export class InvoicePage {
 	item_price: Control;
 	item_discount: Control;
 	item_total: number;
+
+	client_id: string;
 	sub_total: number;
+	iva: number;
+	total: number;
 
 	constructor(fb: FormBuilder) {
 		this.fb = fb;
 		this.todos = new Array<TodoItem>();
+		this.invoice = new Array<InvoiceItem>();
 		this.buildForm();
-		this.sub_total = 0;
 	}
 
 	ngOnInit(): void {
@@ -41,14 +46,21 @@ export class InvoicePage {
 		this.item_price = new Control('', Validators.required);
 		this.item_discount = new Control('', Validators.required);
 
-
 		this.myForm = this.fb.group({
+			//producto
 			'item_id': this.item_id,
 			'item_description': this.item_description,
 			'item_quantity': this.item_quantity,
 			'item_price': this.item_price,
 			'item_discount': this.item_discount,
-			'item_total': this.item_total
+			'item_total': this.item_total,
+
+			//factura
+
+			'client_id': this.client_id,
+			'sub_total': this.sub_total,
+			'iva': this.iva,
+			'total': this.total
 		});
 	}
 
@@ -68,19 +80,44 @@ export class InvoicePage {
 				this.item_total,
 				false));
 
-			this.buildForm();			
-		}
+			this.calculateTotal();
+			this.buildForm();
 
-		this.totalCalculate();
+			console.log('Subtotal' + this.sub_total)
+			console.log('iva' + this.iva)
+			console.log('total' + this.total)				
+		}
 	}
 
-	totalCalculate(): void {
+	calculateTotal():void{
+		//Sub Total
+		var sub_total = 0;
+		const IVA = 12;
 
-		this.todos.forEach(function(todo) {			
-
-			this.sub_total += todo.total;
-			console.log('sub_total: ' + this.sub_total);
-			
+		this.todos.forEach(function(todo) {
+			sub_total += todo.total;
 		});
+		this.sub_total = sub_total
+		console.log('SUBTOTAL ' + this.sub_total)
+
+		//IVA
+		this.iva = sub_total * IVA / 100;
+		console.log('IVA ' + this.iva)
+
+		//Total
+		this.total = this.sub_total + this.iva
+		console.log('TOTAL ' + this.total)
+	}
+
+	saveInvoice(){
+		this.invoice.push(new InvoiceItem(
+			this.client_id,
+			this.todos,
+			this.sub_total,
+			this.iva,
+			this.total));
+
+		console.log('FACTURA')
+		console.log(this.invoice)
 	}
 }
