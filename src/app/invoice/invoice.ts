@@ -20,12 +20,14 @@ export class InvoicePage {
 	item_quantity: Control;
 	item_price: Control;
 	item_discount: Control;
-	item_total: string;
+	item_total: number;
+	sub_total: number;
 
 	constructor(fb: FormBuilder) {
 		this.fb = fb;
 		this.todos = new Array<TodoItem>();
 		this.buildForm();
+		this.sub_total = 0;
 	}
 
 	ngOnInit(): void {
@@ -38,6 +40,7 @@ export class InvoicePage {
 		this.item_quantity = new Control('', Validators.required);
 		this.item_price = new Control('', Validators.required);
 		this.item_discount = new Control('', Validators.required);
+
 
 		this.myForm = this.fb.group({
 			'item_id': this.item_id,
@@ -57,7 +60,7 @@ export class InvoicePage {
 		if (this.myForm.valid) {
 
 			this.todos.push(new TodoItem(
-				this.item_id.value, 
+				this.item_id.value,
 				this.item_description.value,
 				this.item_quantity.value,
 				this.item_price.value,
@@ -65,13 +68,19 @@ export class InvoicePage {
 				this.item_total,
 				false));
 
-			this.buildForm();
+			this.buildForm();			
 		}
+
+		this.totalCalculate();
 	}
 
-	toggleAll(completed: boolean) {
-		this.todos.forEach(function(todo) {
-			todo.completed = completed;
+	totalCalculate(): void {
+
+		this.todos.forEach(function(todo) {			
+
+			this.sub_total += todo.total;
+			console.log('sub_total: ' + this.sub_total);
+			
 		});
 	}
 }
