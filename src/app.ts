@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Core} from './app/core/core';
 import {ErrorPage} from './app/error/error';
 import {LoginPage} from './app/login/login';
+
 declare var jQuery: any;
 
 @Component({

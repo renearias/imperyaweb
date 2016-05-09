@@ -25,7 +25,7 @@
     <ul class="sidebar-nav">
      
          <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a [routerLink]=" ['Dashboard']" class="nav-link" href="#">
             <span class="icon">
           <i class="fa fa-home" aria-hidden="true"></i>
       </span>
@@ -34,25 +34,34 @@
       </li>
         
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a [routerLink]=" ['ProductsPage']" class="nav-link" href="#">
             <span class="icon">
           <i class="fa fa-product-hunt" aria-hidden="true"></i>
       </span>
-          Productos
+              Productos
         </a>
       </li>
       
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a [routerLink]=" ['ProvidersPage']" class="nav-link" href="#">
               <span class="icon">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       </span>
               Proveedores
           </a>
       </li>
+
+      <li class="nav-item">
+          <a [routerLink]=" ['InvoicePage']" class="nav-link" href="#">
+              <span class="icon">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      </span>
+              Facturas
+          </a>
+      </li>
       
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a [routerLink]=" ['OrdersPage']" class="nav-link" href="#">
               <span class="icon">
           <i class="fa fa-paper-plane" aria-hidden="true"></i>
       </span>
@@ -61,7 +70,7 @@
       </li>
       
        <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a [routerLink]=" ['ClientsPage']" class="nav-link" href="#">
               <span class="icon">
           <i class="fa fa-users" aria-hidden="true"></i>
       </span>
@@ -70,7 +79,7 @@
       </li>
       
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a [routerLink]=" ['ContactPage']"  class="nav-link" href="#">
               <span class="icon">
           <i class="fa fa-envelope" aria-hidden="true"></i>
       </span>
@@ -81,9 +90,9 @@
     </ul>
   
   <!-- main notification links are placed inside of .sidebar-nav -->
-  <ul class="sidebar-nav">
+<!--   <ul class="sidebar-nav">
     <li>
-      <a [routerLink]=" ['Dashboard'] ">
+      <a [routerLink]=" ['Dashboard']">
       <span class="icon">
           <i class="fa fa-child"></i>
       </span>
@@ -101,7 +110,7 @@
       </span>
       </a>
     </li>
-  </ul>
+  </ul> -->
   <h5 class="sidebar-nav-title">Labels <a class="action-link" href="#"><i class="glyphicon glyphicon-plus"></i></a></h5>
   <!-- some styled links in sidebar. ready to use as links to email folders, projects, groups, etc -->
   <ul class="sidebar-labels">
