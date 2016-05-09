@@ -10,10 +10,10 @@ import 'jquery-touchswipe/jquery.touchSwipe';
 import 'jquery-slimscroll/jquery.slimscroll';
 import 'pace';
 
-import './bundles/fosjsrouting/js/router';
-declare var Routing: any;
-import './js/fos_js_routes';
-declare var fos: any;
+//import './bundles/fosjsrouting/js/router';
+//declare var Routing: any;
+//import './js/fos_js_routes';
+//declare var fos: any;
 
 import {provide, enableProdMode} from 'angular2/core';
 import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
