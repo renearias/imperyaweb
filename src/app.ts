@@ -12,10 +12,10 @@ declare var jQuery: any;
   template: require('./app.html')
 })
 @RouteConfig([
-  { path: '/app/...', component: Core, name: 'App', useAsDefault: true },
+  { path: '/app/...', component: Core, name: 'App' },
   { path: '/error', component: ErrorPage, name: 'ErrorPage' },
-  { path: '/login', component: LoginPage, name: 'LoginPage' },
-  { path: '/', redirectTo: ['App'] },
+  { path: '/login', component: LoginPage, name: 'LoginPage', useAsDefault: true},
+  { path: '/', redirectTo: ['LoginPage'] },
   { path: '/**', redirectTo: ['ErrorPage'] }
 ])
 export class App {
