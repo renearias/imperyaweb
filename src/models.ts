@@ -13,3 +13,13 @@ export class TodoItem {
 		this.total = +this.quantity * +this.price - +this.quantity * +this.price * +this.discount * 0.01;
 	}
 }
+
+export class InvoiceItem {
+	constructor(
+		public client_id: string,
+		public todos: Array<TodoItem>,
+		public sub_total: number,
+		public iva: number,
+		public total: number) {
+	}
+}
