@@ -1,35 +1,36 @@
- <base href="<%= webpackConfig.metadata.baseUrl %>">
+<base href="<%= webpackConfig.metadata.baseUrl %>">
 <div class="container">
   <main id="content" class="widget-login-container" role="main">
     <div class="row">
       <div class="col-xl-4 col-md-6 col-xs-10 col-xl-offset-4 col-md-offset-3 col-xs-offset-1">
         <h5 class="widget-login-logo animated fadeInUp">
           <i class="fa fa-circle text-gray"></i>
-          sing
+          Inciar Sesión
           <i class="fa fa-circle text-warning"></i>
         </h5>
         <section class="widget widget-login animated fadeInUp">
           <header>
-            <h3>Login to your Sing App</h3>
+            <h3>Inicia sesión para continuar</h3>
           </header>
           <div class="widget-body">
-            <p class="widget-login-info">
+            <!-- <p class="widget-login-info">
               Use Facebook, Twitter or your email to sign in.
-            </p>
+            </p> -->
             <p class="widget-login-info">
-              Don't have an account? Sign up now!
+              No tengo cuenta, <strong>Registrarme</strong>
             </p>
-            <form class="login-form mt-lg">
+            <form [ngFormModel]="loginForm" (submit)="login()" class="login-form mt-lg">
               <div class="form-group">
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username">
+                <input [ngFormControl]="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario">
               </div>
               <div class="form-group">
-                <input class="form-control" id="pswd" type="text" placeholder="Password">
+                <input [ngFormControl]="password" type="password" class="form-control" id="pswd" placeholder="Contraseña">
               </div>
               <div class="clearfix">
                 <div class="btn-toolbar pull-xs-right m-t-1">
-                  <button type="button" class="btn btn-secondary btn-sm">Create an Account</button>
-                  <a class="btn btn-inverse btn-sm" [routerLink]="['/App', 'Dashboard'] ">Login</a>
+                  <button type="submit" class="btn btn-secondary btn-sm" [disabled]="!loginForm.valid">Iniciar Sesión</button>
+                  <a class="btn btn-inverse btn-sm">Crear cuenta</a>
+                  <!--  [routerLink]="['/App', 'Dashboard']" -->
                 </div>
               </div>
               <div class="row m-t-1">
@@ -37,13 +38,13 @@
                   <div class="clearfix">
                     <div class="abc-checkbox widget-login-info pull-xs-right ml-n-lg">
                       <input type="checkbox" id="checkbox1" value="1">
-                      <label for="checkbox1">Keep me signed in </label>
+                      <label for="checkbox1"> Permanecer conectado </label>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-md-6 col-md-pull-6">
-                  <a class="mr-n-lg" href="#">Trouble with account?</a>
+                  <a class="mr-n-lg" href="#">¿Problemas con el Inicio de Sesión?</a>
                 </div>
               </div>
             </form>
@@ -53,6 +54,6 @@
     </div>
   </main>
   <footer class="page-footer">
-    2015 &copy; Sing. Admin Dashboard Template.
+    2015 &copy; Imperyaweb.
   </footer>
 </div>
