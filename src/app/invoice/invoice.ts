@@ -2,16 +2,17 @@ import {Component, OnInit} from 'angular2/core';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
 import {Validators} from 'angular2/common';
 import {TodoItem} from '../../models';
-
+import {Widget} from '../core/widget/widget';
+import {DataTableDirectives} from 'angular2-datatable/datatable';
 @Component({
 	selector: 'invoice',
 	viewProviders: [FormBuilder],
-	template: require('./invoice.html'),
-	directives: [FORM_DIRECTIVES]
+	template: require('./index.html'),
+	directives: [Widget,DataTableDirectives,FORM_DIRECTIVES]
 })
 export class InvoicePage {
 	
-	todos: Array<TodoItem>;
+	/*todos: Array<TodoItem>;
 
 	fb: FormBuilder;
 	myForm: ControlGroup;
@@ -82,5 +83,5 @@ export class InvoicePage {
 			console.log('sub_total: ' + this.sub_total);
 			
 		});
-	}
+	}*/
 }
