@@ -7,12 +7,12 @@ import {DataTableDirectives} from 'angular2-datatable/datatable';
 @Component({
 	selector: 'invoice',
 	viewProviders: [FormBuilder],
-	template: require('./invoice.html'),
+	template: require('./index.html'),
 	directives: [Widget,DataTableDirectives,FORM_DIRECTIVES]
 })
 export class InvoicePage {
 	
-	todos: Array<TodoItem>;
+	/*todos: Array<TodoItem>;
 	invoice: Array<InvoiceItem>;
 
 	fb: FormBuilder;
@@ -121,5 +121,5 @@ export class InvoicePage {
 		console.log('FACTURA')
 		console.log(this.invoice)
 	}
-	}
+	}*/
 }
