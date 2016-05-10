@@ -1,11 +1,29 @@
+<h1 class="page-title">Registrar <small><small>Pago</small></small></h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <section widget class="widget">
+      <header>
+        <h4>
+          Crear <span class="fw-semi-bold">Pago</span>
+        </h4>
+        <div class="widget-controls">
+          <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+          <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+          <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>
+      </header>
+      <div class="widget-body">
+
+
 <form role="form" class="col-md-offset-2">
   
-    <div class="row">
+   <div class="row">
         <div class="col-md-10">
             
             <div class="form-group">
     <label for="ejemplo_email_1">Fecha de ingreso</label>
-    <div class="input-group date" data-provide="datepicker">
+    <div class="input-group date" id="datetimepicker" data-provide="datepicker">
     <input type="text" class="form-control">
     <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
@@ -13,6 +31,11 @@
 </div>
      </div>
    </div>
+       <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker').datetimepicker();
+            });
+        </script>
     </div>
     
     <div class="row">
@@ -33,7 +56,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Monto</label>
-    <input type="text" class="form-control" id="monto"
+    <input type="number" step="0.01" class="form-control" id="monto"
            placeholder="Introduzca el monto">
      </div>
    </div>
@@ -45,7 +68,7 @@
             <div class="form-group">
     <label for="ejemplo_email_1">Descripción</label>
     <input type="text" class="form-control" id="descripcion"
-           placeholder="Telefono">
+           placeholder="Descripción">
      </div>
    </div>
     </div>
@@ -56,7 +79,7 @@
             <div class="form-group">
     <label for="ejemplo_email_1">Referencia</label>
     <input type="text" class="form-control" id="referencia"
-           placeholder="Introduce nombre comercial">
+           placeholder="Introduzca la referencia">
      </div>
    </div>
     </div>
@@ -76,3 +99,8 @@
    
   <button type="submit" class="btn btn-default">Enviar</button>
 </form>
+          
+                  </div>
+        </section>
+            </div>
+        </div>
