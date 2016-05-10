@@ -17,7 +17,7 @@ export class Navbar implements OnInit {
   toggleChatEvent: EventEmitter<any> = new EventEmitter();
   $el: any;
   config: any;
-  logoutRoute: any = "./logout";
+  logoutRoute: any = "./login";
   constructor(el: ElementRef, config: ConfigService) {
     this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
