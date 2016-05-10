@@ -3,8 +3,8 @@ import {Widget} from '../core/widget/widget';
 
 @Component({
 	selector: 'clients',
+        directives: [Widget],
 	template: require('./clients.html')
-        directives: [Widget]
 })
 export class ClientsPage {
 }
