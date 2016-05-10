@@ -1,5 +1,7 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ViewEncapsulation, OnInit} from 'angular2/core';
+import {ConfigService} from './../core/config';
 
 @Component({
   directives: [
@@ -9,7 +11,10 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
   host: {
     class: 'login-page app'
   },
+  styles: [require('../../scss/application.scss')],
+  encapsulation: ViewEncapsulation.None,
   template: require('./login.html')
+ 
 })
-export class LoginPage {
+export class LoginPage  {
 }
