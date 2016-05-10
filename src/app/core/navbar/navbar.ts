@@ -3,6 +3,8 @@ import {TOOLTIP_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ConfigService} from '../config';
 import {Notifications} from '../notifications/notifications';
+import {Router, RouterLink} from 'angular2/router';
+
 declare var jQuery: any;
 //declare var Routing: any;
 //declare var fos: any;
@@ -17,8 +19,8 @@ export class Navbar implements OnInit {
   toggleChatEvent: EventEmitter<any> = new EventEmitter();
   $el: any;
   config: any;
-  logoutRoute: any = "./logout";
-  constructor(el: ElementRef, config: ConfigService) {
+  logoutRoute: any = "./login";
+  constructor(el: ElementRef, config: ConfigService, public router: Router) {
     this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
   }
@@ -32,6 +34,13 @@ export class Navbar implements OnInit {
   }
 
   ngOnInit(): void {
+
+    let token = localStorage.getItem('jwt');
+
+    if (token == "" || token == " " || token == false){
+      this.router.parent.navigateByUrl('/login');
+    }
+
     // demo-only code. remove in production
     setTimeout(() => {
       let $chatNotification = jQuery('#chat-notification');
@@ -54,5 +63,10 @@ export class Navbar implements OnInit {
       jQuery(this).parents('.input-group')
         [e.type === 'focus' ? 'addClass' : 'removeClass']('focus');
     });
+  }
+
+  logout() {
+    localStorage.removeItem('jwt');
+    this.router.parent.navigateByUrl('/login');
   }
 }

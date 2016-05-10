@@ -5,6 +5,8 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} fr
 import {Validators} from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from 'angular2/http';
 import {urlApi, contentHeaders} from '../http/http';
+import {ViewEncapsulation, OnInit} from 'angular2/core';
+import {ConfigService} from './../core/config';
 
 @Component({
   directives: [
@@ -15,11 +17,13 @@ import {urlApi, contentHeaders} from '../http/http';
   host: {
     class: 'login-page app'
   },
-  template: require('./login.html'),
   viewProviders: [
   	FormBuilder, 
   	HTTP_PROVIDERS
-  ]
+  ],
+  styles: [require('../../scss/application.scss')],
+  encapsulation: ViewEncapsulation.None,
+  template: require('./login.html')
 })
 export class LoginPage {
 
@@ -77,3 +81,4 @@ export class LoginPage {
 		}
 	}
 }
+  

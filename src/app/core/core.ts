@@ -12,7 +12,6 @@ import {InvoicePage} from './../invoice/invoice';
 import {ClientsPage} from './../clients/clients';
 import {ProvidersPage} from './../providers/providers';
 import {OrdersPage} from './../orders/orders';
-import {ContactPage} from './../contact/contact';
 import {ConfigService} from './config';
 
 declare var jQuery: any;
@@ -38,8 +37,7 @@ declare var jQuery: any;
   { path: '/invoice', component: InvoicePage, name: 'InvoicePage' }, 
   { path: '/clients', component: ClientsPage, name: 'ClientsPage' },
   { path: '/providers', component: ProvidersPage, name: 'ProvidersPage' },
-  { path: '/orders', component: OrdersPage, name: 'OrdersPage' },
-  { path: '/contact', component: ContactPage, name: 'ContactPage' },
+  { path: '/orders', component: OrdersPage, name: 'OrdersPage' }
 ])
 export class Core implements OnInit {
   config: any;
