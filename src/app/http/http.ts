@@ -1,6 +1,8 @@
 import {Headers} from 'angular2/http';
 
 export const urlApi = 'http://imperya.arxis.la/'
+export const urlClientesApi = 'http://imperya.arxis.la/doc#post--api-contactos'
+export const urlIngresosApi = 'http://imperya.arxis.la/doc#post--api-ingresos'
 let token = localStorage.getItem('jwt');
 
 export const contentHeaders = new Headers();

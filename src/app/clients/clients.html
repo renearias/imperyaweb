@@ -16,14 +16,14 @@
       <div class="widget-body">
 
 
-<form role="form" class="col-md-offset-2">
+<form [ngFormModel]="clientsForm" role="form" class="col-md-offset-2">
   
     <div class="row">
         <div class="col-md-10">
             
             <div class="form-group">
     <label for="ejemplo_email_1">Nombre</label>
-    <input type="text" class="form-control" id="nombre"
+    <input [ngFormControl]="nombre" type="text" class="form-control" id="nombre"
            placeholder="Introduce nombre">
      </div>
    </div>
@@ -36,7 +36,7 @@
   <div class="form-group">
     <label for="ejemplo_password_1">Identificación</label>
     <div class="row"><div class="col-md-2">
-                            <select name="month" class = "form-control input-lg">
+                            <select [ngFormControl]="identificacion" name="month" class = "form-control input-lg">
                                 <option value="Especial">N</option>
                                 <option value="RISE">E</option>
                             </select>
@@ -56,7 +56,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Nombre Comercial</label>
-    <input type="text" class="form-control" id="nombre_comercial"
+    <input [ngFormControl]="nombrecomercial" type="text" class="form-control" id="nombre_comercial"
            placeholder="Introduce nombre comercial">
      </div>
    </div>
@@ -67,7 +67,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Telefono</label>
-    <input type="text" class="form-control" id="telefono"
+    <input [ngFormControl]="telefonos" type="text" class="form-control" id="telefono"
            placeholder="Telefono">
      </div>
    </div>
@@ -78,7 +78,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Fáx</label>
-    <input type="text" class="form-control" id="fax"
+    <input [ngFormControl]="fax" type="text" class="form-control" id="fax"
            placeholder="Fax">
      </div>
    </div>
@@ -89,7 +89,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Cuidad</label>
-    <input type="text" class="form-control" id="fax"
+    <input [ngFormControl]="ciudad" type="text" class="form-control" id="fax"
            placeholder="ciudad">
      </div>
    </div>
@@ -100,7 +100,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Registro Empresarial</label>
-    <input type="text" class="form-control" id="fax"
+    <input [ngFormControl]="registroempresarial" type="text" class="form-control" id="fax"
            placeholder="registro_empresarial">
      </div>
    </div>
@@ -111,7 +111,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">E-mail</label>
-    <input type="email" class="form-control" id="email"
+    <input [ngFormControl]="email" type="email" class="form-control" id="email"
            placeholder="E-mail">
      </div>
    </div>
@@ -122,7 +122,7 @@
          <div class="form-group">
          <label for="ejemplo_email_1">Tipo de contribuyente</label>
                         <div>
-                            <select name="month" class = "form-control input-lg">
+                            <select [ngFormControl]="clasecontribuyente" name="month" class = "form-control input-lg">
                                  <option value="">Seleccione...</option>
                                 <option value="Especial">Especial</option>
                                 <option value="RISE">RISE</option>

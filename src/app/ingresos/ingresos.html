@@ -1,5 +1,4 @@
-<h1 class="page-title">Registrar <small><small>Pago</small></small></h1>
-
+<h1 class="page-title">Nuevo <small><small>Pago</small></small></h1>
 <div class="row">
   <div class="col-md-12">
     <section widget class="widget">
@@ -16,7 +15,7 @@
       <div class="widget-body">
 
 
-<form role="form" class="col-md-offset-2">
+<form [ngFormModel]="ingresosForm" role="form" class="col-md-offset-2">
   
    <div class="row">
         <div class="col-md-10">
@@ -24,7 +23,7 @@
             <div class="form-group">
     <label for="ejemplo_email_1">Fecha de ingreso</label>
     <div class="input-group date" id="datetimepicker" data-provide="datepicker">
-    <input type="text" class="form-control">
+    <input [ngFormControl]="fecha" type="text" class="form-control">
     <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
     </div>
@@ -43,7 +42,7 @@
          <div class="form-group">
          <label for="">Cliente</label>
                         <div>
-                            <select name="month" class = "form-control input-lg">
+                            <select [ngFormControl]="cliente" name="month" class = "form-control input-lg">
                                 <option value="">Seleccione...</option>
                             </select>
                         </div>
@@ -56,7 +55,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Monto</label>
-    <input type="number" step="0.01" class="form-control" id="monto"
+    <input [ngFormControl]="monto" type="number" step="0.01" class="form-control" id="monto"
            placeholder="Introduzca el monto">
      </div>
    </div>
@@ -67,7 +66,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Descripción</label>
-    <input type="text" class="form-control" id="descripcion"
+    <input [ngFormControl]="descripcion" type="text" class="form-control" id="descripcion"
            placeholder="Descripción">
      </div>
    </div>
@@ -78,7 +77,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Referencia</label>
-    <input type="text" class="form-control" id="referencia"
+    <input [ngFormControl]="referencia" type="text" class="form-control" id="referencia"
            placeholder="Introduzca la referencia">
      </div>
    </div>
@@ -89,7 +88,7 @@
          <div class="form-group">
          <label for="ejemplo_email_1">Forma de pago</label>
                         <div>
-                            <select name="month" class = "form-control input-lg">
+                            <select [ngFormControl]="formapago" name="month" class = "form-control input-lg">
                                 <option value="">Seleccione...</option>
                             </select>
                         </div>
@@ -99,8 +98,7 @@
    
   <button type="submit" class="btn btn-default">Enviar</button>
 </form>
-          
-                  </div>
-        </section>
-            </div>
-        </div>
+      </div>
+    </section>
+  </div>
+</div>
