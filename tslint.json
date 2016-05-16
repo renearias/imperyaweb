@@ -5,8 +5,7 @@
     "eofline": true,
     "indent": "spaces",
     "max-line-length": [
-      true,
-      100
+      false
     ],
     "member-ordering": [
       true,
