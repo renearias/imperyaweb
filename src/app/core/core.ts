@@ -15,7 +15,9 @@ import {OrdersPage} from './../orders/orders';
 import {IngresosPage} from './../ingresos/ingresos';
 import {ConfigService} from './config';
 
+declare var Raphael: any;
 declare var jQuery: any;
+declare var Tether: any;
 
 @Component({
   selector: 'app',
@@ -52,17 +54,45 @@ export class Core implements OnInit {
   constructor(config: ConfigService,
               el: ElementRef,
               router: Router) {
+    Raphael.prototype.safari = function(): any { return; };
+
     this.el = el;
     this.config = config.getConfig();
     this.configFn = config;
     this.chatOpened = false;
     this.router = router;
+
+    jQuery.fn.onPositionChanged = function (trigger, millis): any {
+      if (millis == null) { millis = 100; }
+      let o = jQuery(this[0]); // our jquery object
+      if (o.length < 1) { return o; }
+
+      let lastPos = null;
+      let lastOff = null;
+      setInterval(() => {
+        if (o == null || o.length < 1) { return o; } // abort if element is non existend eny more
+        if (lastPos == null) { lastPos = o.position(); }
+        if (lastOff == null) { lastOff = o.offset(); }
+        let newPos = o.position();
+        let newOff = o.offset();
+        if (lastPos.top !== newPos.top || lastPos.left !== newPos.left) {
+          jQuery(this).trigger('onPositionChanged', { lastPos: lastPos, newPos: newPos });
+          if (typeof (trigger) === 'function') { trigger(lastPos, newPos); }
+          lastPos = o.position();
+        }
+        if (lastOff.top !== newOff.top || lastOff.left !== newOff.left) {
+          jQuery(this).trigger('onOffsetChanged', { lastOff: lastOff, newOff: newOff});
+          if (typeof (trigger) === 'function') { trigger(lastOff, newOff); }
+          lastOff = o.offset();
+        }
+      }, millis);
+
+      return o;
+    };
   }
 
   toggleSidebarListener(state): void {
-    let toggleNavigation = state === 'static'
-      ? this.toggleNavigationState
-      : this.toggleNavigationCollapseState;
+    let toggleNavigation = state === 'static' ? this.toggleNavigationState : this.toggleNavigationCollapseState;
     toggleNavigation.apply(this);
     localStorage.setItem('nav-static', this.config.state['nav-static']);
   }
@@ -74,12 +104,10 @@ export class Core implements OnInit {
     setTimeout(() => {
       // demo: add class & badge to indicate incoming messages from contact
       // .js-notification-added ensures notification added only once
-      jQuery('.chat-sidebar-user-group:first-of-type ' +
-        '.list-group-item:first-child:not(.js-notification-added)')
+      jQuery('.chat-sidebar-user-group:first-of-type .list-group-item:first-child:not(.js-notification-added)')
         .addClass('active js-notification-added')
         .find('.fa-circle')
-        .after('<span class="label label-pill label-danger ' +
-          'pull-right animated bounceInDown">3</span>');
+        .after('<span class="label label-pill label-danger pull-right animated bounceInDown">3</span>');
     }, 1000);
   }
 
@@ -89,8 +117,7 @@ export class Core implements OnInit {
 
   expandNavigation(): void {
     // this method only makes sense for non-static navigation state
-    if (this.isNavigationStatic()
-      && (this.configFn.isScreen('lg') || this.configFn.isScreen('xl'))) { return; }
+    if (this.isNavigationStatic() && (this.configFn.isScreen('lg') || this.configFn.isScreen('xl'))) { return; }
 
     jQuery('app').removeClass('nav-collapsed');
     this.$sidebar.find('.active .active').closest('.collapse').collapse('show')
@@ -99,8 +126,7 @@ export class Core implements OnInit {
 
   collapseNavigation(): void {
     // this method only makes sense for non-static navigation state
-    if (this.isNavigationStatic()
-      && (this.configFn.isScreen('lg') || this.configFn.isScreen('xl'))) { return; }
+    if (this.isNavigationStatic() && (this.configFn.isScreen('lg') || this.configFn.isScreen('xl'))) { return; }
 
     jQuery('app').addClass('nav-collapsed');
     this.$sidebar.find('.collapse.in').collapse('hide')
@@ -112,8 +138,7 @@ export class Core implements OnInit {
    */
   checkNavigationState(): void {
     if (this.isNavigationStatic()) {
-      if (this.configFn.isScreen('sm')
-        || this.configFn.isScreen('xs') || this.configFn.isScreen('md')) {
+      if (this.configFn.isScreen('sm') || this.configFn.isScreen('xs') || this.configFn.isScreen('md')) {
         this.collapseNavigation();
       }
     } else {
@@ -177,13 +202,16 @@ export class Core implements OnInit {
   }
 
   collapseNavIfSmallScreen(): void {
-    if (this.configFn.isScreen('xs')
-      || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
+    if (this.configFn.isScreen('xs') || this.configFn.isScreen('sm') || this.configFn.isScreen('md')) {
       this.collapseNavigation();
     }
   }
 
   ngOnInit(): void {
+    setTimeout(() => { jQuery('[data-toggle="tooltip"]').tooltip(); });
+
+    jQuery('[data-toggle="tooltip"]').onPositionChanged(() => { Tether.position(); }, 0);
+
     if (localStorage.getItem('nav-static') === 'true') {
       this.config.state['nav-static'] = true;
     }
@@ -191,8 +219,10 @@ export class Core implements OnInit {
     let $el = jQuery(this.el.nativeElement);
     this.$sidebar = $el.find('[sidebar]');
 
-    $el.find('a[href="#"]').on('click', (e) => {
-      e.preventDefault();
+    setTimeout(() => {
+      $el.find('a[href="#"]').on('click', (e) => {
+        e.preventDefault();
+      });
     });
 
     this.$sidebar.on('mouseenter', this._sidebarMouseEnter.bind(this));
@@ -209,6 +239,12 @@ export class Core implements OnInit {
     this.router.changes.subscribe(() => {
       this.collapseNavIfSmallScreen();
       window.scrollTo(0, 0);
+
+      setTimeout(() => {
+        $el.find('a[href="#"]').on('click', (e) => {
+          e.preventDefault();
+        });
+      });
     });
 
     if ('ontouchstart' in window) { this.enableSwipeCollapsing(); }
@@ -219,11 +255,9 @@ export class Core implements OnInit {
         if (e.target !== e.currentTarget) { return; }
 
         let $triggerLink = jQuery(this).prev('[data-toggle=collapse]');
-        jQuery($triggerLink.data('parent'))
-          .find('.collapse.in').not(jQuery(this)).collapse('hide');
+        jQuery($triggerLink.data('parent')).find('.collapse.in').not(jQuery(this)).collapse('hide');
       })
-      /* adding additional classes to navigation link li-parent
-       for several purposes. see navigation styles */
+      /* adding additional classes to navigation link li-parent for several purposes. see navigation styles */
       .on('show.bs.collapse', function(e): void {
         // execute only if we're actually the .collapse element initiated event
         // return for bubbled events
