@@ -1,3 +1,5 @@
+// @AngularClass
+
 /*
  * Helper: root(), and rootDir() are defined at the bottom
  */
@@ -95,8 +97,26 @@ module.exports = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       $: 'jquery',
+      'window.$': 'jquery',
       'window.Tether': 'tether',
-      Util: 'util'
+      Tether: 'tether',
+      Util: 'bootstrap/dist/js/umd/util.js',
+      Raphael: 'webpack-raphael',
+      'window.Raphael': 'webpack-raphael'//,
+     // Rickshaw: 'rickshaw',
+     // Skycons: 'skycons/skycons',
+     // "window['Morris']": 'morris.js/morris.js',
+     // "window['GMaps']": 'gmaps',
+     // moment: 'moment/moment.js',
+     // Dropzone: 'dropzone/dist/dropzone.js',
+     // Switchery: 'switchery/dist/switchery.js',
+     // Backbone: 'backbone',
+     // PageableCollection: 'backbone.paginator/lib/backbone.paginator.js',
+     // Backgrid: 'backgrid/lib/backgrid.js',
+     // '_' : "underscore",
+     // Holder: 'jasny-bootstrap/docs/assets/js/vendor/holder.js',
+     // markdown: 'markdown/lib/markdown.js',
+     // Shuffle: 'shufflejs/dist/shuffle.js'
     })
   ],
 

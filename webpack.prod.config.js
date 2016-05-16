@@ -1,3 +1,5 @@
+// @AngularClass
+
 /*
  * Helper: root(), and rootDir() are defined at the bottom
  */
@@ -146,12 +148,29 @@ module.exports = {
       '__awaiter': 'ts-helper/awaiter',
       '__extends': 'ts-helper/extends',
       '__param': 'ts-helper/param',
-      'Reflect': 'es7-reflect-metadata/src/global/browser',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       $: 'jquery',
+      'window.$': 'jquery',
       'window.Tether': 'tether',
-      Util: 'util'
+      Tether: 'tether',
+      Util: 'util',
+      Raphael: 'webpack-raphael',
+      'window.Raphael': 'webpack-raphael'//,
+     // Rickshaw: 'rickshaw',
+     // Skycons: 'skycons/skycons',
+     // "window['Morris']": 'morris.js/morris.js',
+     // "window['GMaps']": 'gmaps',
+    //  moment: 'moment/moment.js',
+     // Dropzone: 'dropzone/dist/dropzone.js',
+     // Switchery: 'switchery/dist/switchery.js',
+     // Backbone: 'backbone',
+    //  PageableCollection: 'backbone.paginator/lib/backbone.paginator.js',
+    //  Backgrid: 'backgrid/lib/backgrid.js',
+    //  '_' : "underscore",
+     // Holder: 'jasny-bootstrap/docs/assets/js/vendor/holder.js',
+     // markdown: 'markdown/lib/markdown.js',
+    //  Shuffle: 'shufflejs/dist/shuffle.js'
     }),
     new UglifyJsPlugin({
       // to debug prod builds uncomment //debug lines and comment //prod lines
