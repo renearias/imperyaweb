@@ -3,13 +3,15 @@
  */
 import {Component} from '@angular/core';
 import { NgForm }    from '@angular/common';
+import {Widget} from '../core/widget/widget';
 
 import {Producto}  from './producto';
 
 @Component({
   selector: 'producto-form',
   //templateUrl: './producto-form.component.html'
-  template: require('./producto-form.component.html')
+  template: require('./producto-form.component.html'),
+  directives: [Widget]
 })
 export class ProductoFormComponent {
   tipos = ['Bien', 'Servicio'];
