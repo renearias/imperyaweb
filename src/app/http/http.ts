@@ -1,4 +1,4 @@
-import {Headers} from 'angular2/http';
+import {Headers} from '@angular/http';
 
 export const urlApi = 'http://imperya.arxis.la/'
 export const urlClientesApi = 'http://imperya.arxis.la/doc#post--api-contactos'

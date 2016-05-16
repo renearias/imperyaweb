@@ -1,11 +1,11 @@
-import {Component} from 'angular2/core';
-import {Router, RouterLink, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
-import {Validators} from 'angular2/common';
-import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from 'angular2/http';
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
+import {Validators} from '@angular/common';
+import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import {urlApi, contentHeaders} from '../http/http';
-import {ViewEncapsulation, OnInit} from 'angular2/core';
+import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
 
 @Component({
@@ -70,7 +70,7 @@ export class LoginPage {
 					localStorage.setItem('jwt', response.json().token);
 					console.log(response.json().token)
 					console.log(localStorage.getItem('jwt'))
-					this.router.parent.navigateByUrl('/app');					
+					//this.router.parent.navigateByUrl('/app');					
 				},
 				error => {
 					console.log(error.text());
