@@ -14,11 +14,11 @@ declare var jQuery: any;
   encapsulation: ViewEncapsulation.None,
   template: require('./producto-form.component.html'),
   directives: [Widget],
-  styles: [require('../forms-elements/forms-elements.scss')]
+  styles: [require('../components/forms-elements/forms-elements.scss')]
 })
 export class ProductoFormComponent {
   tipos: Array<string> = ['Bien', 'Servicio', 'Otro'];
-  model: Producto= new Producto(1, 'SOYA Liquida', 10, this.tipos[0],'24-11-2015');
+  model: Producto= new Producto(1, '', 0, this.tipos[0],'24-11-2015');
   submitted: boolean= false;
   ngOnInit(): void {
    
