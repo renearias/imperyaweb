@@ -15,7 +15,7 @@
       <div class="widget-body">
 
 
-<form [ngFormModel]="ingresosForm" role="form" class="col-md-offset-2">
+<form [ngFormModel]="ingresosForm" (submit)="ingresos()" role="form" class="col-md-offset-2">
   
    <div class="row">
         <div class="col-md-10">
@@ -23,18 +23,13 @@
             <div class="form-group">
     <label for="ejemplo_email_1">Fecha de ingreso</label>
     <div class="input-group date" id="datetimepicker" data-provide="datepicker">
-    <input [ngFormControl]="fecha" type="text" class="form-control">
+    <input [ngFormControl]="fecha" required type="datetime-local" class="form-control">
     <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
     </div>
 </div>
      </div>
    </div>
-       <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker').datetimepicker();
-            });
-        </script>
     </div>
     
     <div class="row">
@@ -42,7 +37,7 @@
          <div class="form-group">
          <label for="">Cliente</label>
                         <div>
-                            <select [ngFormControl]="cliente" name="month" class = "form-control input-lg">
+                            <select [ngFormControl]="cliente" required name="month" class = "form-control input-lg">
                                 <option value="">Seleccione...</option>
                             </select>
                         </div>
@@ -55,7 +50,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Monto</label>
-    <input [ngFormControl]="monto" type="number" step="0.01" class="form-control" id="monto"
+    <input [ngFormControl]="monto" required type="number" step="0.01" class="form-control" id="monto"
            placeholder="Introduzca el monto">
      </div>
    </div>
@@ -66,7 +61,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Descripción</label>
-    <input [ngFormControl]="descripcion" type="text" class="form-control" id="descripcion"
+    <input [ngFormControl]="descripcion" required type="text" class="form-control" id="descripcion"
            placeholder="Descripción">
      </div>
    </div>
@@ -77,7 +72,7 @@
             
             <div class="form-group">
     <label for="ejemplo_email_1">Referencia</label>
-    <input [ngFormControl]="referencia" type="text" class="form-control" id="referencia"
+    <input [ngFormControl]="referencia" required type="text" class="form-control" id="referencia"
            placeholder="Introduzca la referencia">
      </div>
    </div>
@@ -88,7 +83,7 @@
          <div class="form-group">
          <label for="ejemplo_email_1">Forma de pago</label>
                         <div>
-                            <select [ngFormControl]="formapago" name="month" class = "form-control input-lg">
+                            <select [ngFormControl]="formapago" required name="month" class = "form-control input-lg">
                                 <option value="">Seleccione...</option>
                             </select>
                         </div>
