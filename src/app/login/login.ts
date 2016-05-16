@@ -21,7 +21,7 @@ import {ConfigService} from './../core/config';
   	FormBuilder, 
   	HTTP_PROVIDERS
   ],
-  styles: [require('../../scss/application.scss')],
+  styles: [require('../../scss/application.scss'),require('./login.scss')],
   encapsulation: ViewEncapsulation.None,
   template: require('./login.html')
 })
