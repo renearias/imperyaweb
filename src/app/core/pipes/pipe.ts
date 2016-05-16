@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from 'angular2/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'SearchPipe',
@@ -7,6 +7,7 @@ import {Pipe, PipeTransform} from 'angular2/core';
 export class SearchPipe implements PipeTransform {
 
   transform(value, args?): Array<any> {
+    if(typeof args == "undefined") args="";
     let searchText = args;
     if (value) {
       return value.filter(conversation => {
