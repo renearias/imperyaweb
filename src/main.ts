@@ -8,14 +8,14 @@ import 'bootstrap';
 import 'widgster';
 import 'jquery-touchswipe/jquery.touchSwipe';
 import 'jquery-slimscroll/jquery.slimscroll';
+import 'webpack-raphael';
+import 'bootstrap-select/dist/js/bootstrap-select.js';
+import 'select2/select2.js';
+
 import 'pace';
 
-//import './bundles/fosjsrouting/js/router';
-//declare var Routing: any;
-//import './js/fos_js_routes';
-//declare var fos: any;
-
 import {provide, enableProdMode} from '@angular/core';
+import {NgControl} from '@angular/common';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
 import {ROUTER_PROVIDERS,} from '@angular/router';
@@ -36,6 +36,7 @@ import {ConfigService} from './app/core/config';
 document.addEventListener('DOMContentLoaded', function main(): void {
   bootstrap(App, [
     ConfigService,
+    NgControl,
     ...ENV_PROVIDERS,
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
