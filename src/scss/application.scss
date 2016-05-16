@@ -12,26 +12,9 @@
 @import "bootstrap-override";
 @import "libs-override";
 
-//
-
-
-//end custom libs
-
 //everything below this line is required for essential styling
 @import "font";
 @import "general";
 @import "global-transitions";
 @import "base";
-@import "widgets";
 @import "utils";
-
-
-//Facturas
-
-.invoice-data
-{
-	input
-	{
-		width: 100%;
-	}
-}

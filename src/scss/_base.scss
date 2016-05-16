@@ -140,6 +140,17 @@
     font-size: 20px;
     vertical-align: -2px;
   }
+
+  .navbar-form {
+
+    .input-group-addon {
+      line-height: 2;
+    }
+
+    .form-control {
+      line-height: 1.7;
+    }
+  }
 }
 
 /* ff icons valign fix */
@@ -265,9 +276,14 @@
         color: rgba($sidebar-color, .7);
       }
 
+      .fa {
+        position: relative;
+        top: 1px;
+      }
+
       .glyphicon{
         left: -1px;
-        top: 5px;
+        top: 6px;
       }
 
       .glyphicon-th{
@@ -278,13 +294,8 @@
         left: 0;
       }
 
-      .glyphicon-map-marker{
-        top: 6px;
-      }
-
       .fa-envelope{
-        position: relative;
-        top: -1px;
+        top: 0px;
       }
 
       @media (min-width: map_get($grid-breakpoints, lg)) and (min-height: $screen-lg-height), (max-width: map_get($grid-breakpoints, md) - 1px){
@@ -294,6 +305,10 @@
 
         .glyphicon-map-marker {
           top: 7px;
+        }
+
+        .fa {
+          top: 0px;
         }
       }
 
@@ -1044,6 +1059,16 @@
 
   .widget-table-overflow{
     margin: 0 (-$widget-padding-horizontal) (-$widget-padding-vertical);
+
+    th:first-child,
+    td:first-child {
+      padding-left: $widget-padding-horizontal;
+    }
+
+    th:last-child,
+    td:last-child {
+      padding-right: $widget-padding-horizontal;
+    }
   }
 }
 
@@ -1093,6 +1118,152 @@
   }
 }
 
+.widget-card { min-height: 135px;}
+
+.widget-icon{
+  opacity: .5;
+  font-size: 42px;
+  height: 70px;
+
+  .glyphicon {
+    top: 5px;
+  }
+}
+
+.widget-image{
+  position: relative;
+  overflow: hidden;
+  margin: (-$widget-padding-vertical) (-$widget-padding-horizontal);
+  border-radius: $border-radius;
+
+  > img{
+    max-width: 100%;
+    border-radius: $border-radius $border-radius 0 0;
+    transition: transform .15s ease;
+  }
+
+  &:hover > img{
+    transform: scale(1.1, 1.1);
+  }
+
+  .title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+  }
+
+  .info{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+  }
+}
+
+.widget-footer-bottom{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.widget-sm{
+  height: 230px;
+}
+
+.widget-md{
+  height: 373px;
+}
+
+.windget-padding-md {
+  padding: $widget-padding-vertical $widget-padding-horizontal;
+}
+
+.windget-padding-lg {
+  padding: $widget-padding-vertical*2 $widget-padding-horizontal*2;
+}
+
+.widget-body-container{
+  position: relative;
+  height: 100%;
+}
+
+.widget-top-overflow,
+.widget-middle-overflow{
+  position: relative;
+  margin: 0 (-$widget-padding-horizontal);
+
+  > img{
+    max-width: 100%;
+  }
+}
+
+.widget-top-overflow{
+  margin-top: (-$widget-padding-vertical);
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  overflow: hidden;
+
+  > img{
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  > .btn-toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    margin-right: $widget-padding-horizontal;
+
+    @include media-breakpoint-up(md){
+      top: auto;
+      bottom: 0;
+    }
+  }
+}
+
+/***********************************/
+/**         Widgets Grid          **/
+/***********************************/
+
+.widget-container{
+  min-height: 30px;
+
+  .widget:not(.fullscreened) > header{
+    cursor: move;
+  }
+}
+
+.widget-placeholder{
+  background:  rgba($white, .4);
+  border: 1px dashed $gray-light;
+  margin: -1px -1px calc(#{$grid-gutter-width} - 1px) -1px;
+}
+
+/***********************/
+/*        Forms        */
+/***********************/
+
+.form-actions{
+  margin: $line-height-computed 0 0;
+  padding: $line-height-computed;
+  background-color: #f5f5f5;
+
+  .form-horizontal & .row{
+    margin-left: ($grid-gutter-width/-2) - $line-height-computed;
+    margin-right: ($grid-gutter-width/-2) - $line-height-computed;
+  }
+}
+
+input[type=search], input.search {
+  &, .input-group-lg > &, .input-group-sm > &{
+    padding-left: 26px;
+  }
+  background-color: $input-bg;
+  background:url(assets/images/search.png) 5px 60% no-repeat $input-bg;
+}
+
 /***********************/
 /*       Buttons       */
 /***********************/
@@ -1106,4 +1277,20 @@
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+}
+
+/***********************/
+/*     Content Map     */
+/***********************/
+
+.content-map{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  + .page-title{
+    position: relative;
+    z-index: 2;
+  }
 }
