@@ -206,10 +206,10 @@ export class Core implements OnInit {
       }
     });
 
-    /*this.router.parent.subscribe(() => {
+    this.router.changes.subscribe(() => {
       this.collapseNavIfSmallScreen();
       window.scrollTo(0, 0);
-    });*/
+    });
 
     if ('ontouchstart' in window) { this.enableSwipeCollapsing(); }
 
