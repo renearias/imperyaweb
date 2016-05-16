@@ -1,9 +1,9 @@
  <div class="chat-sidebar-content">
     <header class="chat-sidebar-header">
-      <h4 class="chat-sidebar-title">Contacts</h4>
+      <h4 class="chat-sidebar-title">Contactos</h4>
       <div class="form-group no-margin">
         <div class="input-group input-group-dark">
-          <input class="form-control fs-mini" [(ngModel)]="searchText" type="text" placeholder="Search...">
+          <input class="form-control fs-mini" [(ngModel)]="searchText" type="text" placeholder="Buscar...">
           <span class="input-group-addon">
             <i class="fa fa-search"></i>
           </span>
@@ -11,9 +11,9 @@
       </div>
     </header>
     <div class="chat-sidebar-contacts chat-sidebar-panel" [ngClass]="{'open': !chatMessageOpened}">
-      <h5 class="sidebar-nav-title">Today</h5>
+      <h5 class="sidebar-nav-title">Hoy</h5>
       <div class="list-group chat-sidebar-user-group">
-        <a *ngFor="#conversation of conversations.todayConversations | SearchPipe : searchText"
+        <a *ngFor="let conversation of conversations.todayConversations | SearchPipe : searchText"
            (click)="deactivateLink($event); openConversation(conversation)"
            class="list-group-item">
           <i class="fa fa-circle text-{{conversation.status}} pull-right"></i>
@@ -27,7 +27,7 @@
 
       <h5 class="sidebar-nav-title">Last Week</h5>
       <div class="list-group chat-sidebar-user-group">
-        <a *ngFor="#conversation of conversations.lastWeekConversations | SearchPipe : searchText"
+        <a *ngFor="let conversation of conversations.lastWeekConversations | SearchPipe : searchText"
            (click)="deactivateLink($event); openConversation(conversation)"
            class="list-group-item">
           <i class="fa fa-circle text-{{conversation.status}} pull-right"></i>
