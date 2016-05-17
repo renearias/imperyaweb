@@ -10,7 +10,10 @@ import 'jquery-touchswipe/jquery.touchSwipe';
 import 'jquery-slimscroll/jquery.slimscroll';
 import 'webpack-raphael';
 import 'bootstrap-select/dist/js/bootstrap-select.js';
+import 'moment/moment.js';
 import 'select2/select2.js';
+import 'ng2-datetime/src/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js';
+import 'ng2-datetime/src/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js';
 
 import 'pace';
 
