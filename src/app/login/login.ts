@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component} from '@angular/core';
+import {Router, Routes, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
 import {Validators} from 'angular2/common';
@@ -8,34 +8,37 @@ import {urlApi, contentHeaders} from '../http/http';
 import {ViewEncapsulation, OnInit} from 'angular2/core';
 import {ConfigService} from './../core/config';
 
+
 @Component({
-directives: [
-ROUTER_DIRECTIVES,
-FORM_DIRECTIVES
-],
-selector: '[login]',
-host: {
-class: 'login-page app'
-},
-viewProviders: [
-FormBuilder, 
-HTTP_PROVIDERS
-],
-styles: [require('../../scss/application.scss')],
-encapsulation: ViewEncapsulation.None,
-template: require('./login.html')
+  directives: [
+    ROUTER_DIRECTIVES,
+	FORM_DIRECTIVES
+  ],
+  selector: '[login]',
+  host: {
+    class: 'login-page app'
+  },
+  viewProviders: [
+  	FormBuilder, 
+  	HTTP_PROVIDERS
+  ],
+  styles: [require('../../scss/application.scss'),require('./login.scss')],
+  encapsulation: ViewEncapsulation.None,
+  template: require('./login.html')
 })
+
 export class LoginPage {
 
 fb: FormBuilder;
 loginForm: ControlGroup;
 username: Control;
 password: Control;
+badCredentials;
 
-constructor(fb: FormBuilder, public router: Router, public http: Http) {
-this.fb = fb;
-this.buildForm();
-}
+	constructor(fb: FormBuilder, public router: Router, public http: Http) {
+		this.fb = fb;
+		this.buildForm();
+	}
 
 buildForm(): void {
 this.username = new Control('', Validators.required);
@@ -74,22 +77,25 @@ console.log(body)
 				},
 				error => {
 					console.log(error.text());
+					this.badCredentials = true;
+					this.clearData();
 				}
-				);
-this.http.post(urlApi + 'login', body, options)
-.subscribe(
-response => {
-localStorage.setItem('jwt', response.json().token);
-console.log(response.json().token)
-console.log(localStorage.getItem('jwt'))
-this.router.parent.navigateByUrl('/app');					
-},
-error => {
-console.log(error.text());
-}
-);
+			);
 
+		}
+	}
+	clearData(): void {
+		console.log("probando");
+		setTimeout(() => {
+			let loginData;
 
+			this.badCredentials = false;
+			loginData = this.loginForm.controls;
+			loginData.username.updateValue('');
+			loginData.password.updateValue('');
+		}, 2000);
+
+	}
 }
 }
 }

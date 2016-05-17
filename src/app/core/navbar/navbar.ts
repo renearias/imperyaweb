@@ -38,7 +38,7 @@ export class Navbar implements OnInit {
 
     let token = localStorage.getItem('jwt');
 
-    if (token == "" || token == " " || token == false){
+    if (!token){
       //this.router.parent.navigateByUrl('/login');
     }
 

@@ -16,9 +16,9 @@
             <!-- <p class="widget-login-info">
               Use Facebook, Twitter or your email to sign in.
             </p> -->
-            <p class="widget-login-info">
+           <!--  <p class="widget-login-info">
               No tengo cuenta, <strong>Registrarme</strong>
-            </p>
+            </p> -->
             <form [ngFormModel]="loginForm" (submit)="login()" class="login-form mt-lg">
               <div class="form-group">
                 <input [ngFormControl]="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario">
@@ -26,11 +26,13 @@
               <div class="form-group">
                 <input [ngFormControl]="password" type="password" class="form-control" id="pswd" placeholder="Contraseña">
               </div>
+              <p [hidden]="!badCredentials" class="form-validation">
+                <i class="fa fa-times-circle"></i>Datos inválidos
+              </p>
               <div class="clearfix">
                 <div class="btn-toolbar pull-xs-right m-t-1">
                   <button type="submit" class="btn btn-secondary btn-sm" [disabled]="!loginForm.valid">Iniciar Sesión</button>
-                  <a class="btn btn-inverse btn-sm">Crear cuenta</a>
-                  <!--  [routerLink]="['/App', 'Dashboard']" -->
+                  <a [routerLink]=" ['/register']" class="btn btn-inverse btn-sm">Crear cuenta</a>
                 </div>
               </div>
               <div class="row m-t-1">

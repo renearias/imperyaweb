@@ -12,26 +12,28 @@
 @import "bootstrap-override";
 @import "libs-override";
 
-//
-
-
-//end custom libs
-
 //everything below this line is required for essential styling
 @import "font";
 @import "general";
 @import "global-transitions";
 @import "base";
-@import "widgets";
 @import "utils";
 
+//Estilos para Login y Register
 
-//Facturas
-
-.invoice-data
+.form-validation
 {
-	input
+	color: #D8000C;
+	background-color: #FFBABA;
+	font-size: 13px;
+	border: none;
+	font-weight: 400;
+	padding: 6px 12px;
+	box-shadow: none;
+	border-radius: 0.25rem;
+	i
 	{
-		width: 100%;
+	  margin-right: 5px;
+	  font-size: 16px;
 	}
 }

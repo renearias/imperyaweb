@@ -65,19 +65,15 @@ export class ConfigService {
 
   isScreen(size): boolean {
     let screenPx = window.innerWidth;
-    return (screenPx >= this.config.settings.screens[size + '-min'] || size === 'xs')
-      && (screenPx <= this.config.settings.screens[size + '-max'] || size === 'xl');
+    return (screenPx >= this.config.settings.screens[size + '-min'] || size === 'xs') && (screenPx <= this.config.settings.screens[size + '-max'] || size === 'xl');
   }
 
   getScreenSize(): string {
     let screenPx = window.innerWidth;
     if (screenPx <= this.config.settings.screens['xs-max']) { return 'xs'; }
-    if ((screenPx >= this.config.settings.screens['sm-min'])
-      && (screenPx <= this.config.settings.screens['sm-max'])) { return 'sm'; }
-    if ((screenPx >= this.config.settings.screens['md-min'])
-      && (screenPx <= this.config.settings.screens['md-max'])) { return 'md'; }
-    if ((screenPx >= this.config.settings.screens['lg-min'])
-      && (screenPx <= this.config.settings.screens['lg-max'])) { return 'lg'; }
+    if ((screenPx >= this.config.settings.screens['sm-min']) && (screenPx <= this.config.settings.screens['sm-max'])) { return 'sm'; }
+    if ((screenPx >= this.config.settings.screens['md-min']) && (screenPx <= this.config.settings.screens['md-max'])) { return 'md'; }
+    if ((screenPx >= this.config.settings.screens['lg-min']) && (screenPx <= this.config.settings.screens['lg-max'])) { return 'lg'; }
     if (screenPx >= this.config.settings.screens['xl-min']) { return 'xl'; }
   }
 

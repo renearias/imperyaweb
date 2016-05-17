@@ -41,8 +41,8 @@ export class Sidebar implements OnInit {
   }
 
   changeActiveNavigationItem(location): void {
-    let $newActiveLink = this.$el.find('a[href="#' + location.path() + '"]');
-
+    let hash = '';  // hash mode may be #
+    let $newActiveLink = this.$el.find('a[href="'+ hash + location.path() + '"]');
     // collapse .collapse only if new and old active links belong to different .collapse
     if (!$newActiveLink.is('.active > .collapse > li > a')) {
       this.$el.find('.active .active').closest('.collapse').collapse('hide');
@@ -64,9 +64,9 @@ export class Sidebar implements OnInit {
   ngOnInit(): void {
     jQuery(window).on('sn:resize', this.initSidebarScroll.bind(this));
     this.initSidebarScroll();
-
-    /*this.router.parent.subscribe(() => {
+    
+    this.router.changes.subscribe(() => {
       this.changeActiveNavigationItem(this.location);
-    });*/
+    });
   }
 }

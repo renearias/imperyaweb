@@ -16,8 +16,7 @@ export class Widget implements OnInit {
      When widget is closed remove its parent if it is .col-*
      */
     jQuery(document).on('close.widgster', (e) => {
-      let $colWrap = jQuery(e.target)
-        .closest('.content > .row > [class*="col-"]:not(.widget-container)');
+      let $colWrap = jQuery(e.target).closest('.content .row [class*="col-"]:not(.widget-container)');
 
       // remove colWrap only if there are no more widgets inside
       if (!$colWrap.find('.widget').not(e.target).length) {
