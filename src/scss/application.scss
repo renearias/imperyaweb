@@ -18,3 +18,22 @@
 @import "global-transitions";
 @import "base";
 @import "utils";
+
+//Estilos para Login y Register
+
+.form-validation
+{
+	color: #D8000C;
+	background-color: #FFBABA;
+	font-size: 13px;
+	border: none;
+	font-weight: 400;
+	padding: 6px 12px;
+	box-shadow: none;
+	border-radius: 0.25rem;
+	i
+	{
+	  margin-right: 5px;
+	  font-size: 16px;
+	}
+}

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {Router, Routes, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 import {Validators} from '@angular/common';
@@ -7,6 +7,7 @@ import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, Reques
 import {urlApi, contentHeaders} from '../http/http';
 import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
+
 
 @Component({
   directives: [
@@ -25,12 +26,15 @@ import {ConfigService} from './../core/config';
   encapsulation: ViewEncapsulation.None,
   template: require('./login.html')
 })
+
 export class LoginPage {
 
 	fb: FormBuilder;
 	loginForm: ControlGroup;
 	username: Control;
 	password: Control;
+
+	badCredentials;
 
 	constructor(fb: FormBuilder, public router: Router, public http: Http) {
 		this.fb = fb;
@@ -74,11 +78,24 @@ export class LoginPage {
 				},
 				error => {
 					console.log(error.text());
+					this.badCredentials = true;
+					this.clearData();
 				}
-				);
-
+			);
 
 		}
+	}
+	clearData(): void {
+		console.log("probando");
+		setTimeout(() => {
+			let loginData;
+
+			this.badCredentials = false;
+			loginData = this.loginForm.controls;
+			loginData.username.updateValue('');
+			loginData.password.updateValue('');
+		}, 2000);
+
 	}
 }
   

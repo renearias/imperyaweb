@@ -3,6 +3,7 @@ import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {Core} from './app/core/core';
 import {ErrorPage} from './app/error/error';
 import {LoginPage} from './app/login/login';
+import {RegisterPage} from './app/register/register';
 
 declare var jQuery: any;
 
@@ -14,7 +15,8 @@ declare var jQuery: any;
 @Routes([
   { path: '/app', component: Core },
   { path: '/error', component: ErrorPage,},
-  { path: '/login', component: LoginPage }
+  { path: '/login', component: LoginPage },
+  { path: '/register', component: RegisterPage }
   /*{ path: '/app/...', component: Core, name: 'App' },
   { path: '/error', component: ErrorPage, name: 'ErrorPage' },
   { path: '/login', component: LoginPage, name: 'LoginPage', useAsDefault: true},
