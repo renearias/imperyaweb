@@ -15,10 +15,12 @@ import 'pace';
 //import './js/fos_js_routes';
 //declare var fos: any;
 
-import {provide, enableProdMode} from 'angular2/core';
-import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {provide, enableProdMode} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
+import {ROUTER_PROVIDERS,} from '@angular/router';
+import {LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 const ENV_PROVIDERS = [];
 

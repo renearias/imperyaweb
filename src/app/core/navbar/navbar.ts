@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, ElementRef} from 'angular2/core';
+import {Component, EventEmitter, OnInit, ElementRef} from '@angular/core';
 import {TOOLTIP_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 import {ConfigService} from '../config';
 import {Notifications} from '../notifications/notifications';
-import {Router, RouterLink} from 'angular2/router';
+import {Router} from '@angular/router';
+//import {RouterLink} from '@angular/common';
 
 declare var jQuery: any;
 //declare var Routing: any;
@@ -38,7 +39,7 @@ export class Navbar implements OnInit {
     let token = localStorage.getItem('jwt');
 
     if (token == "" || token == " " || token == false){
-      this.router.parent.navigateByUrl('/login');
+      //this.router.parent.navigateByUrl('/login');
     }
 
     // demo-only code. remove in production
@@ -67,6 +68,6 @@ export class Navbar implements OnInit {
 
   logout() {
     localStorage.removeItem('jwt');
-    this.router.parent.navigateByUrl('/login');
+    this.router.navigateByUrl('/login');
   }
 }

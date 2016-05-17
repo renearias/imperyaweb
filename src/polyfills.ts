@@ -7,7 +7,7 @@ if ('production' === process.env.ENV) {
   // In production Reflect with es7-reflect-metadata/reflect-metadata is added
 
   // Zone.js
-  require('zone.js/dist/zone-microtask.min');
+  require('zone.js/dist/zone.min');
 
   // RxJS
   // In production manually include the operators you use
@@ -22,22 +22,22 @@ if ('production' === process.env.ENV) {
   /* tslint:disable */
   Error['stackTraceLimit'] = Infinity;
   /* tslint:enable */
-  require('zone.js/dist/zone-microtask');
+  require('zone.js/dist/zone');
   require('zone.js/dist/long-stack-trace-zone');
 
   // RxJS
   // In development we are including every operator
 
   // Observable Operators
-  require('rxjs/add/operator/combineLatest-static');
-  require('rxjs/add/operator/concat-static');
-  require('rxjs/add/operator/merge-static');
+  //require('rxjs/add/operator/combineLatest-static');
+  //require('rxjs/add/operator/concat-static');
+  //require('rxjs/add/operator/merge-static');
   require('rxjs/add/observable/bindCallback');
   require('rxjs/add/observable/defer');
   require('rxjs/add/observable/empty');
   require('rxjs/add/observable/forkJoin');
   require('rxjs/add/observable/from');
-  require('rxjs/add/observable/fromArray');
+ // require('rxjs/add/observable/fromArray');
   require('rxjs/add/observable/fromEvent');
   require('rxjs/add/observable/fromEventPattern');
   require('rxjs/add/observable/fromPromise');
@@ -46,7 +46,7 @@ if ('production' === process.env.ENV) {
   require('rxjs/add/observable/range');
   require('rxjs/add/observable/throw');
   require('rxjs/add/observable/timer');
-  require('rxjs/add/operator/zip-static');
+ // require('rxjs/add/operator/zip-static');
 
   // Operators
   require('rxjs/add/operator/buffer');
@@ -81,8 +81,8 @@ if ('production' === process.env.ENV) {
   require('rxjs/add/operator/first');
   require('rxjs/add/operator/groupBy');
   require('rxjs/add/operator/ignoreElements');
-  require('rxjs/add/operator/inspect');
-  require('rxjs/add/operator/inspectTime');
+ // require('rxjs/add/operator/inspect');
+ // require('rxjs/add/operator/inspectTime');
   require('rxjs/add/operator/isEmpty');
   require('rxjs/add/operator/every');
   require('rxjs/add/operator/last');

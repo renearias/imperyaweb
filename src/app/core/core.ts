@@ -1,10 +1,10 @@
-import {Component, ElementRef} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
-import {FORM_PROVIDERS} from 'angular2/common';
+import {Component, ElementRef} from '@angular/core';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {FORM_PROVIDERS} from '@angular/common';
 import {Sidebar} from './sidebar/sidebar';
 import {Navbar} from './navbar/navbar';
 import {ChatSidebar} from './chat-sidebar/chat-sidebar';
-import {ViewEncapsulation, OnInit} from 'angular2/core';
+import {ViewEncapsulation, OnInit} from '@angular/core';
 import {AnotherPage} from './../another/another';
 import {Dashboard} from './../dashboard/dashboard';
 import {ProductsPage} from './../products/products';
@@ -31,15 +31,15 @@ declare var jQuery: any;
   encapsulation: ViewEncapsulation.None,
   template: require('./core.html')
 })
-@RouteConfig([
-  { path: '/dashboard', component: Dashboard, name: 'Dashboard', useAsDefault: true },
-  { path: '/another-page', component: AnotherPage, name: 'AnotherPage' },
-  { path: '/products', component: ProductsPage, name: 'ProductsPage' }, 
-  { path: '/invoice', component: InvoicePage, name: 'InvoicePage' }, 
-  { path: '/clients', component: ClientsPage, name: 'ClientsPage' },
-  { path: '/providers', component: ProvidersPage, name: 'ProvidersPage' },
-  { path: '/orders', component: OrdersPage, name: 'OrdersPage' },
-  { path: '/ingresos', component: IngresosPage, name: 'IngresosPage' }
+@Routes([
+  { path: '/dashboard', component: Dashboard },
+  { path: '/another-page', component: AnotherPage},
+  { path: '/productos', component: ProductsPage}, 
+  { path: '/facturas', component: InvoicePage}, 
+  { path: '/clientes', component: ClientsPage},
+  { path: '/proovedores', component: ProvidersPage},
+  { path: '/orders', component: OrdersPage},
+  { path: '/ingresos', component: IngresosPage}
 ])
 export class Core implements OnInit {
   config: any;
@@ -206,10 +206,10 @@ export class Core implements OnInit {
       }
     });
 
-    this.router.parent.subscribe(() => {
+    /*this.router.parent.subscribe(() => {
       this.collapseNavIfSmallScreen();
       window.scrollTo(0, 0);
-    });
+    });*/
 
     if ('ontouchstart' in window) { this.enableSwipeCollapsing(); }
 

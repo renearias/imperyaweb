@@ -5,9 +5,8 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} fr
 import {Router, RouterLink, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from 'angular2/http';
-import {Validators, NgForm} from 'angular2/common';
-
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from 'angular2/http';
+import {Validators} from 'angular2/common';
 import {urlClientesApi, contentHeaders} from '../http/http';
 import {ViewEncapsulation, OnInit} from 'angular2/core';
 import {ConfigService} from './../core/config';
@@ -118,6 +117,7 @@ this.router.parent.navigateByUrl('/app');
 }
 );
 
+}
 
 }
          

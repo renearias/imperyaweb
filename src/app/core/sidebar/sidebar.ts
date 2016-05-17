@@ -1,5 +1,6 @@
-import {Component, OnInit, ElementRef} from 'angular2/core';
-import {ROUTER_DIRECTIVES, Router, Location} from 'angular2/router';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {ROUTER_DIRECTIVES, Router } from '@angular/router';
+import {Location} from '@angular/common';
 import {SlimScroll} from 'ng2-slimscroll/ng2-slimscroll';
 import {ConfigService} from '../config';
 declare var jQuery: any;
@@ -64,8 +65,8 @@ export class Sidebar implements OnInit {
     jQuery(window).on('sn:resize', this.initSidebarScroll.bind(this));
     this.initSidebarScroll();
 
-    this.router.parent.subscribe(() => {
+    /*this.router.parent.subscribe(() => {
       this.changeActiveNavigationItem(this.location);
-    });
+    });*/
   }
 }

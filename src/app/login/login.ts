@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Router, RouterLink, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
 import {Validators} from 'angular2/common';
@@ -64,6 +64,18 @@ headers: contentHeaders
 });
 console.log(body)
 
+			this.http.post(urlApi + 'login', body, options)
+				.subscribe(
+				response => {
+					localStorage.setItem('jwt', response.json().token);
+					console.log(response.json().token)
+					console.log(localStorage.getItem('jwt'))
+					//this.router.parent.navigateByUrl('/app');					
+				},
+				error => {
+					console.log(error.text());
+				}
+				);
 this.http.post(urlApi + 'login', body, options)
 .subscribe(
 response => {

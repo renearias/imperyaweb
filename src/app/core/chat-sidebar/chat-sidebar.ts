@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from 'angular2/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {ChatMessage} from './chat-message/chat-message';
 import {SearchPipe} from './../pipes/pipe';
 import {ChatService} from './chat-service';

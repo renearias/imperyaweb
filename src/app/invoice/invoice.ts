@@ -1,6 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
-import {Validators} from 'angular2/common';
+import {Component, OnInit} from '@angular/core';
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
+import {Validators} from '@angular/common';
 import {TodoItem} from '../../models';
 import {Widget} from '../core/widget/widget';
 import {DataTableDirectives} from 'angular2-datatable/datatable';

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {Widget} from '../core/widget/widget';
 
 @Component({
@@ -6,6 +6,6 @@ import {Widget} from '../core/widget/widget';
   template: require('./dashboard.html'),
   directives: [Widget]
 })
-
+ 
 export class Dashboard {
 }

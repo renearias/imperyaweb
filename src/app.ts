@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {Core} from './app/core/core';
 import {ErrorPage} from './app/error/error';
 import {LoginPage} from './app/login/login';
@@ -11,12 +11,22 @@ declare var jQuery: any;
   directives: [ROUTER_DIRECTIVES],
   template: require('./app.html')
 })
-@RouteConfig([
-  { path: '/app/...', component: Core, name: 'App' },
+@Routes([
+  { path: '/app', component: Core },
+  { path: '/error', component: ErrorPage,},
+  { path: '/login', component: LoginPage }
+  /*{ path: '/app/...', component: Core, name: 'App' },
   { path: '/error', component: ErrorPage, name: 'ErrorPage' },
   { path: '/login', component: LoginPage, name: 'LoginPage', useAsDefault: true},
   { path: '/', redirectTo: ['LoginPage'] },
-  { path: '/**', redirectTo: ['ErrorPage'] }
+  { path: '/**', redirectTo: ['ErrorPage'] }*/
+  
 ])
-export class App {
+export class App  implements OnInit {
+    
+    constructor(private router: Router) {}
+    
+    ngOnInit() {
+    //this.router.navigate(['/error']);
+    }
 }
