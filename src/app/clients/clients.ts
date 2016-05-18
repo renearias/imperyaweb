@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Cliente} from './cliente'
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 
-import {Router, RouterLink, ROUTER_DIRECTIVES} from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from '@angular/http';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
@@ -14,66 +14,67 @@ import {ConfigService} from './../core/config';
 
 @Component({
 	
-selector: 'clients-page',
-templateUrl: 'app/clients/clients.html',
-directives: [Widget,
-ROUTER_DIRECTIVES,
-FORM_DIRECTIVES],
-host: {
-class: 'clientes-page app'
-},
-providers: [HTTP_BINDINGS],
-viewProviders: [
-FormBuilder, 
-HTTP_PROVIDERS
-]
-})
-export class ClientsPage {
+    selector: 'clients-page',
+    templateUrl: 'app/clients/clients.html',
+    directives: [Widget,
+    ROUTER_DIRECTIVES,
+    FORM_DIRECTIVES],
+    host: {
+            class: 'clientes-page app'
+           },
+    providers: [HTTP_BINDINGS],
+    viewProviders: [
+    FormBuilder, 
+    HTTP_PROVIDERS
+                    ]
+         })
+         
+    export class ClientsPage {
 
-fb: FormBuilder;
-clientesForm: ControlGroup;
-nombre: Control;
-nombrecomercial: Control;
-identificacion: Control;
-direccion: Control;
-ciudad: Control;
-telefono: Control;
-fax: Control;
-registroempresarial: Control;
-email: Control;
-clasecontribuyente: Control;
+        fb: FormBuilder;
+        clientesForm: ControlGroup;
+        nombre: Control;
+        nombrecomercial: Control;
+        identificacion: Control;
+        direccion: Control;
+        ciudad: Control;
+        telefono: Control;
+        fax: Control;
+        registroempresarial: Control;
+        email: Control;
+        clasecontribuyente: Control;
 
-constructor(fb: FormBuilder, public router: Router, public http: Http) {
-this.fb = fb;
-this.buildForm();
-}
+        constructor(fb: FormBuilder, public router: Router, public http: Http) {
+                    this.fb = fb;
+                    this.buildForm();
+                   }
     
-buildForm(): void {
-this.nombre = new Control('', Validators.required);
-this.nombrecomercial = new Control('', Validators.required);
-this.identificacion = new Control('', Validators.required);
-this.direccion = new Control('', Validators.required);
-this.telefono = new Control('',Validators.required);
-this.ciudad = new Control('', Validators.required);
-this.fax = new Control('', Validators.required);
-this.registroempresarial = new Control('', Validators.required);
-this.clasecontribuyente = new Control ('', Validators.required);
-this.email = new Control ('', Validators.required);
+        buildForm(): void {
+                this.nombre = new Control('', Validators.required);
+                this.nombrecomercial = new Control('', Validators.required);
+                this.identificacion = new Control('', Validators.required);
+                this.direccion = new Control('', Validators.required);
+                this.telefono = new Control('',Validators.required);
+                this.ciudad = new Control('', Validators.required);
+                this.fax = new Control('', Validators.required);
+                this.registroempresarial = new Control('', Validators.required);
+                this.clasecontribuyente = new Control ('', Validators.required);
+                this.email = new Control ('', Validators.required);
 
-this.clientesForm = this.fb.group({
+    this.clientesForm = this.fb.group({
 
-'nombre': this.nombre,
-'nombrecomercial': this.nombrecomercial,
-'identificacion': this.identificacion,
-'direccion': this.direccion,
-'telefono': this.telefono,
-'ciudad': this.ciudad,
-'fax': this.fax,
-'registroempresarial': this.registroempresarial,
-'clasecontribuyente': this.clasecontribuyente,
-'email': this.email
+            'nombre': this.nombre,
+            'nombrecomercial': this.nombrecomercial,
+            'identificacion': this.identificacion,
+            'direccion': this.direccion,
+            'telefono': this.telefono,
+            'ciudad': this.ciudad,
+            'fax': this.fax,
+            'registroempresarial': this.registroempresarial,
+            'clasecontribuyente': this.clasecontribuyente,
+            'email': this.email
                         
-});
+        });
 }
         
 clientes(){
@@ -113,14 +114,10 @@ response => {
 localStorage.setItem('jwt', response.json().token);
 console.log(response.json().token)
 console.log(localStorage.getItem('jwt'))
-this.router.parent.navigateByUrl('/app');					
+//this.router.parent.navigateByUrl('/app');					
 }
 );
 
 }
 
 }
-         
-    
-}
-
