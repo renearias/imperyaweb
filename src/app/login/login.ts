@@ -46,9 +46,9 @@ export class LoginPage {
 
         this.loginForm = this.fb.group({
 
-        'username': this.username,
-        'password': this.password
-        });
+          'username': this.username,
+          'password': this.password
+          });
         }
 
         login(){
