@@ -97,6 +97,3 @@ export class LoginPage {
 
 	}
 }
-
-
-  
