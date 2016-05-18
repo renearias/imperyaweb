@@ -1,14 +1,14 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {Cliente} from './cliente'
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from 'angular2/common';
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 
-import {Router, RouterLink, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, RouterLink, ROUTER_DIRECTIVES} from '@angular/router';
 import {Widget} from '../core/widget/widget';
-import {HTTP_BINDINGS} from 'angular2/http';
-import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from 'angular2/http';
-import {Validators} from 'angular2/common';
+import {HTTP_BINDINGS} from '@angular/http';
+import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+import {Validators} from '@angular/common';
 import {urlClientesApi, contentHeaders} from '../http/http';
-import {ViewEncapsulation, OnInit} from 'angular2/core';
+import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
 
 
