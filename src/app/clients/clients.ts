@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Cliente} from './cliente'
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
+import {DataTableDirectives} from 'angular2-datatable/datatable';
 
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from '@angular/http';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';

@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from '@angular/http';
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 import {Validators} from '@angular/common';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import {urlIngresosApi, contentHeaders} from '../http/http';
@@ -13,7 +13,7 @@ import {ConfigService} from './../core/config';
 @Component({
     selector: 'ingresos',
     directives: [Widget, ROUTER_DIRECTIVES,FORM_DIRECTIVES],
-    templateUrl: './ingresos.html',
+    templateUrl: 'app/ingresos/ingresos.html',
     providers: [HTTP_BINDINGS],
     
     host: {
