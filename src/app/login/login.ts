@@ -84,7 +84,6 @@ export class LoginPage {
 		}
 	}
 	clearData(): void {
-		console.log("probando");
 		setTimeout(() => {
 			let loginData;
 

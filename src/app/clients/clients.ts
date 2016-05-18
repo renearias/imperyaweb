@@ -38,11 +38,17 @@ export class ClientsPage {
     fb: FormBuilder;
     clientForm: ControlGroup;
 
+    code: Control;
+    id_type_person: Object;
+    id_types_person: Object[] = [
+        { name: "Natural", value: 1},
+        { name: "Jurídica", value: 2}
+    ];
     name: Control;
-    id_type: Object; //No enviar por los momentos
+    id_type: Object;
     id_types: Object[] = [
-        { name: "N", value: "Especial"},
-        { name: "E", value: "RISE" }
+        { name: "Cédula", value: 1},
+        { name: "Pasaporte", value: 2}
     ];
     id: Control;
     address: Control;
@@ -55,16 +61,14 @@ export class ClientsPage {
     economic_activity: Control; // no requerido
     contact: Control;
     email: Control;
-    id_taxpayer: Object; //No enviar por los momentos
-    id_taxpayers: Object[] = [
-        { name: "N", value: "Especial" },
-        { name: "E", value: "RISE" },
-        { name: "Otros", value: "Otros" },
+    taxpayer: Object; //Clase contribuyente
+    taxpayers: Object[] = [
+        { name: "Especial"},
+        { name: "Normal"},
+        { name: "Otro"}
     ];
-    taxpayer: Control; //Clase contribuyente - no enviar por los momentos
-    //notes: Control; //no requerido -No enviar por los momentos
-    //person_type: Control; //No enviar por los momentos
-
+    //taxpayer: Control;  - no enviar por los momentos
+    notes: Control; //no requerido -No enviar por los momentos
 
     constructor(fb: FormBuilder, public router: Router, public http: Http) {
         this.fb = fb;
@@ -72,6 +76,7 @@ export class ClientsPage {
     }
         
     buildForm(): void {
+        this.code = new Control('', Validators.required);
         this.name = new Control('', Validators.required);
         this.id = new Control('', Validators.required);
         this.address = new Control('', Validators.required);
@@ -84,11 +89,12 @@ export class ClientsPage {
         this.economic_activity = new Control('');
         this.contact = new Control('', Validators.required);
         this.email = new Control ('', Validators.required);
-        this.taxpayer = new Control('', Validators.required);
+        this.notes = new Control('');
 
         this.clientForm = this.fb.group({
 
             'name': this.name,
+            'id_type_person': this.id_type_person,
             'id_type': this.id_type,
             'id': this.id,
             'address': this.address,
@@ -101,32 +107,67 @@ export class ClientsPage {
             'economic_activity': this.economic_activity,
             'contact': this.contact,
             'email': this.email,
-            'id_taxpayer': this.id_taxpayer,
-            'taxpayer': this.taxpayer
+            'taxpayer': this.taxpayer,
+            'notes': this.notes
         });
     }
 
 
-    addClient() {               
+    addClient() {          
 
         if(this.clientForm.valid) {
             // Atributos para enviar a la api
-            let identificacion= this.id.value
+            let codigo = this.code.value
+            let identificacion = this.id.value
             let nombre =  this.name.value
             let direccion = this.address.value
             let nombrecomercial = this.comercial_name.value
             let telefonos = this.phone.value
             let ciudad = this.city.value
             let fax = this.fax.value
-            let pais = this.country
+            let pais = this.country.value
             let contacto = this.contact.value
             let registroempresarial = this.business_registration.value
             let email = this.email.value
             let actividadeconomica = this.economic_activity.value
-            let clasecontribuyente = this.taxpayer.value
+            let clasecontribuyente = this.taxpayer
+            let notas = this.notes.value
+            let cliente = 1
+            let proveedor = 0
+            let vendedor = 0
+            let empleado = 0
+            let transportista = 0
+            let recaudador = 0
+            let tipoidentificacionid = this.id_type
+            let tipopersonaid = this.id_type_person
+
+            // console.log(codigo)
+            // console.log(identificacion)
+            // console.log(nombre)
+            // console.log(direccion)
+            // console.log(nombrecomercial)
+            // console.log(telefonos)
+            // console.log(ciudad)
+            // console.log(fax)
+            // console.log(pais)
+            // console.log(contacto)
+            // console.log(registroempresarial)
+            // console.log(email)
+            // console.log(actividadeconomica)
+            // console.log(clasecontribuyente)
+            // console.log(notas)
+            // console.log(cliente)
+            // console.log(proveedor)
+            // console.log(vendedor)
+            // console.log(empleado)
+            // console.log(transportista)
+            // console.log(recaudador)
+            // console.log(tipoidentificacionid)
+            // console.log(tipopersonaid)
 
             let body = JSON.stringify({ 
 
+                codigo,
                 identificacion,
                 nombre,
                 direccion,
@@ -138,22 +179,60 @@ export class ClientsPage {
                 registroempresarial,
                 email,
                 actividadeconomica,
+                clasecontribuyente,
+                notas,
+                cliente,
+                proveedor,
+                vendedor,
+                empleado,
+                transportista,
+                recaudador,
+                tipoidentificacionid,
+                tipopersonaid
             });
 
             console.log(body)
             
-            // let options = new RequestOptions({
-            //     headers: contentHeadersWithToken
-            // });
+            let options = new RequestOptions({
+                headers: contentHeadersWithToken
+            });
                 
 
-            // this.http.post(urlApi + 'api/contactos', body, options)
-            // .subscribe(
-            //     response => {
-            //         console.log(response)
-            //     }
-            // );
+            this.http.post(urlApi + 'api/contactos', body, options)
+            .subscribe(
+                response => {
+                    console.log(response)
+                    if(response.status===201) {
+                        alert('Creado Exitosamente')
+                        //Cambiar alert mas adelante
+                    }
+                    this.clearData();
+                },
+                    error => {
+                    console.log(error);
+                    this.clearData();
+                }
+            );
         }
+    }
+
+    clearData(): void {
+        let clientData;
+
+        clientData = this.clientForm.controls;
+
+        clientData.codigo.updateValue('');
+        clientData.identificacion.updateValue('');
+        clientData.nombre.updateValue('');
+        clientData.direccion.updateValue('');
+        clientData.nombrecomercial.updateValue('');
+        clientData.telefonos.updateValue('');
+        clientData.ciudad.updateValue('');
+        clientData.fax.updateValue('');
+        clientData.contacto.updateValue('');
+        clientData.registroempresarial.updateValue('');
+        clientData.actividadeconomica.updateValue('');
+        clientData.notas.updateValue('');
     }
 }  
 
