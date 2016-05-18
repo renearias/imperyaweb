@@ -15,7 +15,7 @@ export var columnAction = {
     //"width": "{{ column.width }}",
     //"data": "{{ column.data }}",
     "render": function(data, type, row, meta) {
-        //{% include 'SgDatatablesBundle:Action:action.html.twig' with { 'column': column, 'actions': column.actions } %}
+
         var actionsString = "";
         actionsString += '<div class="wraper">'; ///start html
         var routeParameters, attributes, visibleFlag, roleFlag;
