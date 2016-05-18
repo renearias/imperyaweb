@@ -3,7 +3,7 @@ import {Http} from '@angular/http';
 //import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 //import {TodoItem} from '../../models';
 import {Widget} from '../core/widget/widget';
-import {DataTableDirectives} from 'angular2-datatable/datatable';
+//import {DataTableDirectives} from 'angular2-datatable/datatable';
 
 import {columnAction} from '../components/tables-dynamic/columnAction';
 import 'datatables.net/js/jquery.dataTables.js';
@@ -282,7 +282,7 @@ const People = [
 	selector: 'producto-index',
         encapsulation: ViewEncapsulation.None,
 	template: require('./producto-index.html'),
-	directives: [Widget,DataTableDirectives],
+	directives: [Widget],
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
 })
 export class ProductosIndexPage {
@@ -293,14 +293,12 @@ export class ProductosIndexPage {
         
         jQuery('#angularDataTableTest').DataTable(
                 {
-                    dom:"<'row'<'col-sm-4 col-xs-12'l><'col-sm-4 col-xs-12'><'col-sm-4 col-xs-12'f>>"+
-                         "<'row'<'col-sm-12'rt>>"+
-                         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                    order: [[ 0, "asc" ]],
                     language:require("../components/tables-dynamic/translations/es-ES.json"),
                     lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
                     data: this.data,
                 columns: [
-                    { data: 'id' },
+                    { title:'Id', data: 'id' },
                     { title:'Nombre', data: 'name', 
                       render: function(data) {
                                 if ("" == data) {
@@ -328,8 +326,7 @@ export class ProductosIndexPage {
                                 },  
                       
                       },
-                    columnAction //,
-                    //{ data: 'office' }
+                    columnAction
                 ]}
         );
     /*let searchInput = jQuery('#table-search-input');
