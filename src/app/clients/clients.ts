@@ -38,6 +38,9 @@ export class ClientsPage {
     fb: FormBuilder;
     clientForm: ControlGroup;
 
+    contacts_array: Object[];
+    clients_array: Object[];
+
     code: Control;
     id_type_person: Object;
     id_types_person: Object[] = [
@@ -73,6 +76,7 @@ export class ClientsPage {
     constructor(fb: FormBuilder, public router: Router, public http: Http) {
         this.fb = fb;
         this.buildForm();
+        this.getClientsFromApi();
     }
         
     buildForm(): void {
@@ -112,7 +116,30 @@ export class ClientsPage {
         });
     }
 
+    // Obtener listado de clientes de la api para 
+    // visualizarlos en el buscador
+    getClientsFromApi(): void{
+        let options = new RequestOptions({
+            headers: contentHeadersWithToken
+        });
 
+        this.http.get(urlApi + 'api/contactos', options)
+            .subscribe(
+                response => {
+                    this.contacts_array = response.json()
+                    // console.log('Listado de contactos')
+                    // console.log(this.contacts_array)   
+
+                    // for (let contact in this.contacts_array) {
+                    //     console.log(this.contacts_array[contact])
+                    // }               
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+    }
+   
     addClient() {          
 
         if(this.clientForm.valid) {
@@ -216,6 +243,10 @@ export class ClientsPage {
         }
     }
 
+    editClient(id: id) {
+
+    }
+
     clearData(): void {
         let clientData;
 
@@ -235,4 +266,6 @@ export class ClientsPage {
         clientData.notas.updateValue('');
     }
 }  
+
+
 
