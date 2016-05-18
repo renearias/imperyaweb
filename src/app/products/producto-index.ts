@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,ViewEncapsulation, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 //import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 //import {TodoItem} from '../../models';
@@ -278,6 +278,7 @@ const People = [
 
 @Component({
 	selector: 'producto-index',
+        encapsulation: ViewEncapsulation.None,
 	template: require('./producto-index.html'),
 	directives: [Widget,DataTableDirectives],
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
@@ -289,12 +290,43 @@ export class ProductosIndexPage {
     ngOnInit(): void {
         
         jQuery('#angularDataTableTest').DataTable(
-                {data: this.data,
+                {
+                    dom:"<'row'<'col-sm-4 col-xs-12'l><'col-sm-4 col-xs-12'><'col-sm-4 col-xs-12'f>>"+
+                         "<'row'<'col-sm-12'rt>>"+
+                         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                    language:require("../components/tables-dynamic/translations/es-ES.json"),
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                    data: this.data,
                 columns: [
                     { data: 'id' },
-                    { data: 'name' }//,
-                    /*{ data: 'position' },
-                    { data: 'salary' },
+                    { title:'Nombre', data: 'name', 
+                      render: function(data) {
+                                if ("" == data) {
+                                      return "";
+                                    } else {
+                                        return "<span class='fw-semi-bold'>"+data+"</span>";
+                                    }  
+                                },
+                    },
+                    { title:'Info', data: 'info',
+                      render: function(data) {
+                                    if ("" == data) {
+                                        return "";
+                                    } else {
+                                        return "<small>"+
+                                                  "<span class='fw-semi-bold'>Type:</span>"+
+                                                  "&nbsp; "+data.type+
+                                                "</small>"+
+                                                "<br>"+
+                                                "<small>"+
+                                                  "<span class='fw-semi-bold'>Dimensions:</span>"+
+                                                  "&nbsp; "+data.dimensions+
+                                                "</small>";
+                                    }  
+                                },  
+                      
+                      }//,
+                   /* { data: 'salary' },
                     { data: 'office' }*/
                 ]}
         );
