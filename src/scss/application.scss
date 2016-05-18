@@ -19,8 +19,21 @@
 @import "base";
 @import "utils";
 
+.padding
+{
+	padding: 10px;
+}
 //Estilos para Login y Register
-
+// *
+// {
+// 	outline: 1px solid red;
+// }
+.invoice-data
+{	
+	input{
+	    width: 100%;
+	}
+}
 .form-validation
 {
 	color: #D8000C;

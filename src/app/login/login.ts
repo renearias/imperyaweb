@@ -12,7 +12,7 @@ import {ConfigService} from './../core/config';
 @Component({
   directives: [
     ROUTER_DIRECTIVES,
-	FORM_DIRECTIVES
+	  FORM_DIRECTIVES
   ],
   selector: '[login]',
   host: {
@@ -46,9 +46,9 @@ export class LoginPage {
 
         this.loginForm = this.fb.group({
 
-        'username': this.username,
-        'password': this.password
-        });
+          'username': this.username,
+          'password': this.password
+          });
         }
 
         login(){
@@ -81,11 +81,9 @@ export class LoginPage {
 					this.clearData();
 				}
 			);
-
 		}
 	}
 	clearData(): void {
-		console.log("probando");
 		setTimeout(() => {
 			let loginData;
 

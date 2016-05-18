@@ -2,17 +2,27 @@ import {Component, OnInit} from '@angular/core';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 import {Validators} from '@angular/common';
 import {TodoItem} from '../../models';
+import {InvoiceItem} from '../../models';
 import {Widget} from '../core/widget/widget';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
+
+import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+import {urlApi, contentHeadersWithToken} from '../http/http';
+
+
 @Component({
 	selector: 'invoice',
-	viewProviders: [FormBuilder],
-	template: require('./index.html'),
+	viewProviders: [
+		FormBuilder,
+		HTTP_PROVIDERS
+	],
+	template: require('./invoice.html'),
 	directives: [Widget,DataTableDirectives,FORM_DIRECTIVES]
 })
+
 export class InvoicePage {
 	
-	/*todos: Array<TodoItem>;
+	todos: Array<TodoItem>;
 	invoice: Array<InvoiceItem>;
 
 	fb: FormBuilder;
@@ -29,7 +39,7 @@ export class InvoicePage {
 	iva: number;
 	total: number;
 
-	constructor(fb: FormBuilder) {
+	constructor(fb: FormBuilder, public http: Http) {
 		this.fb = fb;
 		this.todos = new Array<TodoItem>();
 		this.invoice = new Array<InvoiceItem>();
@@ -38,6 +48,23 @@ export class InvoicePage {
 
 	ngOnInit(): void {
 		console.log('ngOnInit() called');
+		this.getClients();
+	}
+
+	getClients() {
+		let options = new RequestOptions({
+			headers: contentHeadersWithToken
+        });
+
+		this.http.get(urlApi + 'api/contactos', options)
+			.subscribe(
+			response => {
+				console.log(response)			
+			},
+			error => {
+				console.log(error.text());
+			}
+		);
 	}
 
 	buildForm(): void {
@@ -67,6 +94,7 @@ export class InvoicePage {
 
 	removeTodo(item: TodoItem) {
 		this.todos.splice(this.todos.indexOf(item), 1);
+		this.calculateTotal();
 	}
 
 	onSubmit(): void {
@@ -110,7 +138,7 @@ export class InvoicePage {
 		console.log('TOTAL ' + this.total)
 	}
 
-	saveInvoice(){
+	saveInvoice() {
 		this.invoice.push(new InvoiceItem(
 			this.client_id,
 			this.todos,
@@ -121,5 +149,4 @@ export class InvoicePage {
 		console.log('FACTURA')
 		console.log(this.invoice)
 	}
-	}*/
 }

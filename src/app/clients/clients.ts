@@ -1,116 +1,271 @@
 import {Component} from '@angular/core';
-import {Cliente} from './cliente'
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
-
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
-import {Widget} from '../core/widget/widget';
-import {HTTP_BINDINGS} from '@angular/http';
-import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+// import {clients} from './clients';
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 import {Validators} from '@angular/common';
-import {urlClientesApi, contentHeaders} from '../http/http';
+import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+import {urlApi, contentHeadersWithToken} from '../http/http';
 import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
+
+import {DataTableDirectives} from 'angular2-datatable/datatable';
+import {Widget} from '../core/widget/widget';
+import {HTTP_BINDINGS} from '@angular/http';
 
 
 @Component({
 	
-    selector: 'clients-page',
+    directives: [
+        Widget,
+        ROUTER_DIRECTIVES,
+        FORM_DIRECTIVES
+    ],
+    selector: 'clients',
     templateUrl: 'app/clients/clients.html',
-    directives: [Widget,ROUTER_DIRECTIVES,FORM_DIRECTIVES],
     host: {
-        class: 'clientes-page app'
+        class: 'clients-page app'
     },
-    providers: [HTTP_BINDINGS],
-    viewProviders: [   FormBuilder,     HTTP_PROVIDERS    ]
-    })
+    viewProviders: [
+        FormBuilder,
+        HTTP_PROVIDERS
+    ],
+    providers: [HTTP_BINDINGS]
+})
+
 export class ClientsPage {
 
-fb: FormBuilder;
-clientesForm: ControlGroup;
-nombre: Control;
-nombrecomercial: Control;
-identificacion: Control;
-direccion: Control;
-ciudad: Control;
-telefono: Control;
-fax: Control;
-registroempresarial: Control;
-email: Control;
-clasecontribuyente: Control;
 
-constructor(fb: FormBuilder, public router: Router, public http: Http) {
-this.fb = fb;
-this.buildForm();
-}
-    
-buildForm(): void {
-this.nombre = new Control('', Validators.required);
-this.nombrecomercial = new Control('', Validators.required);
-this.identificacion = new Control('', Validators.required);
-this.direccion = new Control('', Validators.required);
-this.telefono = new Control('',Validators.required);
-this.ciudad = new Control('', Validators.required);
-this.fax = new Control('', Validators.required);
-this.registroempresarial = new Control('', Validators.required);
-this.clasecontribuyente = new Control ('', Validators.required);
-this.email = new Control ('', Validators.required);
+    fb: FormBuilder;
+    clientForm: ControlGroup;
 
-this.clientesForm = this.fb.group({
+    contacts_array: Object[];
+    clients_array: Object[];
 
-'nombre': this.nombre,
-'nombrecomercial': this.nombrecomercial,
-'identificacion': this.identificacion,
-'direccion': this.direccion,
-'telefono': this.telefono,
-'ciudad': this.ciudad,
-'fax': this.fax,
-'registroempresarial': this.registroempresarial,
-'clasecontribuyente': this.clasecontribuyente,
-'email': this.email
-                        
-});
-}
+    code: Control;
+    id_type_person: Object;
+    id_types_person: Object[] = [
+        { name: "Natural", value: 1},
+        { name: "Jurídica", value: 2}
+    ];
+    name: Control;
+    id_type: Object;
+    id_types: Object[] = [
+        { name: "Cédula", value: 1},
+        { name: "Pasaporte", value: 2}
+    ];
+    id: Control;
+    address: Control;
+    phone: Control;
+    fax: Control;
+    city: Control;
+    country: Control; // no requerido
+    comercial_name: Control;
+    business_registration: Control; //Registro comercial
+    economic_activity: Control; // no requerido
+    contact: Control;
+    email: Control;
+    taxpayer: Object; //Clase contribuyente
+    taxpayers: Object[] = [
+        { name: "Especial"},
+        { name: "Normal"},
+        { name: "Otro"}
+    ];
+    //taxpayer: Control;  - no enviar por los momentos
+    notes: Control; //no requerido -No enviar por los momentos
+
+    constructor(fb: FormBuilder, public router: Router, public http: Http) {
+        this.fb = fb;
+        this.buildForm();
+        this.getClientsFromApi();
+    }
         
-clientes(){
-                 
-console.log(this.nombre.value)
-console.log(this.nombrecomercial.value)
-console.log(this.identificacion.value)
-console.log(this.direccion.value)
-console.log(this.telefono.value)
-console.log(this.ciudad.value)
-console.log(this.fax.value)
-console.log(this.registroempresarial.value)
-console.log(this.clasecontribuyente.value)
-console.log(this.email.value)
-                        
-let _nombre = this.nombre.value
-let _nombrecomercial = this.nombrecomercial.value
-let _identificacion = this.identificacion.value
-let _direccion = this.direccion.value
-let _telefono = this.telefono.value
-let _ciudad = this.ciudad.value
-let _fax = this.fax.value
-let _registroempresarial = this.registroempresarial.value
-let _clasecontribuyente = this.clasecontribuyente.value
-let _email = this.email.value
-                        
-let body = JSON.stringify({ _nombre, _nombrecomercial, _identificacion, _direccion, _telefono, _ciudad, _fax, _registroempresarial, _clasecontribuyente, _email});
+    buildForm(): void {
+        this.code = new Control('', Validators.required);
+        this.name = new Control('', Validators.required);
+        this.id = new Control('', Validators.required);
+        this.address = new Control('', Validators.required);
+        this.phone = new Control('', Validators.required);
+        this.fax = new Control('',Validators.required);
+        this.city = new Control('', Validators.required);
+        this.country = new Control('');
+        this.comercial_name = new Control('', Validators.required);
+        this.business_registration = new Control('', Validators.required);
+        this.economic_activity = new Control('');
+        this.contact = new Control('', Validators.required);
+        this.email = new Control ('', Validators.required);
+        this.notes = new Control('');
 
-let options = new RequestOptions({
-headers: contentHeaders
-});
-console.log(body)
+        this.clientForm = this.fb.group({
 
-this.http.post(urlClientesApi + 'clientes', body, options)
-.subscribe(
-response => {
-localStorage.setItem('jwt', response.json().token);
-console.log(response.json().token);
-console.log(localStorage.getItem('jwt'));
-//this.router.navigate('/app/dashboard');
-}
-);
-}
+            'name': this.name,
+            'id_type_person': this.id_type_person,
+            'id_type': this.id_type,
+            'id': this.id,
+            'address': this.address,
+            'phone': this.phone,
+            'fax': this.fax,
+            'city': this.city,
+            'country': this.country,
+            'comercial_name': this.comercial_name,
+            'business_registration': this.business_registration,
+            'economic_activity': this.economic_activity,
+            'contact': this.contact,
+            'email': this.email,
+            'taxpayer': this.taxpayer,
+            'notes': this.notes
+        });
+    }
+
+    // Obtener listado de clientes de la api para 
+    // visualizarlos en el buscador
+    getClientsFromApi(): void{
+        let options = new RequestOptions({
+            headers: contentHeadersWithToken
+        });
+
+        this.http.get(urlApi + 'api/contactos', options)
+            .subscribe(
+                response => {
+                    this.contacts_array = response.json()
+                    // console.log('Listado de contactos')
+                    // console.log(this.contacts_array)   
+
+                    // for (let contact in this.contacts_array) {
+                    //     console.log(this.contacts_array[contact])
+                    // }               
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+    }
+   
+    addClient() {          
+
+        if(this.clientForm.valid) {
+            // Atributos para enviar a la api
+            let codigo = this.code.value
+            let identificacion = this.id.value
+            let nombre =  this.name.value
+            let direccion = this.address.value
+            let nombrecomercial = this.comercial_name.value
+            let telefonos = this.phone.value
+            let ciudad = this.city.value
+            let fax = this.fax.value
+            let pais = this.country.value
+            let contacto = this.contact.value
+            let registroempresarial = this.business_registration.value
+            let email = this.email.value
+            let actividadeconomica = this.economic_activity.value
+            let clasecontribuyente = this.taxpayer
+            let notas = this.notes.value
+            let cliente = 1
+            let proveedor = 0
+            let vendedor = 0
+            let empleado = 0
+            let transportista = 0
+            let recaudador = 0
+            let tipoidentificacionid = this.id_type
+            let tipopersonaid = this.id_type_person
+
+            // console.log(codigo)
+            // console.log(identificacion)
+            // console.log(nombre)
+            // console.log(direccion)
+            // console.log(nombrecomercial)
+            // console.log(telefonos)
+            // console.log(ciudad)
+            // console.log(fax)
+            // console.log(pais)
+            // console.log(contacto)
+            // console.log(registroempresarial)
+            // console.log(email)
+            // console.log(actividadeconomica)
+            // console.log(clasecontribuyente)
+            // console.log(notas)
+            // console.log(cliente)
+            // console.log(proveedor)
+            // console.log(vendedor)
+            // console.log(empleado)
+            // console.log(transportista)
+            // console.log(recaudador)
+            // console.log(tipoidentificacionid)
+            // console.log(tipopersonaid)
+
+            let body = JSON.stringify({ 
+
+                codigo,
+                identificacion,
+                nombre,
+                direccion,
+                nombrecomercial,
+                telefonos,
+                ciudad,
+                fax, 
+                contacto,
+                registroempresarial,
+                email,
+                actividadeconomica,
+                clasecontribuyente,
+                notas,
+                cliente,
+                proveedor,
+                vendedor,
+                empleado,
+                transportista,
+                recaudador,
+                tipoidentificacionid,
+                tipopersonaid
+            });
+
+            console.log(body)
+            
+            let options = new RequestOptions({
+                headers: contentHeadersWithToken
+            });
+                
+
+            this.http.post(urlApi + 'api/contactos', body, options)
+            .subscribe(
+                response => {
+                    console.log(response)
+                    if(response.status===201) {
+                        alert('Creado Exitosamente')
+                        //Cambiar alert mas adelante
+                    }
+                    this.clearData();
+                },
+                    error => {
+                    console.log(error);
+                    this.clearData();
+                }
+            );
+        }
+    }
+
+    editClient(id: id) {
+
+    }
+
+    clearData(): void {
+        let clientData;
+
+        clientData = this.clientForm.controls;
+
+        clientData.codigo.updateValue('');
+        clientData.identificacion.updateValue('');
+        clientData.nombre.updateValue('');
+        clientData.direccion.updateValue('');
+        clientData.nombrecomercial.updateValue('');
+        clientData.telefonos.updateValue('');
+        clientData.ciudad.updateValue('');
+        clientData.fax.updateValue('');
+        clientData.contacto.updateValue('');
+        clientData.registroempresarial.updateValue('');
+        clientData.actividadeconomica.updateValue('');
+        clientData.notas.updateValue('');
+    }
 }  
+
+
 
