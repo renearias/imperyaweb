@@ -4,6 +4,8 @@ import {Http} from '@angular/http';
 //import {TodoItem} from '../../models';
 import {Widget} from '../core/widget/widget';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
+
+import {columnAction} from '../components/tables-dynamic/columnAction';
 import 'datatables.net/js/jquery.dataTables.js';
 import 'datatables.net-bs/js/dataTables.bootstrap.js';
 
@@ -325,9 +327,9 @@ export class ProductosIndexPage {
                                     }  
                                 },  
                       
-                      }//,
-                   /* { data: 'salary' },
-                    { data: 'office' }*/
+                      },
+                    columnAction //,
+                    //{ data: 'office' }
                 ]}
         );
     /*let searchInput = jQuery('#table-search-input');

@@ -243,9 +243,9 @@ export class ClientsPage {
         }
     }
 
-    editClient(id: id) {
+   /* editClient(id: id) {
 
-    }
+    }*/
 
     clearData(): void {
         let clientData;
