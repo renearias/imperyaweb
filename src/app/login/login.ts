@@ -12,7 +12,7 @@ import {ConfigService} from './../core/config';
 @Component({
   directives: [
     ROUTER_DIRECTIVES,
-	FORM_DIRECTIVES
+	  FORM_DIRECTIVES
   ],
   selector: '[login]',
   host: {
@@ -81,7 +81,6 @@ export class LoginPage {
 					this.clearData();
 				}
 			);
-
 		}
 	}
 	clearData(): void {

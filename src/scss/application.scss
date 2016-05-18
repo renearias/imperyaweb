@@ -20,7 +20,16 @@
 @import "utils";
 
 //Estilos para Login y Register
-
+// *
+// {
+// 	outline: 1px solid red;
+// }
+.invoice-data
+{	
+	input{
+	    width: 100%;
+	}
+}
 .form-validation
 {
 	color: #D8000C;

@@ -14,117 +14,56 @@
                 </div>
             </header>
             <div class="widget-body">
-
-                <form [ngFormModel]="clientesForm" (submit)="clientes()" role="form" class="col-md-offset-2">
-
-                    <div class="row">
-                        <div class="col-md-10">
-
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" [ngFormControl]="nombre"  class="form-control" required id="nombre" placeholder="Introduce nombre">
-                            </div>
-                        </div>
-                    </div>
-
-
+                <form [ngFormModel]="clientForm" (submit)="addClient()" role="form" class="col-md-offset-2">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label for="ejemplo_password_1">Identificación</label>
-                                <div class="row"><div class="col-md-2">
-                                        <select name="month" class = "form-control" required>
+                                <label>Nombre</label>
+                                <input [ngFormControl]="name" type="text" class="form-control" placeholder="Introduzca el nombre" required>
+
+                                <label>Identificación</label>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <select name="month" class="form-control" required>
                                             <option value="Especial">N</option>
                                             <option value="RISE">E</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <input [ngFormControl]="identificacion" required type="text" class="form-control" id="identificacion" placeholder="Identificación">
+                                        <input [ngFormControl]="id" type="text" class="form-control" placeholder="Identificación" required>
                                     </div>
                                 </div>
+
+                                <label>Teléfono</label>
+                                    <input [ngFormControl]="phone" type="text" class="form-control" placeholder="Teléfono" required>
+
+                                <label>Fáx</label>
+                                    <input [ngFormControl]="fax" type="text" class="form-control" placeholder="Fax">
+
+                                <label>Cuidad</label>
+                                    <input [ngFormControl]="city" type="text" class="form-control" placeholder="ciudad" required>
+
+                                 <label>Registro Empresarial</label>
+                                    <input [ngFormControl]="business_registration" type="text" class="form-control" placeholder="Registro Empresarial" required>
+
+                                <label>Correo Electrónico</label>
+                                    <input [ngFormControl]="email" type="email"class="form-control" placeholder="Correo Electrónico" required>
+
+                                <label>Tipo de contribuyente</label>
+                                    <div>
+                                        <select [ngFormControl]="taxpayer" name="month" class="form-control input-lg"required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option value="Especial">Especial</option>
+                                            <option value="RISE">RISE</option>
+                                            <option value="Otros">Otros</option>
+                                        </select>
+                                    </div>
+                                <button type="submit" class="btn btn-default">Enviar</button>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-10">
-
-
-                            <label for="telefono">Telefono</label>
-                            <input type="text"  [ngFormControl]="identificacion" required id="telefono"  class="form-control"
-                                   placeholder="Telefono">
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-
-                            <div class="form-group">
-                                <label for="fax">Fáx</label>
-                                <input  [ngFormControl]="fax" required   type="text" class="form-control" id="fax"
-                                    placeholder="Fax">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-
-                            <div class="form-group">
-                                <label for="ciudad">Cuidad</label>
-                                <input type="text"  [ngFormControl]="ciudad" required class="form-control" id="ciudad"
-                                       placeholder="ciudad">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-
-                            <div class="form-group">
-                                <label for="registroempresarial">Registro Empresarial</label>
-                                <input type="text" [ngFormControl]="registroempresarial" required id="registroempresarial" class="form-control"
-                                       placeholder="registro_empresarial">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" [ngFormControl]="email" required id="email" class="form-control"
-                                       placeholder="E-mail">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <label for="clasecontribuyente">Tipo de contribuyente</label>
-                                <div>
-                                    <select [ngFormControl]="clasecontribuyente" id="clasecontribuyente" required name="month" class = "form-control input-lg">
-                                         <option value="">Seleccione...</option>
-                                        <option value="Especial">Especial</option>
-                                        <option value="RISE">RISE</option>
-                                        <option value="Otros">Otros</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <button type="submit" class="btn btn-default">Enviar</button>
-
+                    </div> <!-- /row -->
                 </form>
-
-
-            </div>
+            </div> <!-- /widget-body -->
         </section>
     </div>
 </div>
