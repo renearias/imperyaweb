@@ -29,43 +29,43 @@ import {ConfigService} from './../core/config';
 
 export class LoginPage {
 
-fb: FormBuilder;
-loginForm: ControlGroup;
-username: Control;
-password: Control;
-badCredentials;
+    fb: FormBuilder;
+    loginForm: ControlGroup;
+    username: Control;
+    password: Control;
+    badCredentials;
 
 	constructor(fb: FormBuilder, public router: Router, public http: Http) {
 		this.fb = fb;
 		this.buildForm();
 	}
 
-buildForm(): void {
-this.username = new Control('', Validators.required);
-this.password = new Control('', Validators.required);
+        buildForm(): void {
+        this.username = new Control('', Validators.required);
+        this.password = new Control('', Validators.required);
 
-this.loginForm = this.fb.group({
+        this.loginForm = this.fb.group({
 
-'username': this.username,
-'password': this.password
-});
-}
+        'username': this.username,
+        'password': this.password
+        });
+        }
 
-login(){
-if (this.loginForm.valid) {
+        login(){
+        if (this.loginForm.valid) {
 
-console.log(this.username.value)
-console.log(this.password.value)
+        console.log(this.username.value)
+        console.log(this.password.value)
 
-let _username = this.username.value
-let _password = this.password.value
+        let _username = this.username.value
+        let _password = this.password.value
 
-let body = JSON.stringify({ _username, _password });
+        let body = JSON.stringify({ _username, _password });
 
-let options = new RequestOptions({
-headers: contentHeaders
-});
-console.log(body)
+        let options = new RequestOptions({
+        headers: contentHeaders
+        });
+        console.log(body)
 
 			this.http.post(urlApi + 'login', body, options)
 				.subscribe(
@@ -97,4 +97,3 @@ console.log(body)
 
 	}
 }
-  

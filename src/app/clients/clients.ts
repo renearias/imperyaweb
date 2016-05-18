@@ -3,6 +3,7 @@ import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Cliente} from './cliente'
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from '@angular/http';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
@@ -16,20 +17,14 @@ import {ConfigService} from './../core/config';
 	
     selector: 'clients-page',
     templateUrl: 'app/clients/clients.html',
-    directives: [Widget,
-    ROUTER_DIRECTIVES,
-    FORM_DIRECTIVES],
+    directives: [Widget,ROUTER_DIRECTIVES,FORM_DIRECTIVES],
     host: {
-            class: 'clientes-page app'
-           },
+        class: 'clientes-page app'
+    },
     providers: [HTTP_BINDINGS],
-    viewProviders: [
-    FormBuilder, 
-    HTTP_PROVIDERS
-                    ]
-         })
-         
-    export class ClientsPage {
+    viewProviders: [   FormBuilder,     HTTP_PROVIDERS    ]
+    })
+export class ClientsPage {
 
         fb: FormBuilder;
         clientesForm: ControlGroup;
@@ -112,12 +107,11 @@ this.http.post(urlClientesApi + 'clientes', body, options)
 .subscribe(
 response => {
 localStorage.setItem('jwt', response.json().token);
-console.log(response.json().token)
-console.log(localStorage.getItem('jwt'))
-//this.router.parent.navigateByUrl('/app');					
+console.log(response.json().token);
+console.log(localStorage.getItem('jwt'));
+//this.router.navigate('/app/dashboard');
 }
 );
-
 }
+}  
 
-}
