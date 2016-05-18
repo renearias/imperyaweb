@@ -326,6 +326,26 @@ export class ProductosIndexPage {
                                 },  
                       
                       },
+                      { title:'Descripcion', data: 'description', 
+                      render: function(data) {
+                                if ("" == data) {
+                                      return "";
+                                    } else {
+                                        return "<a href='#'>"+data+"</a>";
+                                    }  
+                                },
+                    },  
+                    { title:'Estado', data: 'status', 
+                      render: function(data) {
+                                if ("" == data) {
+                                      return "";
+                                    } else {
+                                        return '<div class="bg-gray-lighter progress-bar mt-xs">'+
+                                                  '<progress class="progress progress-sm progress-'+data.type+'" value="100" max="100" style="width: '+data.progress+';"></progress>'+
+                                                '</div>';
+                                    }  
+                                },
+                    },  
                     columnAction
                 ]}
         );
