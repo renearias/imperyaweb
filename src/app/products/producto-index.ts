@@ -291,7 +291,7 @@ export class ProductosIndexPage {
     
     ngOnInit(): void {
         
-        jQuery('#angularDataTableTest').DataTable(
+       /* jQuery('#angularDataTableTest').DataTable(
                 {
                     order: [[ 0, "asc" ]],
                     language:require("../components/tables-dynamic/translations/es-ES.json"),
@@ -348,7 +348,31 @@ export class ProductosIndexPage {
                     },  
                     columnAction
                 ]}
-        );
+        );*/
+        var oTable =jQuery('#angularDataTableTest').dataTable(
+                {
+                    //"order": [[ 0, "asc" ]],
+                    "language":require("../components/tables-dynamic/translations/es-ES.json"),
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                    "processing": true,
+                    "serverSide": true,
+                    "columns": [
+                            { "data": "id"},
+                            { "data": "descripcionCorta" },
+                            { "data": "stock" },
+                            columnAction
+                        ],
+                    "ajax": {
+                        "url": "http://imperya.arxis.la/app_acceptance.php/api/productos",
+                        "type": "GET",
+                        'beforeSend': function (request) {
+                            request.setRequestHeader("Accept", "application/json");
+                            request.setRequestHeader("Authorization", "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXUyJ9.eyJleHAiOjE0NjM3MDkzMjQsInVzZXJuYW1lIjoiYXJ4aXMiLCJpYXQiOiIxNDYzNjIyOTI0In0.ueDhU61OfZd2atm_6SXR9vSVrGumlfULI4EvIary4vvDa7hUTKCqz1Mz3o-X-REw4xDAuc3xyQGbrWKG8Rl7E3yBmxcRkZJhWmTmB5QwTaUQYE_UE33MBPx4dVkxbKQhLEIlzOVGJlSvak0Go4DHLL_zCJmVa4Kmexk7bppVew-zP5-4hy0EwVjBqCwhFYx_0iqc34343YF-FbcE37vlbmcFnkt6F92zHJkO2rOoTh5fI7i_KTeXoaeffu2V3ZPy5GWODVUPb3dvhSDoHRTMRWFTaNBSFycqzKsbwDPyPGp_JnL0xwFZCpV4ZF7UFdftvXA8jdCywVSp09MxpILa2Y7uumoeEUyh063dkuNk_ruo1Wse79_akVftoEkHmHqWq3PCmTBoruJSTuXn7-FKH9nhpDgnVgtM4ENMlVVpWEjO8EJc7HKzJ0-MwzUbHU8n8o1gpW0eSxm_AZOQl9EWLFtfIMyegW63IjN3LbkU1DAObqaU8tMu1Xn_r1pWosWaRj1SxnYwLiH8P3ZUtAHmc_2vR_ID8g3YUH9usH1xJS2oP_Vy8LL4ekRZgJzVIBLId1wziFtG-wUme7KVRQbzh6XhsOmumZpDyyfySnhaO3sGRBWtRe82ZU1fUnFQLpeyQzAiVq7Ge-azuFuv1gyIrhOsz5oRZNjLyZ7JDLrVMtY");
+                            
+                        }
+
+                    }
+                });
     /*let searchInput = jQuery('#table-search-input');
     searchInput
       .focus((e) => {
