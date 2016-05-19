@@ -330,7 +330,7 @@ export class ClientsPage {
 
     addClient() {
 
-        if (this.clientForm.valid) {
+        /*if (this.clientForm.valid) {*/
             // Atributos para enviar a la api
             let codigo = this.code.value
             let identificacion = this.id_person.value
@@ -428,7 +428,7 @@ export class ClientsPage {
                     this.clearData();
                 }
             );
-        }
+        /*}*/
     }
 
     clearData(): void {
