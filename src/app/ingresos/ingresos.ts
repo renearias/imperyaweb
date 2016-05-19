@@ -29,6 +29,18 @@ export class IngresosPage {
     ingresosForm: ControlGroup;
     ingresosFormEdit: ControlGroup;
     
+    id: number;// Id del pago a eliminar o editar
+    editData = {
+            id: "",
+            fecha: "",
+            cliente: "", 
+            monto: "",
+            descripcion: "",
+            referencia: "",
+            formapago: { id: "" }
+
+         }
+    
     clients_array:any;
     payments_array:any;
     
@@ -45,25 +57,14 @@ export class IngresosPage {
         this.getClientsFromApi();
     }
     
-    id: number;// Id del pago a eliminar o editar
-    editData={
-            
-            fecha: "",
-            cliente: "", 
-            monto: "",
-            descripcion: "",
-            referencia: "",
-            formapago: ""
-
-         }
          
          goToEditPayment(id: number) {
-        console.log('Datos existentes del cliente id#: ' + id)
+        console.log('Datos existentes del pago id#: ' + id)
        
 
         console.log(this.payments_array[id])
 
-        let old_data: Object[]
+        let old_data: any
         old_data = this.payments_array[id]
 
         this.editData = {
@@ -73,7 +74,7 @@ export class IngresosPage {
             monto: old_data.monto,
             descripcion: old_data.descripcion,
             referencia: old_data.referencia,
-            formapago: old_data.formapago,
+            formapago: { id: old_data.formapago.id }
             
         }
     }
@@ -94,7 +95,7 @@ export class IngresosPage {
             let monto = this.editData.monto
             let descripcion = this.editData.descripcion
             let referencia = this.editData.referencia
-            let formapago = this.editData.formapago
+            let formapago = this.editData.formapago.id
             
 
             console.log(fecha)

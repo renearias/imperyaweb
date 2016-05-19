@@ -1,4 +1,4 @@
-<h1 class="page-title">Nuevo <small><small>Pago</small></small></h1>
+<h1 class="page-title">Pagos</h1>
 
 <!-- Lista de pagos-->
 <div class="row">
@@ -68,7 +68,7 @@
       <div class="widget-body">
 
 
-<form [ngFormModel]="ingresosForm" (submit)="addIngreso()" role="form" class="col-md-offset-2">
+<form [ngFormModel]="ingresosForm" (submit)="editPayment(editData.id)" role="form" class="col-md-offset-2">
   
    <div class="row">
         <div class="col-md-10">
@@ -76,7 +76,7 @@
             <div class="form-group">
     <label>Fecha de ingreso</label>
     <div>
-    <input [ngFormControl]="fecha" required type="datetime-local" class="form-control">
+    <input [ngFormControl]="fecha" [value]="editData.fecha" required type="datetime-local" class="form-control">
 </div>
      </div>
    </div>
@@ -100,7 +100,7 @@
 
             <div class="form-group">
                 <label for="ejemplo_email_1">Monto</label>
-                <input [ngFormControl]="monto" required type="number" step="0.01" class="form-control" id="monto"
+                <input [ngFormControl]="monto" [value]="editData.monto" required type="number" step="0.01" class="form-control" id="monto"
                     placeholder="Introduzca el monto">
             </div>
         </div>
@@ -111,7 +111,7 @@
 
             <div class="form-group">
                 <label for="ejemplo_email_1">Descripción</label>
-                <input [ngFormControl]="descripcion" required type="text" class="form-control" id="descripcion"
+                <input [ngFormControl]="descripcion" [value]="editData.descripcion" required type="text" class="form-control" id="descripcion"
                     placeholder="Descripción">
             </div>
         </div>
@@ -122,7 +122,7 @@
 
             <div class="form-group">
                 <label for="ejemplo_email_1">Referencia</label>
-                <input [ngFormControl]="referencia" required type="text" class="form-control" id="referencia"
+                <input [ngFormControl]="referencia" [value]="editData.referencia" required type="text" class="form-control" id="referencia"
                     placeholder="Introduzca la referencia">
             </div>
         </div>
