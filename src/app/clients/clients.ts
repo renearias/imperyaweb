@@ -431,11 +431,6 @@ export class ClientsPage {
         }
     }
 
-    deleteClient(id: number) {
-        console.log('Borrar cliente #: ' + id)
-
-    }
-
     clearData(): void {
         let clientData;
 
