@@ -28,8 +28,8 @@ declare var Tether: any;
     '[class.app]' : 'true',
     id: 'app'
   },
-  providers: [Sidebar, Navbar, ChatSidebar, FORM_PROVIDERS],
-  directives: [ROUTER_DIRECTIVES],
+  providers: [ FORM_PROVIDERS ],
+  directives: [Sidebar, Navbar, ChatSidebar, ROUTER_DIRECTIVES],
   styles: [require('../../scss/application.scss')],
   encapsulation: ViewEncapsulation.None,
   template: require('./core.html')
@@ -215,7 +215,7 @@ export class Core implements OnInit {
 
     // if (!token) {
     //   console.log('Token inválido...')
-    this.router.navigate(['/login']);
+    //this.router.navigate(['/login']);
     // } else {
     //   console.log('Token válido :D')
     setTimeout(() => { jQuery('[data-toggle="tooltip"]').tooltip(); });
