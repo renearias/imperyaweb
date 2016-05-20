@@ -24,6 +24,7 @@ import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
 import {ROUTER_PROVIDERS,} from '@angular/router';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {HTTP_PROVIDERS} from '@angular/http';
+import {AUTH_PROVIDERS} from 'angular2-jwt';
 
 const ENV_PROVIDERS = [];
 
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function main(): void {
   bootstrap(App, [
     ConfigService,
     NgControl,
+    AUTH_PROVIDERS,
     ...ENV_PROVIDERS,
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
