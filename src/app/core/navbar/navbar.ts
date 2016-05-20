@@ -4,13 +4,14 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 import {ConfigService} from '../config';
 import {Notifications} from '../notifications/notifications';
 import {Router} from '@angular/router';
-//import {RouterLink} from '@angular/common';
+import {Auth} from '../../auth';
 
 declare var jQuery: any;
 //declare var Routing: any;
 //declare var fos: any;
 @Component({
   selector: '[navbar]',
+  providers: [ Auth ],
   events: ['toggleSidebarEvent', 'toggleChatEvent'],
   directives: [Notifications, TOOLTIP_DIRECTIVES, ROUTER_DIRECTIVES],
   template: require('./navbar.html')
@@ -22,7 +23,7 @@ export class Navbar implements OnInit {
   config: any;
   logoutRoute: any = "./login";
 
-  constructor(el: ElementRef, config: ConfigService, public router: Router) {
+  constructor(el: ElementRef, config: ConfigService, public router: Router,private auth: Auth) {
     this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
   }

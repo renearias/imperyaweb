@@ -5,7 +5,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} fr
 import {Validators} from '@angular/common';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import {urlApi, contentHeaders, token} from '../http/http';
-import {ConfigService} from './../core/config';
+import {Auth} from '../auth';
 
 
 @Component({
@@ -19,7 +19,8 @@ import {ConfigService} from './../core/config';
   },
   viewProviders: [
   	FormBuilder, 
-  	HTTP_PROVIDERS
+  	HTTP_PROVIDERS,
+        Auth
   ],
   styles: [require('../../scss/application.scss'),require('./login.scss')],
   encapsulation: ViewEncapsulation.None,
@@ -33,8 +34,8 @@ export class LoginPage {
     username: Control;
     password: Control;
     badCredentials;
-
-	constructor(fb: FormBuilder, public router: Router, public http: Http) {
+    
+    constructor(fb: FormBuilder, public router: Router, private auth: Auth) {
 		this.fb = fb;
 		this.buildForm();
     this.badCredentials = false;
@@ -60,35 +61,9 @@ export class LoginPage {
         }
 
         login(){
-        if (this.loginForm.valid) {
-
-        console.log(this.username.value)
-        console.log(this.password.value)
-
-        let _username = this.username.value
-        let _password = this.password.value
-
-        let body = JSON.stringify({ _username, _password });
-
-        let options = new RequestOptions({
-        headers: contentHeaders
-        });
-        console.log(body)
-
-			this.http.post(urlApi + 'login', body, options)
-				.subscribe(
-				response => {
-          console.log('Iniciando Sesión...')          
-					localStorage.setItem('jwt', response.json().token);
-					console.log('Token guardado exitósamente')
-          this.router.navigate(['/app/dashboard']);				
-				},
-				error => {
-					console.log(error.text());
-					this.badCredentials = true;
-					this.clearData();
-				}
-			);
+            
+            if (this.loginForm.valid) {
+                this.auth.login( this.username.value,this.password.value)
 		}
 	}
 	clearData(): void {

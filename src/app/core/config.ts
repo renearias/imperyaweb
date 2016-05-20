@@ -5,6 +5,7 @@ export class ConfigService {
     name: 'Imperya',
     title: 'Imperya - Dashboard',
     version: '1.0.0',
+    urlApi:'http://imperya/',
     /**
      * Whether to print and alert some log information
      */
@@ -50,7 +51,8 @@ export class ConfigService {
       /**
        * whether navigation is static (prevent automatic collapsing)
        */
-      'nav-static': false
+      'nav-static': false,
+      'token': null
     }
   };
 

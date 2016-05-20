@@ -80,7 +80,7 @@
           <li><a class="dropdown-item" [routerLink]=" ['/ErrorPage'] ">Calendario</a></li>
           <li><a class="dropdown-item" [routerLink]=" ['/ErrorPage'] ">Inbox &nbsp;&nbsp;<span class="label label-pill bg-danger text-white animated bounceIn">9</span></a></li>
           <li class="dropdown-divider"></li>
-          <li><a (click)="logout()" id="logout" class="dropdown-item"><i class="fa fa-sign-out"></i> &nbsp; Cerrar Sesion</a></li>
+          <li><a (click)="auth.logout()" *ngIf="auth.authenticated()" id="logout" class="dropdown-item"><i class="fa fa-sign-out"></i> &nbsp; Cerrar Sesion</a></li>
         </ul>
       </li>
       <li class="nav-item">

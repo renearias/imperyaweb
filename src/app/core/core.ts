@@ -15,6 +15,7 @@ import {IngresosPage} from './../ingresos/ingresos';
 import {ConfigService} from './config';
 
 import {token} from '.././http/http';
+import {Auth} from '../auth';
 
 declare var Raphael: any;
 declare var jQuery: any;
@@ -28,7 +29,7 @@ declare var Tether: any;
     '[class.app]' : 'true',
     id: 'app'
   },
-  providers: [ FORM_PROVIDERS ],
+  providers: [ Auth, FORM_PROVIDERS ],
   directives: [Sidebar, Navbar, ChatSidebar, ROUTER_DIRECTIVES],
   styles: [require('../../scss/application.scss')],
   encapsulation: ViewEncapsulation.None,
@@ -54,7 +55,7 @@ export class Core implements OnInit {
 
   constructor(config: ConfigService,
               el: ElementRef,
-              router: Router) {
+              router: Router,private auth: Auth) {
     Raphael.prototype.safari = function(): any { return; };
 
     this.el = el;
