@@ -6,11 +6,12 @@ import {LoginPage} from './app/login/login';
 import {RegisterPage} from './app/register/register';
 
 import {token} from './app/http/http';
-
+import {Auth} from './app/auth';
 declare var jQuery: any;
 
 @Component({
   selector: 'body',
+  providers: [ Auth ],
   directives: [ROUTER_DIRECTIVES],
   template: require('./app.html')
 })

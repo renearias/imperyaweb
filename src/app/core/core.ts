@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {CanActivate} from '@angular/router-deprecated';
 import {FORM_PROVIDERS} from '@angular/common';
 import {Sidebar} from './sidebar/sidebar';
 import {Navbar} from './navbar/navbar';
@@ -14,7 +15,7 @@ import {OrdersPage} from './../orders/orders';
 import {IngresosPage} from './../ingresos/ingresos';
 import {ConfigService} from './config';
 
-import {token} from '.././http/http';
+import {tokenNotExpired} from 'angular2-jwt';
 import {Auth} from '../auth';
 
 declare var Raphael: any;
@@ -35,6 +36,9 @@ declare var Tether: any;
   encapsulation: ViewEncapsulation.None,
   template: require('./core.html')
 })
+
+@CanActivate(() => tokenNotExpired())
+
 @Routes([
   { path: '/dashboard', component: Dashboard },
   { path: '/another-page', component: AnotherPage},
@@ -212,13 +216,7 @@ export class Core implements OnInit {
   ngOnInit(): void {
 
     console.log('Pasando por CORE.TS')
-    // console.log('Evaluando token...')
-
-    // if (!token) {
-    //   console.log('Token inválido...')
-    //this.router.navigate(['/login']);
-    // } else {
-    //   console.log('Token válido :D')
+    
     setTimeout(() => { jQuery('[data-toggle="tooltip"]').tooltip(); });
 
     jQuery('[data-toggle="tooltip"]').onPositionChanged(() => { Tether.position(); }, 0);

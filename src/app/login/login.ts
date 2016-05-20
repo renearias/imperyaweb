@@ -4,7 +4,7 @@ import {Router, Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 import {Validators} from '@angular/common';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
-import {urlApi, contentHeaders, token} from '../http/http';
+import {urlApi, contentHeaders} from '../http/http';
 import {Auth} from '../auth';
 
 
