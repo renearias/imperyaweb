@@ -1,10 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {FORM_PROVIDERS} from '@angular/common';
 import {Sidebar} from './sidebar/sidebar';
 import {Navbar} from './navbar/navbar';
 import {ChatSidebar} from './chat-sidebar/chat-sidebar';
-import {ViewEncapsulation, OnInit} from '@angular/core';
 import {AnotherPage} from './../another/another';
 import {Dashboard} from './../dashboard/dashboard';
 import {ProductsPage} from './../products/products';
@@ -14,6 +13,8 @@ import {ProvidersPage} from './../providers/providers';
 import {OrdersPage} from './../orders/orders';
 import {IngresosPage} from './../ingresos/ingresos';
 import {ConfigService} from './config';
+
+import {token} from '.././http/http';
 
 declare var Raphael: any;
 declare var jQuery: any;
@@ -27,8 +28,8 @@ declare var Tether: any;
     '[class.app]' : 'true',
     id: 'app'
   },
-  providers: [ FORM_PROVIDERS ],
-  directives: [Sidebar, Navbar, ChatSidebar, ROUTER_DIRECTIVES],
+  providers: [Sidebar, Navbar, ChatSidebar, FORM_PROVIDERS],
+  directives: [ROUTER_DIRECTIVES],
   styles: [require('../../scss/application.scss')],
   encapsulation: ViewEncapsulation.None,
   template: require('./core.html')
@@ -89,7 +90,7 @@ export class Core implements OnInit {
 
       return o;
     };
-  }
+  }    
 
   toggleSidebarListener(state): void {
     let toggleNavigation = state === 'static' ? this.toggleNavigationState : this.toggleNavigationCollapseState;
@@ -208,6 +209,15 @@ export class Core implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log('Pasando por CORE.TS')
+    // console.log('Evaluando token...')
+
+    // if (!token) {
+    //   console.log('Token inválido...')
+    this.router.navigate(['/login']);
+    // } else {
+    //   console.log('Token válido :D')
     setTimeout(() => { jQuery('[data-toggle="tooltip"]').tooltip(); });
 
     jQuery('[data-toggle="tooltip"]').onPositionChanged(() => { Tether.position(); }, 0);
@@ -271,5 +281,7 @@ export class Core implements OnInit {
 
       jQuery(this).closest('li').removeClass('open');
     });
+      // }//end else
   }
+
 }

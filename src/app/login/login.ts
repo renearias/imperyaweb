@@ -1,11 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router, Routes, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 import {Validators} from '@angular/common';
 import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
-import {urlApi, contentHeaders} from '../http/http';
-import {ViewEncapsulation, OnInit} from '@angular/core';
+import {urlApi, contentHeaders, token} from '../http/http';
 import {ConfigService} from './../core/config';
 
 
@@ -38,7 +37,16 @@ export class LoginPage {
 	constructor(fb: FormBuilder, public router: Router, public http: Http) {
 		this.fb = fb;
 		this.buildForm();
+    this.badCredentials = false;
 	}
+
+  ngOnInit(): void {
+
+    // if (token) {
+    //   console.log('Ya posee un token activo, redirigiendo al dashboard...')
+    //   this.router.navigate(['/app/dashboard']);
+    // }
+  }
 
         buildForm(): void {
         this.username = new Control('', Validators.required);
@@ -70,10 +78,10 @@ export class LoginPage {
 			this.http.post(urlApi + 'login', body, options)
 				.subscribe(
 				response => {
+          console.log('Iniciando Sesión...')          
 					localStorage.setItem('jwt', response.json().token);
-					console.log(response.json().token)
-					console.log(localStorage.getItem('jwt'))
-					//this.router.parent.navigateByUrl('/app');					
+					console.log('Token guardado exitósamente')
+          this.router.navigate(['/app/dashboard']);				
 				},
 				error => {
 					console.log(error.text());

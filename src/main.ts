@@ -37,6 +37,8 @@ import {App} from './app';
 import {ConfigService} from './app/core/config';
 
 document.addEventListener('DOMContentLoaded', function main(): void {
+
+  console.log('Pasando por MAIN.TS')
   bootstrap(App, [
     ConfigService,
     NgControl,
