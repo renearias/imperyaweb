@@ -21,6 +21,7 @@ export class Navbar implements OnInit {
   $el: any;
   config: any;
   logoutRoute: any = "./login";
+
   constructor(el: ElementRef, config: ConfigService, public router: Router) {
     this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
@@ -35,39 +36,33 @@ export class Navbar implements OnInit {
   }
 
   ngOnInit(): void {
-
-    let token = localStorage.getItem('jwt');
-
-    if (!token){
-      //this.router.parent.navigateByUrl('/login');
-    }
-
-    // demo-only code. remove in production
-    setTimeout(() => {
-      let $chatNotification = jQuery('#chat-notification');
-      $chatNotification.removeClass('hide').addClass('animated fadeIn')
-        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
-          $chatNotification.removeClass('animated fadeIn');
-          setTimeout(() => {
-            $chatNotification.addClass('animated fadeOut')
-              .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd' +
+    console.log('Pasando por NAVBAR.TS')
+      // demo-only code. remove in production
+      setTimeout(() => {
+        let $chatNotification = jQuery('#chat-notification');
+        $chatNotification.removeClass('hide').addClass('animated fadeIn')
+          .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+            $chatNotification.removeClass('animated fadeIn');
+            setTimeout(() => {
+              $chatNotification.addClass('animated fadeOut')
+                .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd' +
                 ' oanimationend animationend', () => {
-                $chatNotification.addClass('hide');
-              });
-          }, 8000);
-        });
-      $chatNotification.siblings('#toggle-chat')
-        .append('<i class="chat-notification-sing animated bounceIn"></i>');
-    }, 4000);
+                  $chatNotification.addClass('hide');
+                });
+            }, 8000);
+          });
+        $chatNotification.siblings('#toggle-chat')
+          .append('<i class="chat-notification-sing animated bounceIn"></i>');
+      }, 4000);
 
-    this.$el.find('.input-group-addon + .form-control').on('blur focus', function(e): void {
-      jQuery(this).parents('.input-group')
+      this.$el.find('.input-group-addon + .form-control').on('blur focus', function(e): void {
+        jQuery(this).parents('.input-group')
         [e.type === 'focus' ? 'addClass' : 'removeClass']('focus');
-    });
+      });
   }
-
   logout() {
+    console.log('Cerrando Sesión...')
     localStorage.removeItem('jwt');
-    this.router.navigateByUrl('/login');
+    this.router.navigate(['/login']);
   }
 }

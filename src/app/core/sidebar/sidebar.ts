@@ -3,6 +3,7 @@ import {ROUTER_DIRECTIVES, Router } from '@angular/router';
 import {Location} from '@angular/common';
 import {SlimScroll} from 'ng2-slimscroll/ng2-slimscroll';
 import {ConfigService} from '../config';
+
 declare var jQuery: any;
 
 @Component({
@@ -62,6 +63,7 @@ export class Sidebar implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('Pasando por SIDEBAR.TS')
     jQuery(window).on('sn:resize', this.initSidebarScroll.bind(this));
     this.initSidebarScroll();
     

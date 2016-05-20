@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Widget} from '../core/widget/widget';
 
 @Component({
@@ -8,4 +8,9 @@ import {Widget} from '../core/widget/widget';
 })
  
 export class Dashboard {
+
+	ngOnInit() {
+		console.log('Pasando por DASHBOARD.TS')
+    }
+
 }

@@ -5,6 +5,8 @@ import {ErrorPage} from './app/error/error';
 import {LoginPage} from './app/login/login';
 import {RegisterPage} from './app/register/register';
 
+import {token} from './app/http/http';
+
 declare var jQuery: any;
 
 @Component({
@@ -29,6 +31,6 @@ export class App  implements OnInit {
     constructor(private router: Router) {}
     
     ngOnInit() {
-    //this.router.navigate(['/error']);
+       console.log('Pasando por APP.TS')       
     }
 }
