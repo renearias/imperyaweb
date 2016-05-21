@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {Routes, ROUTER_DIRECTIVES, Router,RouteSegment,OnActivate} from '@angular/router';
 import {FORM_PROVIDERS} from '@angular/common';
 import {Sidebar} from './sidebar/sidebar';
 import {Navbar} from './navbar/navbar';
@@ -46,7 +46,7 @@ declare var Tether: any;
   { path: '/orders', component: OrdersPage},
   { path: '/ingresos', component: IngresosPage}
 ])
-export class Core implements OnInit {
+export class Core implements OnInit,OnActivate {
   config: any;
   configFn: any;
   $sidebar: any;
@@ -209,15 +209,20 @@ export class Core implements OnInit {
       this.collapseNavigation();
     }
   }
-
-  ngOnInit(): void {
-
-    console.log('Pasando por CORE.TS')
-    if (!tokenNotExpired())
+  
+  
+  routerOnActivate(curr: RouteSegment) {
+     if (!tokenNotExpired())
       {
-          this.router.navigate(['login']);
+          this.router.navigate(['/login']);
           return;
       }
+  } 
+   
+  ngOnInit(): void {
+
+    console.log('Pasando por CORE.TS');
+   
     setTimeout(() => { jQuery('[data-toggle="tooltip"]').tooltip(); });
 
     jQuery('[data-toggle="tooltip"]').onPositionChanged(() => { Tether.position(); }, 0);
