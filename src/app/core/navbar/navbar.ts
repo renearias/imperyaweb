@@ -21,9 +21,8 @@ export class Navbar implements OnInit {
   toggleChatEvent: EventEmitter<any> = new EventEmitter();
   $el: any;
   config: any;
-  logoutRoute: any = "./login";
-
-  constructor(el: ElementRef, config: ConfigService, public router: Router,private auth: Auth) {
+  logoutRoute: any = './login';
+  constructor(el: ElementRef, config: ConfigService, public router: Router, private auth: Auth) {
     this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
   }
@@ -37,7 +36,7 @@ export class Navbar implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Pasando por NAVBAR.TS')
+    console.log('Pasando por NAVBAR.TS');
       // demo-only code. remove in production
       setTimeout(() => {
         let $chatNotification = jQuery('#chat-notification');
@@ -62,7 +61,7 @@ export class Navbar implements OnInit {
       });
   }
   logout() {
-    console.log('Cerrando Sesión...')
+    console.log('Cerrando Sesión...');
     localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
   }

@@ -12,61 +12,46 @@ import {ConfigService} from './../core/config';
 
 @Component({
     selector: 'ingresos',
-    directives: [Widget, ROUTER_DIRECTIVES,FORM_DIRECTIVES],
+    directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     templateUrl: 'app/ingresos/ingresos.html',
     providers: [HTTP_BINDINGS],
-    
     host: {
     class: 'ingresos-page app'
     },
-    
     viewProviders: [ FormBuilder, HTTP_PROVIDERS],
 })
 export class IngresosPage {
-        
     fb: FormBuilder;
-    
     ingresosForm: ControlGroup;
     ingresosFormEdit: ControlGroup;
-    
-    id: number;// Id del pago a eliminar o editar
+    id: number; // Id del pago a eliminar o editar
     editData = {
-            id: "",
-            fecha: "",
-            cliente: "", 
-            monto: "",
-            descripcion: "",
-            referencia: "",
-            formapago: { id: "" }
-
-         }
-    
-    clients_array:any;
-    payments_array:any;
-    
+            id: '',
+            fecha: '',
+            cliente: '',
+            monto: '',
+            descripcion: '',
+            referencia: '',
+            formapago: { id: '' }
+         };
+    clients_array: any;
+    payments_array: any;
     fecha: Control;
     cliente: Control;
     monto: Control;
     descripcion: Control;
     referencia: Control;
     formapago: Control;
-        
     constructor(fb: FormBuilder, public router: Router, public http: Http) {
         this.fb = fb;
         this.buildForm();
         this.getClientsFromApi();
     }
-    
-         
-         goToEditPayment(id: number) {
-        console.log('Datos existentes del pago id#: ' + id)
-       
-
-        console.log(this.payments_array[id])
-
-        let old_data: any
-        old_data = this.payments_array[id]
-
+      goToEditPayment(id: number) {
+        console.log('Datos existentes del pago id#: ' + id);
+        console.log(this.payments_array[id]);
+        let old_data: any;
+        old_data = this.payments_array[id];
         this.editData = {
             id: old_data.id,
             fecha: old_data.fecha,
@@ -75,36 +60,30 @@ export class IngresosPage {
             descripcion: old_data.descripcion,
             referencia: old_data.referencia,
             formapago: { id: old_data.formapago.id }
-            
-        }
+            };
     }
-    
-    editPayment(id: number){
-        console.log('Editar cliente id#: ' + id)
-
-        let new_data: any
-        new_data = this.editData
-        console.log(this.ingresosFormEdit.valid)
+    editPayment(id: number) {
+        console.log('Editar cliente id#: ' + id);
+        let new_data: any;
+        new_data = this.editData;
+        console.log(this.ingresosFormEdit.valid);
 
         // FALTA VERIFICAR REQUEST Y CORREGIR VALIDACIÓN DE FORMUALARIO
-        
        /* if (this.ingresosFormEdit.valid) {*/
             // Atributos para enviar a la api
-            let fecha = this.editData.fecha
-            let cliente = this.editData.cliente
-            let monto = this.editData.monto
-            let descripcion = this.editData.descripcion
-            let referencia = this.editData.referencia
-            let formapago = this.editData.formapago.id
-            
+            let fecha = this.editData.fecha;
+            let cliente = this.editData.cliente;
+            let monto = this.editData.monto;
+            let descripcion = this.editData.descripcion;
+            let referencia = this.editData.referencia;
+            let formapago = this.editData.formapago.id;
 
-            console.log(fecha)
-            console.log(cliente)
-            console.log(monto)
-            console.log(descripcion)
-            console.log(referencia)
-            console.log(formapago)
-          
+            console.log(fecha);
+            console.log(cliente);
+            console.log(monto);
+            console.log(descripcion);
+            console.log(referencia);
+            console.log(formapago);
 
             let body = JSON.stringify({
 
@@ -116,17 +95,16 @@ export class IngresosPage {
                 formapago
             });
 
-            console.log(body)
+            console.log(body);
 
             let options = new RequestOptions({
                 headers: contentHeadersWithToken
             });
 
-
-            this.http.patch(urlApi + 'api/ingresos/'+id, body, options)
+            this.http.patch(urlApi + 'api/ingresos/' + id, body, options)
                 .subscribe(
                 response => {
-                    console.log(response)
+                    console.log(response);
                     // if (response.status === 201) {
                     //     alert('Creado Exitosamente')
                     //     //Cambiar alert mas adelante
@@ -140,17 +118,14 @@ export class IngresosPage {
                 );
         // }
     }
-    
-    id_type: Object;
+    public id_type: Object;
     id_types: Object[] = [
-        { name: "Seleccione", value: 1 },
-        { name: "Debito", value: 2},
-        { name: "Crédito", value: 3 },
-        { name: "Transferencia", value: 4 }
+        { name: 'Seleccione', value: 1 },
+        { name: 'Debito', value: 2 },
+        { name: 'Crédito', value: 3 },
+        { name: 'Transferencia', value: 4 }
     ];
-               
     buildForm(): void {
-
         this.fecha = new Control('', Validators.required);
         this.cliente = new Control('', Validators.required);
         this.monto = new Control('', Validators.required);
@@ -169,7 +144,6 @@ export class IngresosPage {
         'formapago': this.formapago
         });
     }
-    
     // Obtener listado de clientes de la api para 
     // visualizarlos en el buscador
     getClientsFromApi(): void {
@@ -180,15 +154,12 @@ export class IngresosPage {
         this.http.get(urlApi + 'api/contactos', options)
             .subscribe(
             response => {
-                this.clients_array = response.json()
-                for(let client in this.clients_array){
-                        
-                        
+                this.clients_array = response.json();
+                 for (let client in this.clients_array) {
                 }
-                console.log('Listado de contactos')
-                console.log(response.json())
-                console.log(this.clients_array)
-              
+                console.log('Listado de contactos');
+                console.log(response.json());
+                console.log(this.clients_array);
             },
             error => {
                  console.log('Se fue por aquí');
@@ -196,7 +167,6 @@ export class IngresosPage {
             }
         );
     }
-    
     //Obtener todos los pagos
     getPaymentsFromApi(): void {
         let options = new RequestOptions({
@@ -206,64 +176,55 @@ export class IngresosPage {
         this.http.get(urlApi + 'api/ingresos', options)
             .subscribe(
             response => {
-                this.payments_array = response.json()
-                
-                console.log('Listado de pagos')
-                console.log(response.json())
-                console.log(this.payments_array)
-              
+                this.payments_array = response.json();
+                console.log('Listado de pagos');
+                console.log(response.json());
+                console.log(this.payments_array);
             },
             error => {
                  console.log('Se fue por aquí');
                 console.log(error);
-            }
-        );
+            });
     }
-        
-    addIngreso(){
-     
+    addIngreso() {
      /*if(this.ingresosForm.valid){*/
             //Datos para enviar a la API
-            let fecha = this.fecha.value
-            let cliente = this.cliente.value
-            let monto = this.monto.value
-            let descripcion = this.descripcion.value
-            let referencia = this.referencia.value
-            let formapago = this.formapago.value
+            let fecha = this.fecha.value;
+            let cliente = this.cliente.value;
+            let monto = this.monto.value;
+            let descripcion = this.descripcion.value;
+            let referencia = this.referencia.value;
+            let formapago = this.formapago.value;
 
             //Probando en la consola
-            console.log(this.fecha.value)
-            console.log(this.cliente.value)
-            console.log(this.monto.value)
-            console.log(this.descripcion.value)
-            console.log(this.referencia.value)
-            console.log(this.formapago.value)
+            console.log(this.fecha.value);
+            console.log(this.cliente.value);
+            console.log(this.monto.value);
+            console.log(this.descripcion.value);
+            console.log(this.referencia.value);
+            console.log(this.formapago.value);
 
             //Creando el JSON con los atributos a enviar a la API
-            let body = JSON.stringify({ 
-                            
-                            fecha, 
-                            cliente, 
-                            monto, 
-                            descripcion, 
-                            referencia, 
-                            formapago 
+            let body = JSON.stringify({
+                            fecha,
+                            cliente,
+                            monto,
+                            descripcion,
+                            referencia,
+                            formapago
                                });
-                               
-                               
-            //Intanciando un request                   
+            //Intanciando un request
             let options = new RequestOptions({
-                headers: contentHeadersWithToken
-               }); 
-        
-            console.log(body)
+                headers: contentHeadersWithToken,
+               });
+            console.log(body);
 
             this.http.post(urlApi + 'api/ingresos/', body, options)
                   .subscribe(
                    response => {
-                      console.log(response)
+                      console.log(response);
                         if (response.status === 201) {
-                            alert('Creado Exitosamente')
+                            alert('Creado Exitosamente');
                                 //Cambiar alert mas adelante
                                 }
                         this.clearData();
@@ -273,15 +234,11 @@ export class IngresosPage {
                         this.clearData();
                     }
                     );
-               
    /*}*/
-    
  }
         //Limpiando el formulario
-        clearData(): void{
-    
+        clearData(): void {
              let ingresoData;
-    
              ingresoData = this.ingresosForm.controls;
 
              ingresoData.fecha.updateValue('');

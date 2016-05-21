@@ -1,4 +1,4 @@
-import {Component,ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 //import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 //import {TodoItem} from '../../models';
@@ -21,13 +21,12 @@ declare var Datatable: any;
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
 })
 export class ProductosIndexPage {
-    urlApi:string;
+    urlApi: string;
     constructor(config: ConfigService) {
         this.urlApi = config.config.urlApi;
    }
-    ngOnInit(): void {
-        
-       /* jQuery('#angularDataTableTest').DataTable(
+   ngOnInit(): void {
+    /* jQuery('#angularDataTableTest').DataTable(
                 {
                     order: [[ 0, "asc" ]],
                     language:require("../components/tables-dynamic/translations/es-ES.json"),
@@ -85,27 +84,26 @@ export class ProductosIndexPage {
                     columnAction
                 ]}
         );*/
-        var oTable =jQuery('#angularDataTableTest').dataTable(
+        var oTable = jQuery('#angularDataTableTest').dataTable(
                 {
-                    //"order": [[ 0, "asc" ]],
-                    "language":require("../components/tables-dynamic/translations/es-ES.json"),
-                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-                    "processing": true,
-                    "serverSide": true,
-                    "columns": [
-                            { "data": "id"},
-                            { "data": "descripcionCorta" },
-                            { "data": "stock" },
+                    //'order': [[ 0, 'asc' ]],
+                    'language': require('../components/tables-dynamic/translations/es-ES.json'),
+                    'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'Todos']],
+                    'processing': true,
+                    'serverSide': true,
+                    'columns': [
+                            { 'data': 'id'},
+                            { 'data': 'descripcionCorta' },
+                            { 'data': 'stock' },
                             columnAction
                         ],
-                    "ajax": {
-                        "url": this.urlApi+"api/productos",
-                        "type": "GET",
+                    'ajax': {
+                        'url': this.urlApi + 'api/productos',
+                        'type': 'GET',
                         'beforeSend': function (request) {
-                            request.setRequestHeader("Accept", "application/json");
-                            var token=localStorage.getItem('id_token');
-                            request.setRequestHeader("Authorization", "Bearer "+token);
-                            
+                            request.setRequestHeader('Accept', 'application/json');
+                            var token = localStorage.getItem('id_token');
+                            request.setRequestHeader('Authorization', 'Bearer' + token);
                         }
 
                     }
@@ -119,5 +117,4 @@ export class ProductosIndexPage {
       jQuery(e.target).closest('.input-group').removeClass('focus');
     });*/
   }
-	
 }

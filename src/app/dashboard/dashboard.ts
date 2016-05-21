@@ -10,11 +10,10 @@ import {CanActivate} from '@angular/router-deprecated';
 })
 
 @CanActivate(() => tokenNotExpired())
- 
 export class Dashboard {
 
 	ngOnInit() {
-		console.log('Pasando por DASHBOARD.TS')
+		console.log('Pasando por DASHBOARD.TS');
     }
 
 }

@@ -17,11 +17,9 @@ import {urlApi, contentHeadersWithToken} from '../http/http';
 		HTTP_PROVIDERS
 	],
 	template: require('./invoice.html'),
-	directives: [Widget,DataTableDirectives,FORM_DIRECTIVES]
+	directives: [Widget, DataTableDirectives, FORM_DIRECTIVES]
 })
-
 export class InvoicePage {
-	
 	todos: Array<TodoItem>;
 	invoice: Array<InvoiceItem>;
 
@@ -55,11 +53,10 @@ export class InvoicePage {
 		let options = new RequestOptions({
 			headers: contentHeadersWithToken
         });
-
-		this.http.get(urlApi + 'api/contactos', options)
-			.subscribe(
-			response => {
-				console.log(response)			
+                this.http.get(urlApi + 'api/contactos', options)
+                    .subscribe(
+                     response => {
+			console.log(response);
 			},
 			error => {
 				console.log(error.text());
@@ -111,14 +108,12 @@ export class InvoicePage {
 
 			this.calculateTotal();
 			this.buildForm();
-
-			console.log('Subtotal' + this.sub_total)
-			console.log('iva' + this.iva)
-			console.log('total' + this.total)				
-		}
+			console.log('Subtotal' + this.sub_total);
+			console.log('iva' + this.iva);
+			console.log('total' + this.total);
+                    }
 	}
-
-	calculateTotal():void{
+	calculateTotal(): void {
 		//Sub Total
 		var sub_total = 0;
 		const IVA = 12;
@@ -126,16 +121,16 @@ export class InvoicePage {
 		this.todos.forEach(function(todo) {
 			sub_total += todo.total;
 		});
-		this.sub_total = sub_total
-		console.log('SUBTOTAL ' + this.sub_total)
+		this.sub_total = sub_total;
+		console.log('SUBTOTAL ' + this.sub_total);
 
 		//IVA
 		this.iva = sub_total * IVA / 100;
-		console.log('IVA ' + this.iva)
+		console.log('IVA ' + this.iva);
 
 		//Total
-		this.total = this.sub_total + this.iva
-		console.log('TOTAL ' + this.total)
+		this.total = this.sub_total + this.iva;
+		console.log('TOTAL ' + this.total);
 	}
 
 	saveInvoice() {
@@ -146,7 +141,7 @@ export class InvoicePage {
 			this.iva,
 			this.total));
 
-		console.log('FACTURA')
-		console.log(this.invoice)
+		console.log('FACTURA');
+		console.log(this.invoice);
 	}
 }

@@ -43,37 +43,37 @@ export class ClientsPage {
     contacts_array: Object[];
     id: number; //id del cliente para editar o borrar
     editData = {
-        id: "",
-        codigo: "",
-        identificacion: "",
-        nombre: "",
-        direccion: "",
-        nombrecomercial: "",
-        telefonos: "",
-        ciudad: "",
-        fax: "",
-        pais: "",
-        contacto: "",
-        registroempresarial: "",
-        email: "",
-        actividadeconomica: "",
-        clasecontribuyente: { id: "" },
-        notas: "",
-        tipoidentificacionid: { id: "" },
-        tipopersonaid: { id: "" }
-    }
+        id: '',
+        codigo: '',
+        identificacion: '',
+        nombre: '',
+        direccion: '',
+        nombrecomercial: '',
+        telefonos: '',
+        ciudad: '',
+        fax: '',
+        pais: '',
+        contacto: '',
+        registroempresarial: '',
+        email: '',
+        actividadeconomica: '',
+        clasecontribuyente: { id: '' },
+        notas: '',
+        tipoidentificacionid: { id: '' },
+        tipopersonaid: { id: '' }
+    };
 
     code: Control;
     id_type_person: Object;
     id_types_person: Object[] = [
-        { name: "Natural", value: 1 },
-        { name: "Jurídica", value: 2 }
+        { name: 'Natural', value: 1 },
+        { name: 'Jurídica', value: 2 }
     ];
     name: Control;
     id_type: Object;
     id_types: Object[] = [
-        { name: "Cédula", value: 1 },
-        { name: "Pasaporte", value: 2 }
+        { name: 'Cédula', value: 1 },
+        { name: 'Pasaporte', value: 2 }
     ];
     id_person: Control;
     address: Control;
@@ -88,9 +88,9 @@ export class ClientsPage {
     email: Control;
     taxpayer: Object; //Clase contribuyente
     taxpayers: Object[] = [
-        { name: "Especial" },
-        { name: "Normal" },
-        { name: "Otro" }
+        { name: 'Especial' },
+        { name: 'Normal' },
+        { name: 'Otro' }
     ];
     //taxpayer: Control;  - no enviar por los momentos
     notes: Control; //no requerido -No enviar por los momentos
@@ -168,7 +168,7 @@ export class ClientsPage {
         this.http.get(urlApi + 'api/contactos', options)
             .subscribe(
             response => {
-                this.contacts_array = response.json()
+                this.contacts_array = response.json();
                 // console.log('Listado de contactos')
                 // console.log(this.contacts_array)   
 
@@ -183,15 +183,12 @@ export class ClientsPage {
     }
 
     goToEditClient(id: number) {
-        console.log('Datos existentes del cliente id#: ' + id)
-        this.contacts_array[id]
-
-        console.log(this.contacts_array[id])
-
-        let old_data: any
-        old_data = this.contacts_array[id]
-
-        console.log(old_data.clasecontribuyente)
+        console.log('Datos existentes del cliente id#: ' + id);
+        this.contacts_array[id];
+        console.log(this.contacts_array[id]);
+        let old_data: any;
+        old_data = this.contacts_array[id];
+        console.log(old_data.clasecontribuyente);
 
         this.editData = {
             id: old_data.id,
@@ -212,70 +209,67 @@ export class ClientsPage {
             notas: old_data.notas,
             tipoidentificacionid: { id: old_data.tipoidentificacionid.id },
             tipopersonaid: { id: old_data.tipopersonaid.id }
-        }
+        };
 
-        console.log(this.editData.tipoidentificacionid.id)
-        console.log(old_data.tipoidentificacionid.id)
+        console.log(this.editData.tipoidentificacionid.id);
+        console.log(old_data.tipoidentificacionid.id);
     }
-
-    editClient(id: number){
-        console.log('Editar cliente id#: ' + id)
-
-        let new_data: any
-        new_data = this.editData
-        console.log(this.clientFormEdit.valid)
+    editClient(id: number) {
+        console.log('Editar cliente id#: ' + id);
+        let new_data: any;
+        new_data = this.editData;
+        console.log(this.clientFormEdit.valid);
 
         // FALTA VERIFICAR REQUEST Y CORREGIR VALIDACIÓN DE FORMUALARIO
-        
        /* if (this.clientFormEdit.valid) {*/
             // Atributos para enviar a la api
-            let codigo = this.editData.codigo
-            let identificacion = this.editData.identificacion
-            let nombre = this.editData.nombre
-            let direccion = this.editData.direccion
-            let nombrecomercial = this.editData.nombrecomercial
-            let telefonos = this.editData.telefonos
-            let ciudad = this.editData.ciudad
-            let fax = this.editData.fax
-            let pais = this.editData.pais
-            let contacto = this.editData.contacto
-            let registroempresarial = this.editData.registroempresarial
-            let email = this.editData.email
-            let actividadeconomica = this.editData.actividadeconomica
-            let clasecontribuyente = this.editData.clasecontribuyente.id
-            let notas = this.editData.notas
-            let cliente = 1
-            let proveedor = 0
-            let vendedor = 0
-            let empleado = 0
-            let transportista = 0
-            let recaudador = 0
-            let tipoidentificacionid = this.editData.tipoidentificacionid.id
-            let tipopersonaid = this.editData.tipopersonaid.id
+            let codigo = this.editData.codigo;
+            let identificacion = this.editData.identificacion;
+            let nombre = this.editData.nombre;
+            let direccion = this.editData.direccion;
+            let nombrecomercial = this.editData.nombrecomercial;
+            let telefonos = this.editData.telefonos;
+            let ciudad = this.editData.ciudad;
+            let fax = this.editData.fax;
+            let pais = this.editData.pais;
+            let contacto = this.editData.contacto;
+            let registroempresarial = this.editData.registroempresarial;
+            let email = this.editData.email;
+            let actividadeconomica = this.editData.actividadeconomica;
+            let clasecontribuyente = this.editData.clasecontribuyente.id;
+            let notas = this.editData.notas;
+            let cliente = 1;
+            let proveedor = 0;
+            let vendedor = 0;
+            let empleado = 0;
+            let transportista = 0;
+            let recaudador = 0;
+            let tipoidentificacionid = this.editData.tipoidentificacionid.id;
+            let tipopersonaid = this.editData.tipopersonaid.id;
 
-            console.log(codigo)
-            console.log(identificacion)
-            console.log(nombre)
-            console.log(direccion)
-            console.log(nombrecomercial)
-            console.log(telefonos)
-            console.log(ciudad)
-            console.log(fax)
-            console.log(pais)
-            console.log(contacto)
-            console.log(registroempresarial)
-            console.log(email)
-            console.log(actividadeconomica)
-            console.log(clasecontribuyente)
-            console.log(notas)
-            console.log(cliente)
-            console.log(proveedor)
-            console.log(vendedor)
-            console.log(empleado)
-            console.log(transportista)
-            console.log(recaudador)
-            console.log(tipoidentificacionid)
-            console.log(tipopersonaid)
+            console.log(codigo);
+            console.log(identificacion);
+            console.log(nombre);
+            console.log(direccion);
+            console.log(nombrecomercial);
+            console.log(telefonos);
+            console.log(ciudad);
+            console.log(fax);
+            console.log(pais);
+            console.log(contacto);
+            console.log(registroempresarial);
+            console.log(email);
+            console.log(actividadeconomica);
+            console.log(clasecontribuyente);
+            console.log(notas);
+            console.log(cliente);
+            console.log(proveedor);
+            console.log(vendedor);
+            console.log(empleado);
+            console.log(transportista);
+            console.log(recaudador);
+            console.log(tipoidentificacionid);
+            console.log(tipopersonaid);
 
             let body = JSON.stringify({
 
@@ -303,17 +297,17 @@ export class ClientsPage {
                 tipopersonaid
             });
 
-            console.log(body)
+            console.log(body);
 
             let options = new RequestOptions({
                 headers: contentHeadersWithToken
             });
 
 
-            this.http.patch(urlApi + 'api/contactos/'+id, body, options)
+            this.http.patch(urlApi + 'api/contactos/' + id, body, options)
                 .subscribe(
                 response => {
-                    console.log(response)
+                    console.log(response);
                     // if (response.status === 201) {
                     //     alert('Creado Exitosamente')
                     //     //Cambiar alert mas adelante
@@ -332,29 +326,29 @@ export class ClientsPage {
 
         /*if (this.clientForm.valid) {*/
             // Atributos para enviar a la api
-            let codigo = this.code.value
-            let identificacion = this.id_person.value
-            let nombre = this.name.value
-            let direccion = this.address.value
-            let nombrecomercial = this.comercial_name.value
-            let telefonos = this.phone.value
-            let ciudad = this.city.value
-            let fax = this.fax.value
-            let pais = this.country.value
-            let contacto = this.contact.value
-            let registroempresarial = this.business_registration.value
-            let email = this.email.value
-            let actividadeconomica = this.economic_activity.value
-            let clasecontribuyente = this.taxpayer
-            let notas = this.notes.value
-            let cliente = 1
-            let proveedor = 0
-            let vendedor = 0
-            let empleado = 0
-            let transportista = 0
-            let recaudador = 0
-            let tipoidentificacionid = this.id_type
-            let tipopersonaid = this.id_type_person
+            let codigo = this.code.value;
+            let identificacion = this.id_person.value;
+            let nombre = this.name.value;
+            let direccion = this.address.value;
+            let nombrecomercial = this.comercial_name.value;
+            let telefonos = this.phone.value;
+            let ciudad = this.city.value;
+            let fax = this.fax.value;
+            let pais = this.country.value;
+            let contacto = this.contact.value;
+            let registroempresarial = this.business_registration.value;
+            let email = this.email.value;
+            let actividadeconomica = this.economic_activity.value;
+            let clasecontribuyente = this.taxpayer;
+            let notas = this.notes.value;
+            let cliente = 1;
+            let proveedor = 0;
+            let vendedor = 0;
+            let empleado = 0;
+            let transportista = 0;
+            let recaudador = 0;
+            let tipoidentificacionid = this.id_type;
+            let tipopersonaid = this.id_type_person;
 
             // console.log(codigo)
             // console.log(identificacion)
@@ -406,7 +400,7 @@ export class ClientsPage {
                 tipopersonaid
             });
 
-            console.log(body)
+            console.log(body);
 
             let options = new RequestOptions({
                 headers: contentHeadersWithToken
@@ -416,9 +410,9 @@ export class ClientsPage {
             this.http.post(urlApi + 'api/contactos', body, options)
                 .subscribe(
                 response => {
-                    console.log(response)
+                    console.log(response);
                     if (response.status === 201) {
-                        alert('Creado Exitosamente')
+                        alert('Creado Exitosamente');
                         //Cambiar alert mas adelante
                     }
                     this.clearData();
