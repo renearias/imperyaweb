@@ -21,7 +21,7 @@ import {provide, enableProdMode} from '@angular/core';
 import {NgControl} from '@angular/common';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
-import {ROUTER_PROVIDERS,} from '@angular/router';
+import {ROUTER_PROVIDERS} from '@angular/router';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
@@ -39,7 +39,7 @@ import {ConfigService} from './app/core/config';
 
 document.addEventListener('DOMContentLoaded', function main(): void {
 
-  console.log('Pasando por MAIN.TS')
+  console.log('Pasando por MAIN.TS');
   bootstrap(App, [
     ConfigService,
     NgControl,
