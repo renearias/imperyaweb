@@ -65,7 +65,7 @@ export class RegisterPage {
 		});
 	}
 	passwordValidator() {
-		if(this.password1.value === this.password2.value) {
+		if (this.password1.value === this.password2.value) {
 			return 1;
 		}
 
@@ -77,20 +77,20 @@ export class RegisterPage {
 	register() {
 		if (this.registerForm.valid && this.passwordValidator()) {
 
-			console.log(this.name.value)
-			console.log(this.username.value)
-			console.log(this.charge.value)
-			console.log(this.email.value)
-			console.log(this.password1.value)
-			console.log(this.password2.value)
-			console.log(this.profile_image)
+			console.log(this.name.value);
+			console.log(this.username.value);
+			console.log(this.charge.value);
+			console.log(this.email.value);
+			console.log(this.password1.value);
+			console.log(this.password2.value);
+			console.log(this.profile_image);
 
-			let name = this.name.value
-			let username = this.username.value
-			let charge = this.charge.value
-			let email = this.email.value
-			let password = this.password1.value
-			let profile_image = this.profile_image
+			let name = this.name.value;
+			let username = this.username.value;
+			let charge = this.charge.value;
+			let email = this.email.value;
+			let password = this.password1.value;
+			let profile_image = this.profile_image;
 
 			let body = JSON.stringify({
 				name,
@@ -104,14 +104,14 @@ export class RegisterPage {
 			let options = new RequestOptions({
 				headers: contentHeaders
 			});
-			console.log(body)
+			console.log(body);
 
 			this.http.post(urlApi + 'usuarios', body, options)
 				.subscribe(
 				response => {
 					localStorage.setItem('jwt', response.json().token);
-					console.log(response.json().token)
-					console.log(localStorage.getItem('jwt'))
+					console.log(response.json().token);
+					console.log(localStorage.getItem('jwt'));
 					//this.router.parent.navigateByUrl('/app');					
 				},
 				error => {
@@ -125,7 +125,7 @@ export class RegisterPage {
 	}
 
 	clearPasswords(): void {
-		console.log("probando");
+		console.log('probando');
 		setTimeout(() => {
 			let registerData;
 			this.badPasswords = false;
@@ -137,7 +137,7 @@ export class RegisterPage {
 	}
 
 	clearData(): void {
-		console.log("probando");
+		console.log('probando'');
 		setTimeout(() => {
 			let loginData;
 

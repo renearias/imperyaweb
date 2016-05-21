@@ -7,7 +7,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class SearchPipe implements PipeTransform {
 
   transform(value, args?): Array<any> {
-    if(typeof args == "undefined") args="";
+    if(typeof args == 'undefined') args = '';
     let searchText = args;
     if (value) {
       return value.filter(conversation => {
