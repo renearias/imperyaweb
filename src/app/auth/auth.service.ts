@@ -47,20 +47,17 @@ export class Auth {
    public login(_username, _password) {
 
     let headers = contentHeaders;
-    return this.http
-      .post(urlApi+'login_check', 
-            JSON.stringify({ _username, _password }), 
-            { headers }
-      ).subscribe(
+    return this.http.post(urlApi+'login_check',JSON.stringify({ _username, _password }),{ headers })
+                    .subscribe(
                     response => {
-                            var res=response.json();
-                            console.log('Iniciando Sesión...')
+                            var res = response.json();
+                            console.log('Iniciando Sesión...');
                             //localStorage.setItem('profile', JSON.stringify(profile));
                             localStorage.setItem('id_token', res.token);
                             //this.zoneImpl.run(() => this.user = profile);
                             this.loggedIn = true;
                             localStorage.setItem('jwt', res.token);
-                            console.log('Token guardado exitósamente')
+                            console.log('Token guardado exitósamente');
                             this.router.navigate(['app/dashboard']);				
                     });
   }
