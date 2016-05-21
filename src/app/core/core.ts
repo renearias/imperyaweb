@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES, Router,RouteSegment,OnActivate} from '@angular/router';
+import {Routes, ROUTER_DIRECTIVES, Router, RouteSegment, OnActivate} from '@angular/router';
 import {FORM_PROVIDERS} from '@angular/common';
 import {Sidebar} from './sidebar/sidebar';
 import {Navbar} from './navbar/navbar';
@@ -39,14 +39,14 @@ declare var Tether: any;
 @Routes([
   { path: '/dashboard', component: Dashboard },
   { path: '/another-page', component: AnotherPage},
-  { path: '/productos', component: ProductsPage}, 
-  { path: '/facturas', component: InvoicePage}, 
+  { path: '/productos', component: ProductsPage},
+  { path: '/facturas', component: InvoicePage},
   { path: '/clientes', component: ClientsPage},
   { path: '/proovedores', component: ProvidersPage},
   { path: '/orders', component: OrdersPage},
   { path: '/ingresos', component: IngresosPage}
 ])
-export class Core implements OnInit,OnActivate {
+export class Core implements OnInit, OnActivate {
   config: any;
   configFn: any;
   $sidebar: any;
@@ -56,7 +56,7 @@ export class Core implements OnInit,OnActivate {
 
   constructor(config: ConfigService,
               el: ElementRef,
-              router: Router,private auth: Auth) {
+              router: Router, private auth: Auth) {
     Raphael.prototype.safari = function(): any { return; };
 
     this.el = el;
@@ -64,7 +64,6 @@ export class Core implements OnInit,OnActivate {
     this.configFn = config;
     this.chatOpened = false;
     this.router = router;
-    
     jQuery.fn.onPositionChanged = function (trigger, millis): any {
       if (millis == null) { millis = 100; }
       let o = jQuery(this[0]); // our jquery object
@@ -92,8 +91,8 @@ export class Core implements OnInit,OnActivate {
 
       return o;
     };
-  }    
-  
+  }
+
   toggleSidebarListener(state): void {
     let toggleNavigation = state === 'static' ? this.toggleNavigationState : this.toggleNavigationCollapseState;
     toggleNavigation.apply(this);
@@ -209,20 +208,17 @@ export class Core implements OnInit,OnActivate {
       this.collapseNavigation();
     }
   }
-  
-  
+
   routerOnActivate(curr: RouteSegment) {
-     if (!tokenNotExpired())
-      {
+     if (!tokenNotExpired()){
           this.router.navigate(['/login']);
           return;
       }
-  } 
-   
+  }
+
   ngOnInit(): void {
 
     console.log('Pasando por CORE.TS');
-   
     setTimeout(() => { jQuery('[data-toggle="tooltip"]').tooltip(); });
 
     jQuery('[data-toggle="tooltip"]').onPositionChanged(() => { Tether.position(); }, 0);

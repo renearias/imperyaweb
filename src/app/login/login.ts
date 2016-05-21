@@ -18,11 +18,11 @@ import {Auth} from '../auth';
     class: 'login-page app'
   },
   viewProviders: [
-  	FormBuilder, 
+  	FormBuilder,
   	HTTP_PROVIDERS,
         Auth
   ],
-  styles: [require('../../scss/application.scss'),require('./login.scss')],
+  styles: [require('../../scss/application.scss'), require('./login.scss')],
   encapsulation: ViewEncapsulation.None,
   template: require('./login.html')
 })
@@ -34,7 +34,6 @@ export class LoginPage {
     username: Control;
     password: Control;
     badCredentials;
-    
     constructor(fb: FormBuilder, public router: Router, private auth: Auth) {
 		this.fb = fb;
 		this.buildForm();
@@ -60,10 +59,9 @@ export class LoginPage {
           });
         }
 
-        login(){
-            
+        login() {
             if (this.loginForm.valid) {
-                this.auth.login( this.username.value,this.password.value)
+                this.auth.login( this.username.value, this.password.value);
 		}
 	}
 	clearData(): void {
