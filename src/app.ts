@@ -27,9 +27,7 @@ declare var jQuery: any;
   { path: '/**', redirectTo: ['ErrorPage'] }*/
 ])
 export class App  implements OnInit {
-    
     constructor(private router: Router) {}
-        
     ngOnInit() {
        console.log('Pasando por APP.TS');
        }
