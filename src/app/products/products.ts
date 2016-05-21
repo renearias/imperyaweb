@@ -1,11 +1,16 @@
 import {Component} from '@angular/core';
 import {ProductosIndexPage} from './producto-index';
 import {ProductoFormComponent} from './producto-form.component';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 @Component({
 	selector: 'products',
 	template: require('./products.html'),
-        directives: [ProductoFormComponent, ProductosIndexPage]
+        directives: [ROUTER_DIRECTIVES, ProductoFormComponent, ProductosIndexPage]
 })
+@Routes([
+  { path: '/', component: ProductosIndexPage },
+  { path: '/new', component: ProductoFormComponent }
+])
 export class ProductsPage {
 }

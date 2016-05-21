@@ -3,11 +3,9 @@ import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 
 import {Widget} from '../core/widget/widget';
-import {HTTP_BINDINGS} from '@angular/http';
 import {Validators} from '@angular/common';
-//import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import {AuthHttp} from 'angular2-jwt';
-import {urlApi, contentHeadersWithToken} from '../http/http';
+import {urlApi} from '../http/http';
 import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
 
@@ -15,7 +13,7 @@ import {ConfigService} from './../core/config';
     selector: 'ingresos',
     directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     templateUrl: 'app/ingresos/ingresos.html',
-    providers: [HTTP_BINDINGS],
+    //providers: [HTTP_BINDINGS],
     host: {
     class: 'ingresos-page app'
     },
