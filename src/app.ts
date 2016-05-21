@@ -17,7 +17,7 @@ declare var jQuery: any;
 })
 @Routes([
   { path: '/app', component: Core },
-  { path: '/error', component: ErrorPage,},
+  { path: '/error', component: ErrorPage },
   { path: '/login', component: LoginPage },
   { path: '/register', component: RegisterPage }
   /*{ path: '/app/...', component: Core, name: 'App' },
@@ -25,13 +25,12 @@ declare var jQuery: any;
   { path: '/login', component: LoginPage, name: 'LoginPage', useAsDefault: true},
   { path: '/', redirectTo: ['LoginPage'] },
   { path: '/**', redirectTo: ['ErrorPage'] }*/
-  
 ])
 export class App  implements OnInit {
     
     constructor(private router: Router) {}
         
     ngOnInit() {
-       console.log('Pasando por APP.TS')       
+       console.log('Pasando por APP.TS');
        }
 }
