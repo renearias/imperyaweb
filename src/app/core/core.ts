@@ -210,7 +210,7 @@ export class Core implements OnInit, OnActivate {
   }
 
   routerOnActivate(curr: RouteSegment) {
-     if (!tokenNotExpired()){
+     if (!tokenNotExpired()) {
           this.router.navigate(['/login']);
           return;
       }
