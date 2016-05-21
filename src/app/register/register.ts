@@ -137,7 +137,7 @@ export class RegisterPage {
 	}
 
 	clearData(): void {
-		console.log('probando'');
+		console.log('probando');
 		setTimeout(() => {
 			let loginData;
 
