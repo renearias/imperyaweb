@@ -44,7 +44,6 @@ export class Auth {
       this.zoneImpl.run(() => this.user = profile);
     });
   }*/
-  
    public login(_username, _password) {
 
     let headers = contentHeaders;
@@ -65,7 +64,6 @@ export class Auth {
                             this.router.navigate(['app/dashboard']);				
                     });
   }
-
   public logout() {
     localStorage.removeItem('profile');
     localStorage.removeItem('id_token');
@@ -73,7 +71,6 @@ export class Auth {
     this.zoneImpl.run(() => this.user = null);
     this.router.navigate(['login']);
   }
-  
   isLoggedIn() {
     return this.loggedIn;
   }
