@@ -19,7 +19,7 @@ export class Auth {
   zoneImpl: NgZone;
   private loggedIn = false;
 
-  constructor(private authHttp: AuthHttp, zone: NgZone, private router: Router,private http: Http) {
+  constructor(private authHttp: AuthHttp, zone: NgZone, private router: Router, private http: Http) {
     this.zoneImpl = zone;
     this.user = JSON.parse(localStorage.getItem('profile'));
     this.loggedIn = !!localStorage.getItem('id_token');
@@ -47,7 +47,7 @@ export class Auth {
    public login(_username, _password) {
 
     let headers = contentHeaders;
-    return this.http.post(urlApi+'login_check',JSON.stringify({ _username, _password }),{ headers })
+    return this.http.post(urlApi + 'login_check', JSON.stringify({ _username, _password }), { headers })
                     .subscribe(
                     response => {
                             var res = response.json();
@@ -58,7 +58,7 @@ export class Auth {
                             this.loggedIn = true;
                             localStorage.setItem('jwt', res.token);
                             console.log('Token guardado exitósamente');
-                            this.router.navigate(['app/dashboard']);				
+                            this.router.navigate(['app/dashboard']);
                     });
   }
   public logout() {
