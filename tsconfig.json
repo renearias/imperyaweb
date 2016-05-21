@@ -27,6 +27,7 @@
         "typings/browser.d.ts",
         "./src/app.ts",
         "./src/app/another/another.ts",
+        "./src/app/auth/index.ts",
         "./src/app/core/chat-sidebar/chat-message/chat-message.ts",
         "./src/app/core/chat-sidebar/chat-service.ts",
         "./src/app/core/chat-sidebar/chat-sidebar.ts",
