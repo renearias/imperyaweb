@@ -5,7 +5,8 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} fr
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from '@angular/http';
 import {Validators} from '@angular/common';
-import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+//import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+import {AuthHttp} from 'angular2-jwt';
 import {urlApi, contentHeadersWithToken} from '../http/http';
 import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
@@ -18,7 +19,7 @@ import {ConfigService} from './../core/config';
     host: {
     class: 'ingresos-page app'
     },
-    viewProviders: [ FormBuilder, HTTP_PROVIDERS],
+    viewProviders: [ FormBuilder ],
 })
 export class IngresosPage {
     fb: FormBuilder;
@@ -42,7 +43,7 @@ export class IngresosPage {
     descripcion: Control;
     referencia: Control;
     formapago: Control;
-    constructor(fb: FormBuilder, public router: Router, public http: Http) {
+    constructor(fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
         this.fb = fb;
         this.buildForm();
         this.getClientsFromApi();
@@ -97,11 +98,9 @@ export class IngresosPage {
 
             console.log(body);
 
-            let options = new RequestOptions({
-                headers: contentHeadersWithToken
-            });
 
-            this.http.patch(urlApi + 'api/ingresos/' + id, body, options)
+
+            this.authHttp.patch(urlApi + 'api/ingresos/' + id, body)
                 .subscribe(
                 response => {
                     console.log(response);
@@ -147,11 +146,9 @@ export class IngresosPage {
     // Obtener listado de clientes de la api para 
     // visualizarlos en el buscador
     getClientsFromApi(): void {
-        let options = new RequestOptions({
-            headers: contentHeadersWithToken
-        });
 
-        this.http.get(urlApi + 'api/contactos', options)
+
+        this.authHttp.get(urlApi + 'api/contactos')
             .subscribe(
             response => {
                 this.clients_array = response.json();
@@ -169,11 +166,9 @@ export class IngresosPage {
     }
     //Obtener todos los pagos
     getPaymentsFromApi(): void {
-        let options = new RequestOptions({
-            headers: contentHeadersWithToken
-        });
 
-        this.http.get(urlApi + 'api/ingresos', options)
+
+        this.authHttp.get(urlApi + 'api/ingresos')
             .subscribe(
             response => {
                 this.payments_array = response.json();
@@ -214,12 +209,9 @@ export class IngresosPage {
                             formapago
                                });
             //Intanciando un request
-            let options = new RequestOptions({
-                headers: contentHeadersWithToken,
-               });
             console.log(body);
 
-            this.http.post(urlApi + 'api/ingresos/', body, options)
+            this.authHttp.post(urlApi + 'api/ingresos/', body)
                   .subscribe(
                    response => {
                       console.log(response);

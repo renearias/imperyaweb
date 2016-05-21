@@ -103,7 +103,7 @@ export class ProductosIndexPage {
                         'beforeSend': function (request) {
                             request.setRequestHeader('Accept', 'application/json');
                             var token = localStorage.getItem('id_token');
-                            request.setRequestHeader('Authorization', 'Bearer' + token);
+                            request.setRequestHeader('Authorization', 'Bearer ' + token);
                         }
 
                     }
