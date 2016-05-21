@@ -87,7 +87,7 @@
          <label>Cliente</label>
                         <div>
                             <select class = "form-control input-lg" >
-                                <option *ngFor="let client of clients_array">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                                <option *ngFor="let client of clients_array" [value]="client.value" [selected]="client.value==editData.cliente.id || id_t.value">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
                             </select>
                             
                         </div>
