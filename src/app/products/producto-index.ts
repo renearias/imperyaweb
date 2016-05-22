@@ -3,8 +3,9 @@ import {Http} from '@angular/http';
 //import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 //import {TodoItem} from '../../models';
 import {Widget} from '../core/widget/widget';
-//import {DataTableDirectives} from 'angular2-datatable/datatable';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 
+import '../components/tables-dynamic';
 import {columnAction} from '../components/tables-dynamic/columnAction';
 import {ConfigService} from '../core/config';
 import 'datatables.net/js/jquery.dataTables.js';
@@ -17,7 +18,7 @@ declare var Datatable: any;
 	selector: 'producto-index',
         encapsulation: ViewEncapsulation.None,
 	template: require('./producto-index.html'),
-	directives: [Widget],
+	directives: [Widget, ROUTER_DIRECTIVES],
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
 })
 export class ProductosIndexPage {
@@ -84,13 +85,21 @@ export class ProductosIndexPage {
                     columnAction
                 ]}
         );*/
-        var oTable = jQuery('#angularDataTableTest').dataTable(
+        var oTable = jQuery('#productosDataTable').dataTable(
                 {
                     //'order': [[ 0, 'asc' ]],
+                    'dom': "<'row'<'col-sm-2'l><'col-sm-4 col-xs-12'B><'col-sm-6 col-xs-12'f>>" +
+                         "<'row'<'col-sm-12'tr>>" +
+                         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                    'buttons': [
+                        'copy', 'excel', 'pdf'
+                    ],
+                    
                     'language': require('../components/tables-dynamic/translations/es-ES.json'),
                     'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'Todos']],
                     'processing': true,
                     'serverSide': true,
+                    'responsive': true,
                     'columns': [
                             { 'data': 'id'},
                             { 'data': 'descripcionCorta' },
@@ -107,7 +116,11 @@ export class ProductosIndexPage {
                         }
 
                     }
-                });
+                }).on( 'responsive-display', function ( e, datatable, row, showHide, update ) {
+                                    if (showHide) {
+                                       // {% include "SgDatatablesBundle:Datatable:editable.html.twig" %}
+                                    }
+                                });;
     /*let searchInput = jQuery('#table-search-input');
     searchInput
       .focus((e) => {
