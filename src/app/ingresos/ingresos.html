@@ -183,8 +183,8 @@
          <div class="form-group">
          <label>Cliente</label>
                         <div>
-                            <select class = "form-control input-lg" >
-                                <option *ngFor="let client of clients_array">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                            <select class = "form-control input-lg" [(ngModel)]="cliente">
+                                <option *ngFor="let client of clients_array" [value]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
                             </select>
                             
                         </div>
@@ -230,8 +230,8 @@
             <div class="form-group">
                 <label for="ejemplo_email_1">Forma de pago</label>
                 <div>
-                    <select [(ngModel)]="id_type"  required name="month" class = "form-control input-lg">
-                        <option *ngFor="let id_t of id_types">{{id_t.name}}</option>
+                    <select [(ngModel)]="formapago"  required name="month" class = "form-control input-lg">
+                        <option [value]="id_t.id" *ngFor="let id_t of id_types">{{id_t.name}}&nbsp;{{id_t.id}}</option>
                     </select>
                 </div>
             </div>

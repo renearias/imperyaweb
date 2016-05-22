@@ -119,10 +119,9 @@ export class IngresosPage {
     }
     public id_type: Object;
     id_types: Object[] = [
-        { name: 'Seleccione', value: 1 },
-        { name: 'Debito', value: 2 },
-        { name: 'Crédito', value: 3 },
-        { name: 'Transferencia', value: 4 }
+        { name: 'Seleccione', value: 0 },
+        { name: 'Efectivo', value: 1 },
+        { name: 'Banco', value: 2 }
     ];
     buildForm(): void {
         this.fecha = new Control('', Validators.required);

@@ -19,7 +19,6 @@ export var columnAction = {
         var actionsString = '';
         actionsString += '<div class="wraper">'; ///start html
         var routeParameters, attributes, visibleFlag, roleFlag;
-        
         actionsString += '<a class="btn btn-info btn-xs glyphicon glyphicon-eye-open" href="#"></a>' +
                       '<a class="btn btn-warning btn-xs glyphicon glyphicon-pencil" href="#"></a>' +
                       '<a class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#"></a>';
