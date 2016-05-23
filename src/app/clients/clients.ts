@@ -7,7 +7,7 @@ import {Http, HTTP_PROVIDERS, Response, RequestOptions, Headers, Request, Reques
 import {urlApi, contentHeadersWithToken} from '../http/http';
 import {ViewEncapsulation, OnInit} from '@angular/core';
 import {ConfigService} from './../core/config';
-
+import {AuthHttp} from 'angular2-jwt';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {Widget} from '../core/widget/widget';
 import {HTTP_BINDINGS} from '@angular/http';
@@ -95,7 +95,7 @@ export class ClientsPage {
     //taxpayer: Control;  - no enviar por los momentos
     notes: Control; //no requerido -No enviar por los momentos
 
-    constructor(fb: FormBuilder, public router: Router, public http: Http) {
+    constructor(fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
         this.fb = fb;
         this.buildForm();
         this.getClientsFromApi();
@@ -165,7 +165,7 @@ export class ClientsPage {
             headers: contentHeadersWithToken
         });
 
-        this.http.get(urlApi + 'api/contactos', options)
+        this.authHttp.get(urlApi + 'api/contactos', options)
             .subscribe(
             response => {
                 this.contacts_array = response.json();
@@ -304,7 +304,7 @@ export class ClientsPage {
             });
 
 
-            this.http.patch(urlApi + 'api/contactos/' + id, body, options)
+            this.authHttp.patch(urlApi + 'api/contactos/' + id, body, options)
                 .subscribe(
                 response => {
                     console.log(response);
@@ -407,7 +407,7 @@ export class ClientsPage {
             });
 
 
-            this.http.post(urlApi + 'api/contactos', body, options)
+            this.authHttp.post(urlApi + 'api/contactos', body, options)
                 .subscribe(
                 response => {
                     console.log(response);

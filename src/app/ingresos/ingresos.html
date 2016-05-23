@@ -184,7 +184,7 @@
          <label>Cliente</label>
                         <div>
                             <select class = "form-control input-lg" [(ngModel)]="cliente">
-                                <option *ngFor="let client of clients_array" [value]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                                <option *ngFor="let client of clients_array" [value]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}&nbsp;{{client.id}}</option>
                             </select>
                             
                         </div>
@@ -230,8 +230,8 @@
             <div class="form-group">
                 <label for="ejemplo_email_1">Forma de pago</label>
                 <div>
-                    <select [(ngModel)]="formapago"  required name="month" class = "form-control input-lg">
-                        <option [value]="id_t.id" *ngFor="let id_t of id_types">{{id_t.name}}&nbsp;{{id_t.id}}</option>
+                    <select [(ngModel)]="id_type"  required name="month" class = "form-control input-lg">
+                        <option [value]="id_t.value" *ngFor="let id_t of id_types">{{id_t.name}}&nbsp;{{id_t.value}}</option>
                     </select>
                 </div>
             </div>

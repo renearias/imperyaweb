@@ -137,7 +137,7 @@ export class IngresosPage {
         'monto': this.monto,
         'descripcion': this.descripcion,
         'referencia': this.referencia,
-        'formapago': this.formapago
+        'id_type': this.id_type
         });
     }
     // Obtener listado de clientes de la api para 
@@ -182,14 +182,14 @@ export class IngresosPage {
      /*if(this.ingresosForm.valid){*/
             //Datos para enviar a la API
             let fecha = this.fecha.value;
-            let cliente = this.cliente.value;
+            let cliente = this.cliente;
             let monto = this.monto.value;
             let descripcion = this.descripcion.value;
             let referencia = this.referencia.value;
-            let formapago = this.formapago.value;
+            let formapago = this.id_type;
 
             //Probando en la consola
-            console.log(this.fecha.value);
+            console.log(this.fecha.value.year);
             console.log(this.cliente.value);
             console.log(this.monto.value);
             console.log(this.descripcion.value);
@@ -207,8 +207,8 @@ export class IngresosPage {
                                });
             //Intanciando un request
             console.log(body);
-
-            this.authHttp.post(urlApi + 'api/ingresos/', body)
+             
+            this.authHttp.post(urlApi + 'api/ingresos', body)
                   .subscribe(
                    response => {
                       console.log(response);
