@@ -58,7 +58,7 @@
     <section widget class="widget">
       <header>
         <h4>
-          Editar <span class="fw-semi-bold">Pago</span>
+          Registart <span class="fw-semi-bold">Pago</span>
         </h4>
         <div class="widget-controls">
           <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -86,7 +86,7 @@
                         <label>Cliente</label>
                         <div>
                             <select [(ngModel)]="editData.cliente_id" class="form-control input-lg" >
-                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id==editData.cliente_id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id==editData.cliente_id || client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
                             </select> 
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                         <div>
                             <select [(ngModel)]="editData.forma_pago_id" required name="month" class = "form-control input-lg">
                                 <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
-                                [selected]="forma_p.value==editData.forma_pago_id">{{forma_p.name}}</option>
+                                [selected]="forma_p.value==editData.forma_pago_id || forma_p.value">{{forma_p.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                     <div class="form-group">
                         <label>Fecha de ingreso</label>
                         <div>
-                            <input [ngFormControl]="np_fecha" type="datetime-local" class="form-control"> 
+                            <input [ngFormControl]="np_fecha" required type="datetime-local" class="form-control"> 
                         </div>
                     </div>
                 </div>
@@ -176,8 +176,8 @@
                     <div class="form-group">
                         <label>Cliente</label>
                         <div>
-                            <select [ngFormControl]="np_cliente_id" class="form-control input-lg" >
-                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id==1">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                            <select [ngFormControl]="np_cliente_id" required class="form-control input-lg" >
+                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
                             </select> 
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div>
                             <select [ngFormControl]="np_forma_pago_id" required class="form-control input-lg">
                                 <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
-                                [selected]="forma_p.value==1">{{forma_p.name}}</option>
+                                [selected]="forma_p.value">{{forma_p.name}}</option>
                             </select>
                         </div>
                     </div>

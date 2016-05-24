@@ -363,4 +363,5 @@ NOTA:
 2. Modificar el JSON de fecha para que envíe la fecha correctamente
 3. Separar en vistas difentes cada proceso
 4. Colocar ventanas para confirmar acciones
+5. Colocar formato en las tablas
 */
