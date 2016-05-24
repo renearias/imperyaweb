@@ -28,18 +28,19 @@
                         </tr> 
                     </thead>
                     <tbody>
-                        <tr [hidden]="!contact.cliente" *ngFor="let payment of payments_array">
+                    <!-- [hidden]="!contact.cliente"  -->
+                        <tr *ngFor="let payment of payments_array">
                             <td>{{payment.fecha}}</td>
-                            <td>{{payment.cliente}}</td>
+                            <td>{{payment.cliente.nombre}}</td>
                             <td>{{payment.monto}}</td>
                             <td>{{payment.descripcion}}</td>
                             <td>{{payment.referencia}}</td>
-                            <td>{{payment.fomapago}}</td>
+                            <td>{{payment.forma_pago.forma_pago}}</td>
                             <td>
                                 <button (click)="goToEditPayment(payment.id)" type="button" class="btn btn-info" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 </button>
-                                <button (click)="deleteClient(payment.id)" type="button" class="btn btn-danger" aria-label="Left Align">
+                                <button (click)="deletePayment(payment.id)" type="button" class="btn btn-danger" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </button>
                             </td>
@@ -66,95 +67,90 @@
         </div>
       </header>
       <div class="widget-body">
-
-
-<form [ngFormModel]="ingresosForm" (submit)="editPayment(editData.id)" role="form" class="col-md-offset-2">
-  
-   <div class="row">
-        <div class="col-md-10">
-            
-            <div class="form-group">
-    <label>Fecha de ingreso</label>
-    <div>
-    <input [ngFormControl]="fecha" [value]="editData.fecha" required type="datetime-local" class="form-control">
-</div>
-     </div>
-   </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10">
-         <div class="form-group">
-         <label>Cliente</label>
+      <!-- [ngFormModel]="ingresosForm"  -->
+        <form (submit)="editPayment(editData.id)" role="form" class="col-md-offset-2">          
+            <div class="row">
+                <div class="col-md-10">              
+                    <div class="form-group">
+                        <label>Fecha de ingreso</label>
                         <div>
-                            <select class = "form-control input-lg" >
-                                <option *ngFor="let client of clients_array" [value]="client.value" [selected]="client.value==editData.cliente.id || id_t.value">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
-                            </select>
-                            
+                            <input type="datetime-local" class="form-control" [(ngModel)]="editData.fecha">
                         </div>
                     </div>
-            </div>
-        </div>
-    
-    <div class="row">
-        <div class="col-md-10">
-
-            <div class="form-group">
-                <label for="ejemplo_email_1">Monto</label>
-                <input [ngFormControl]="monto" [value]="editData.monto" required type="number" step="0.01" class="form-control" id="monto"
-                    placeholder="Introduzca el monto">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10">
-
-            <div class="form-group">
-                <label for="ejemplo_email_1">Descripción</label>
-                <input [ngFormControl]="descripcion" [value]="editData.descripcion" required type="text" class="form-control" id="descripcion"
-                    placeholder="Descripción">
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-10">
-
-            <div class="form-group">
-                <label for="ejemplo_email_1">Referencia</label>
-                <input [ngFormControl]="referencia" [value]="editData.referencia" required type="text" class="form-control" id="referencia"
-                    placeholder="Introduzca la referencia">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10">
-            <div class="form-group">
-                <label for="ejemplo_email_1">Forma de pago</label>
-                <div>
-                    <select [(ngModel)]="id_type"  required name="month" class = "form-control input-lg">
-                        <option *ngFor="let id_t of id_types">{{id_t.name}}</option>
-                    </select>
                 </div>
             </div>
-        </div>
-    </div>
-   
-    <button type="submit" class="btn btn-default">Guardar</button>
-</form>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Cliente</label>
+                        <div>
+                            <select [(ngModel)]="editData.cliente_id" class="form-control input-lg" >
+                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id==editData.cliente_id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                            </select> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Monto</label>
+                        <input [(ngModel)]="editData.monto" [value]="editData.monto" required type="number" step="0.01" class="form-control" id="monto"
+                            placeholder="Introduzca el monto">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input [(ngModel)]="editData.descripcion" [value]="editData.descripcion" required type="text" class="form-control" id="descripcion"
+                            placeholder="Descripción">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Referencia</label>
+                        <input [(ngModel)]="editData.referencia" [value]="editData.referencia" required type="text" class="form-control" id="referencia"
+                            placeholder="Introduzca la referencia">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Forma de pago </label>
+                        <div>
+                            <select [(ngModel)]="editData.forma_pago_id" required name="month" class = "form-control input-lg">
+                                <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
+                                [selected]="forma_p.value==editData.forma_pago_id">{{forma_p.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <button type="submit" class="btn btn-default">Guardar</button>
+        </form>
       </div>
     </section>
   </div>
 </div>
 
-<!-- Registrar pagos -->
+<!-- Crear pagos -->
 <div class="row">
   <div class="col-md-12">
     <section widget class="widget">
       <header>
         <h4>
-          Crear <span class="fw-semi-bold">Pago</span>
+          Editar <span class="fw-semi-bold">Pago</span>
         </h4>
         <div class="widget-controls">
           <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -163,85 +159,78 @@
         </div>
       </header>
       <div class="widget-body">
-
-
-<form [ngFormModel]="ingresosForm" (submit)="addIngreso()" role="form" class="col-md-offset-2">
-  
-   <div class="row">
-        <div class="col-md-10">
-            
-            <div class="form-group">
-    <label>Fecha de ingreso</label>
-    <div>
-    <input [ngFormControl]="fecha" required type="datetime-local" class="form-control">
-</div>
-     </div>
-   </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10">
-         <div class="form-group">
-         <label>Cliente</label>
+        <form [ngFormModel]="nuevoIngresoForm" (submit)="newPayment()" role="form" class="col-md-offset-2">          
+            <div class="row">
+                <div class="col-md-10">              
+                    <div class="form-group">
+                        <label>Fecha de ingreso</label>
                         <div>
-                            <select class = "form-control input-lg" [(ngModel)]="cliente">
-                                <option *ngFor="let client of clients_array" [value]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}&nbsp;{{client.id}}</option>
-                            </select>
-                            
+                            <input [ngFormControl]="np_fecha" type="datetime-local" class="form-control"> 
                         </div>
                     </div>
-            </div>
-        </div>
-    
-    <div class="row">
-        <div class="col-md-10">
-
-            <div class="form-group">
-                <label for="ejemplo_email_1">Monto</label>
-                <input [ngFormControl]="monto" required type="number" step="0.01" class="form-control" id="monto"
-                    placeholder="Introduzca el monto">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10">
-
-            <div class="form-group">
-                <label for="ejemplo_email_1">Descripción</label>
-                <input [ngFormControl]="descripcion" required type="text" class="form-control" id="descripcion"
-                    placeholder="Descripción">
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-10">
-
-            <div class="form-group">
-                <label for="ejemplo_email_1">Referencia</label>
-                <input [ngFormControl]="referencia" required type="text" class="form-control" id="referencia"
-                    placeholder="Introduzca la referencia">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10">
-            <div class="form-group">
-                <label for="ejemplo_email_1">Forma de pago</label>
-                <div>
-                    <select [(ngModel)]="id_type"  required name="month" class = "form-control input-lg">
-                        <option [value]="id_t.value" *ngFor="let id_t of id_types">{{id_t.name}}&nbsp;{{id_t.value}}</option>
-                    </select>
                 </div>
             </div>
-        </div>
-    </div>
-   
-    <button type="submit" class="btn btn-default">Guardar</button>
-</form>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Cliente</label>
+                        <div>
+                            <select [ngFormControl]="np_cliente_id" class="form-control input-lg" >
+                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id==1">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                            </select> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Monto</label>
+                        <input [ngFormControl]="np_monto" required type="number" step="0.01" class="form-control" id="monto"
+                            placeholder="Introduzca el monto">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input [ngFormControl]="np_descripcion" required type="text" class="form-control" id="descripcion"
+                            placeholder="Descripción">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Referencia</label>
+                        <input [ngFormControl]="np_referencia" required type="text" class="form-control" id="referencia"
+                            placeholder="Introduzca la referencia">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Forma de pago </label>
+                        <div>
+                            <select [ngFormControl]="np_forma_pago_id" required class="form-control input-lg">
+                                <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
+                                [selected]="forma_p.value==1">{{forma_p.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <button type="submit" class="btn btn-default">Guardar</button>
+        </form>
       </div>
     </section>
   </div>
 </div>
-
