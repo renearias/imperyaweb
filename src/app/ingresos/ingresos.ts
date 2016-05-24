@@ -14,7 +14,7 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 @Component({
     selector: 'ingresos',
     directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES, NKDatetime],
-    templateUrl: 'app/ingresos/ingresos.html',
+    templateUrl: 'app/ingresos/ingresos.html', 
     //providers: [HTTP_BINDINGS],
     host: {
     class: 'ingresos-page app'
@@ -49,11 +49,23 @@ export class IngresosPage {
         { name: 'Banco', value: 2}
     ];
 
+    // Editar Pagos - Validación de Formulario 
+
+    fb: FormBuilder;    
+
+    editarIngresoForm: ControlGroup;   
+
+    ep_fecha: Control;
+    ep_cliente_id: Control;
+    ep_monto: Control;
+    ep_descripcion: Control;
+    ep_referencia: Control;
+    ep_forma_pago_id: Control;
+
     // Crear Pagos - Validación de Formulario
 
-    // Aquí también se debe agregar el clients_array y formas_pago en caso
+    // Aquí también se debe agregar el fb, clients_array y formas_pago en caso
     // de pasar a otra vista
-    fb: FormBuilder;
 
     nuevoIngresoForm: ControlGroup;
 
@@ -76,7 +88,7 @@ export class IngresosPage {
         // Editar Pagos - Contructor
         this.getClientsFromApi();        
         
-        // Crear Pagos - Validación de Formulario
+        // Editar Pagos/Crear Pagos - Validación de Formulario
         this.fb = fb;
         this.buildForm();
     }
@@ -230,8 +242,28 @@ export class IngresosPage {
         // }
     }
 
-    // Crear Pagos - Validación de Formulario
+    // Editar Pagos/Crear Pagos - Validación de Formulario
     buildForm(): void {
+
+        //Editar Ingreso
+        this.ep_fecha = new Control('', Validators.required);
+        this.ep_cliente_id = new Control('', Validators.required);
+        this.ep_monto = new Control('', Validators.required);
+        this.ep_descripcion = new Control('', Validators.required);
+        this.ep_referencia = new Control('', Validators.required);
+        this.ep_forma_pago_id = new Control('', Validators.required);
+
+        this.editarIngresoForm = this.fb.group({
+
+            'ep_fecha': this.ep_fecha,
+            'ep_cliente': this.ep_cliente_id,
+            'ep_monto': this.ep_monto,
+            'ep_descripcion': this.ep_descripcion,
+            'ep_referencia': this.ep_referencia,
+            'ep_forma_pago': this.ep_forma_pago_id
+        });
+
+        // Registrar Ingreso
         this.np_fecha = new Control('', Validators.required);
         this.np_cliente_id = new Control('', Validators.required);
         this.np_monto = new Control('', Validators.required);
@@ -248,6 +280,7 @@ export class IngresosPage {
             'np_referencia': this.np_referencia,
             'np_forma_pago': this.np_forma_pago_id
         });
+
     }
   
     newPayment() {
@@ -334,9 +367,8 @@ export class IngresosPage {
         //     }
         //     );
         // }
-
-
     }
+
     //Limpiando el formulario
     // clearData(): void {
     // let ingresoData;
@@ -359,9 +391,8 @@ NOTA:
 
 ¿que falta?:
 
-1. Validar el formulario de "Editar pagos"
-2. Modificar el JSON de fecha para que envíe la fecha correctamente
-3. Separar en vistas difentes cada proceso
-4. Colocar ventanas para confirmar acciones
-5. Colocar formato en las tablas
+1. Modificar el JSON de fecha para que envíe la fecha correctamente
+2. Separar en vistas difentes cada proceso
+3. Colocar ventanas para confirmar acciones
+4. Colocar formato en las tablas
 */
