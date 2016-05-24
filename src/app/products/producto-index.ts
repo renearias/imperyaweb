@@ -1,15 +1,11 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {Http} from '@angular/http';
-//import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
-//import {TodoItem} from '../../models';
+import {AuthHttp} from 'angular2-jwt';
 import {Widget} from '../core/widget/widget';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 
 import '../components/tables-dynamic';
 import {columnAction} from '../components/tables-dynamic/columnAction';
 import {ConfigService} from '../core/config';
-import 'datatables.net/js/jquery.dataTables.js';
-import 'datatables.net-bs/js/dataTables.bootstrap.js';
 
 declare var jQuery: any;
 declare var Datatable: any;
@@ -104,7 +100,7 @@ export class ProductosIndexPage {
                             { 'data': 'id'},
                             { 'data': 'descripcionCorta' },
                             { 'data': 'stock' },
-                            columnAction
+                            columnAction('app/productos/')
                         ],
                     'ajax': {
                         'url': this.urlApi + 'api/productos',
