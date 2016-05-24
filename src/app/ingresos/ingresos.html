@@ -1,7 +1,17 @@
-<h1 class="page-title">Pagos</h1>
+<div class="containe-fluid">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page-title">Pagos</h1>            
+        </div>
+        <div class="col-xs-1">
+            <button (click)="goToCreatePayment()" [hidden]="crearPagoBtn" class="btn btn-default" style="float: right;">Crear Pago</button>            
+        </div>
+    </div>
+</div>
+<button [hidden]="goBackBtn" (click)="goBack()" class="btn glyphicon glyphicon-arrow-left" style="margin-bottom: 10px;"></button>
 
 <!-- Lista de pagos-->
-<div class="row">
+<div [hidden]="listaPagoBox" class="row">
     <div class="col-md-12">
         <section widget class="widget">
             <header>
@@ -53,12 +63,12 @@
 </div>
 
 <!-- Editar pagos -->
-<div class="row">
+<div [hidden]="editarPagoBox" class="row">
   <div class="col-md-12">
     <section widget class="widget">
       <header>
         <h4>
-          Registart <span class="fw-semi-bold">Pago</span>
+          Editar <span class="fw-semi-bold">Pago</span>
         </h4>
         <div class="widget-controls">
           <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -144,12 +154,12 @@
 </div>
 
 <!-- Crear pagos -->
-<div class="row">
+<div [hidden]="crearPagoBox" class="row">
   <div class="col-md-12">
     <section widget class="widget">
       <header>
         <h4>
-          Editar <span class="fw-semi-bold">Pago</span>
+          Registrar <span class="fw-semi-bold">Pago</span>
         </h4>
         <div class="widget-controls">
           <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>

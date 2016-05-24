@@ -53,7 +53,7 @@ export class IngresosPage {
 
     fb: FormBuilder;    
 
-    editarIngresoForm: ControlGroup;   
+    editarIngresoForm: ControlGroup;
 
     ep_fecha: Control;
     ep_cliente_id: Control;
@@ -76,8 +76,12 @@ export class IngresosPage {
     np_referencia: Control;
     np_forma_pago_id: Control;
 
-
-    // ingresosFormEdit: ControlGroup;
+    //Ocultar o mostrar vistas
+    listaPagoBox: boolean = false;
+    editarPagoBox: boolean = true;
+    crearPagoBox: boolean = true;
+    crearPagoBtn: boolean = false;
+    goBackBtn: boolean = true;
 
 
     constructor(fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
@@ -117,6 +121,10 @@ export class IngresosPage {
 
     // Editar Pagos - 1ra Parte -> Obteniendo los datos existentes
     goToEditPayment(id: number) {
+
+        this.listaPagoBox = true;
+        this.editarPagoBox = false;
+        this.goBackBtn = false;
 
         let old_data;
         console.log('Datos existentes del pago id#: ' + id);
@@ -369,6 +377,22 @@ export class IngresosPage {
         // }
     }
 
+    goToCreatePayment(){
+        this.listaPagoBox = true;
+        this.editarPagoBox = true;
+        this.crearPagoBox = false;
+        this.crearPagoBtn = true;
+        this.goBackBtn = false;
+    }
+
+    goBack(){
+        this.listaPagoBox = false;
+        this.editarPagoBox = true;
+        this.crearPagoBox = true;
+        this.crearPagoBtn = false;
+        this.goBackBtn = true;
+    }
+
     //Limpiando el formulario
     // clearData(): void {
     // let ingresoData;
@@ -392,7 +416,6 @@ NOTA:
 ¿que falta?:
 
 1. Modificar el JSON de fecha para que envíe la fecha correctamente
-2. Separar en vistas difentes cada proceso
-3. Colocar ventanas para confirmar acciones
-4. Colocar formato en las tablas
+2. Colocar ventanas para confirmar acciones
+3. Colocar formato en las tablas
 */
