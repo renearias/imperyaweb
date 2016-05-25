@@ -21,7 +21,6 @@ export class Navbar implements OnInit {
   toggleChatEvent: EventEmitter<any> = new EventEmitter();
   $el: any;
   config: any;
-  logoutRoute: any = './login';
   constructor(el: ElementRef, config: ConfigService, public router: Router, private auth: Auth) {
     this.$el = jQuery(el.nativeElement);
     this.config = config.getConfig();
@@ -59,10 +58,5 @@ export class Navbar implements OnInit {
         jQuery(this).parents('.input-group')
         [e.type === 'focus' ? 'addClass' : 'removeClass']('focus');
       });
-  }
-  logout() {
-    console.log('Cerrando Sesión...');
-    localStorage.removeItem('jwt');
-    this.router.navigate(['/login']);
   }
 }
