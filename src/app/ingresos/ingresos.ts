@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, AbstractControl} from '@angular/common';
 
 import {Widget} from '../core/widget/widget';
@@ -11,9 +11,23 @@ import {ConfigService} from './../core/config';
 
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 
+import {IngresosIndexPage} from './ingreso-index';
+import {IngresoFormComponent} from './ingreso-form.component';
+//import {IngresoFormComponent} from './ingreso-form.component';
+//import {IngresoDetailComponent} from './ingreso-detail.component';
+
+
+@Routes([
+  { path: '/', component: IngresosIndexPage },
+  { path: '/new', component: IngresoFormComponent }
+  //{ path: '/:id', component: ProductoDetailComponent }
+])
+
+
 @Component({
     selector: 'ingresos',
-    directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES, NKDatetime],
+    directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES, NKDatetime, IngresosIndexPage],
+    
     templateUrl: 'app/ingresos/ingresos.html', 
     //providers: [HTTP_BINDINGS],
     host: {
@@ -87,7 +101,7 @@ export class IngresosPage {
     constructor(fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
 
         // Mostrar Pagos - Constructor
-        this.getPaymentsFromApi();
+        //this.getPaymentsFromApi();
 
         // Editar Pagos - Contructor
         this.getClientsFromApi();        
