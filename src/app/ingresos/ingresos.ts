@@ -306,9 +306,11 @@ export class IngresosPage {
     }
   
     newPayment() {
-
-        if (this.nuevoIngresoForm.valid) {
-
+      
+      console.log('Antes de la validación');
+        //if (this.nuevoIngresoForm.valid) {
+        
+        console.log('Entró en el if');
             let moment = require('moment')
 
             //Convirtiendo fecha a JSON
@@ -352,22 +354,22 @@ export class IngresosPage {
 
             console.log(body);
              
-            // this.authHttp.post(urlApi + 'api/ingresos', body)
-            //       .subscribe(
-            //        response => {
-            //           console.log(response);
-            //             if (response.status === 201) {
-            //                 alert('Creado Exitosamente');
-            //                     //Cambiar alert mas adelante
-            //                     }
-            //             this.clearData();
-            //         },
-            //         error => {
-            //             console.log(error);
-            //             this.clearData();
-            //         }
-            //         );
-       }
+             this.authHttp.post(urlApi + 'api/ingresos', body)
+                   .subscribe(
+                    response => {
+                       console.log(response);
+                         if (response.status === 201) {
+                             alert('Creado Exitosamente');
+                                 //Cambiar alert mas adelante
+                                 }
+                         //this.clearData();
+                     },
+                     error => {
+                         console.log(error);
+                         //this.clearData();
+                     }
+                     );
+       //}
     }
     
     deletePayment(id: number) {
