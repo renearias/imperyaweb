@@ -1,7 +1,28 @@
 /* 
  *  Todos los derechos reservados
  */
-
+declare var moment: any; 
+function render_datetime(data, type, row, meta, dateFormat) {
+                                        if (data != null && typeof data.timestamp != "undefined") {
+                                            moment.locale('es');
+                                            return moment.unix(data.timestamp).format(dateFormat);
+                                        } else {
+                                            return null;
+                                        }
+                                    }
+export function columnDateTime(name,field,dateFormat?: string){
+    if (typeof(dateFormat)=='undefined') dateFormat='lll';
+    return {
+            //'name': name,
+            'data':field,
+            'title': name,
+            //'orderable': false,
+            //'searchable': false,
+            "render": function(data, type, row, meta) {
+                            return render_datetime(data, type, row, meta, dateFormat);
+                        }
+            }
+}
 export function columnAction(ruta){
      return {
     //'contentPadding': '{{ column.padding }}',
