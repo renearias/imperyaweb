@@ -22,8 +22,12 @@ declare var moment: any;
 })
 export class IngresoFormComponent {
   
-  submitted: boolean= false;
-  
+  submitted: boolean = false;
+  clients_array: Array<any> = [];
+  formas_pago: Object[] = [
+        { name: 'Efectivo', value: 1 },
+        { name: 'Banco', value: 2}
+    ];
   // Crear Pagos - Validación de Formulario
 
   // Aquí también se debe agregar el fb, clients_array y formas_pago en caso
@@ -40,7 +44,9 @@ export class IngresoFormComponent {
     
     constructor(private fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
 
+        this.getClientsFromApi();
         this.buildForm();
+
     }
 
   /*ngAfterViewInit(): void {
@@ -55,11 +61,11 @@ export class IngresoFormComponent {
     buildForm(): void {
 
         // Registrar Ingreso
-        this.np_fecha = new Control('', Validators.required);
+        this.np_fecha = new Control(moment().format('YYYY-MM-DDThh:mm'), Validators.required);
         this.np_cliente_id = new Control('', Validators.required);
-        this.np_monto = new Control('', Validators.required);
+        this.np_monto = new Control(0, Validators.required);
         this.np_descripcion = new Control('', Validators.required);
-        this.np_referencia = new Control('', Validators.required);
+        this.np_referencia = new Control('hola', Validators.required);
         this.np_forma_pago_id = new Control('', Validators.required);
 
         this.nuevoIngresoForm = this.fb.group({
@@ -74,14 +80,15 @@ export class IngresoFormComponent {
 
     }
   
-  onSubmit() { this.submitted = true; }
+  onSubmit() { 
+                console.log("fue submit");
+                this.submitted = true; 
+             }
   // TODO: Remove this when we're done
   newPayment() {
-
-        if (this.nuevoIngresoForm.valid) {
-
-            let moment = require('moment')
-
+        console.log('aqui va');
+        //if (this.nuevoIngresoForm.valid) {
+            console.log('es valido');
             //Convirtiendo fecha a JSON
             let day = moment(this.np_fecha.value).format('DD')
             let month = moment(this.np_fecha.value).format('MM')
@@ -91,11 +98,14 @@ export class IngresoFormComponent {
 
             //Datos para enviar a la API
             let fecha = {
-                "year": year,
-                "month": month,
-                "day": day,
-                "hour": hour,
-                "minute": minute
+                    "date":{
+                            "year": year,
+                            "month": month,
+                            "day": day},
+                     "time":{
+                             "hour": hour,
+                             "minute": minute
+                     }
             }
             let cliente = this.np_cliente_id.value;
             let monto = this.np_monto.value;
@@ -138,6 +148,22 @@ export class IngresoFormComponent {
                         // this.clearData();
                      }
                      );
-       }
+      /* }
+       else
+       {
+           console.log('es invalido');
+           console.log(this.nuevoIngresoForm.errors);
+       }*/
+    }
+    getClientsFromApi(): void {
+        this.authHttp.get(urlApi + 'api/contactos')
+            .subscribe(
+            response => {
+                this.clients_array = response.json();
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 }
