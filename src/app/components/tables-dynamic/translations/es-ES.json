@@ -26,5 +26,13 @@
     "bulk":{
         "confirmMsg": "¿Está seguro?",
         "selectError": "Es necesario seleccionar al menos 1 elemento.",
-        "ok": "Aplicar"}
+        "ok": "Aplicar"},
+     "buttons": {
+                "copyTitle": "Copiado al portapapeles",
+                "copyKeys": "Presione <i>ctrl</i> o <i>\u2318</i> + <i>C</i> para copiar datos de la tabla en el portapapeles. <br><br>Para cancelar, click fuera del mensaje o precione Esc.",
+                "copySuccess": {
+                    "_": "Copiadas %d filas al portapapeles",
+                    "1": "Copiada 1 fila al portapapeles"
+                }
+            }
 }

@@ -19,10 +19,10 @@
     </p>
     <div >
          <div class="row width-200 padding">
-            <a class="btn btn-primary btn-block" href="#" [routerLink]=" ['new']">Crear</a>  
+            <a class="btn btn-primary btn-block" href="#" [routerLink]=" ['new'] ">Crear</a>  
          </div>
-      <table id="productosDataTable" class="table table-striped table-hover responsive no-wrap" width="100%">
-      </table>
+        <table dynamic-datatable [columns]="columns" [urlApi]="urlApi" [routeActions]="routeActions" class="table table-striped table-hover responsive no-wrap" width="100%">
+        </table>
     </div>
       </div>
     </section>
