@@ -30,7 +30,8 @@
                     <div class="form-group">
                         <label>Cliente</label>
                         <div>
-                            <select [ngFormControl]="np_cliente_id" required class="form-control input-lg" >
+                            <select [ngFormControl]="np_cliente_id" required class="form-control input-lg" placehoder='Seleccione Cliente' >
+                                <option value=""></option>
                                 <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
                             </select> 
                         </div>
