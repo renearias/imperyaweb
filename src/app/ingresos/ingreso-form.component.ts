@@ -90,11 +90,11 @@ export class IngresoFormComponent {
         //if (this.nuevoIngresoForm.valid) {
             console.log('es valido');
             //Convirtiendo fecha a JSON
-            let day = moment(this.np_fecha.value).format('DD')
-            let month = moment(this.np_fecha.value).format('MM')
-            let year = moment(this.np_fecha.value).format('YYYY')
-            let hour = moment(this.np_fecha.value).format('hh')
-            let minute = moment(this.np_fecha.value).format('mm')
+            let day = parseInt(moment(this.np_fecha.value).format('DD'));
+            let month = parseInt(moment(this.np_fecha.value).format('MM'));
+            let year = parseInt(moment(this.np_fecha.value).format('YYYY'));
+            let hour = parseInt(moment(this.np_fecha.value).format('hh'));
+            let minute = parseInt(moment(this.np_fecha.value).format('mm'));
 
             //Datos para enviar a la API
             let fecha = {
