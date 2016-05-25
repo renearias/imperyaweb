@@ -111,7 +111,7 @@ export class IngresoFormComponent {
             let monto = this.np_monto.value;
             let descripcion = this.np_descripcion.value;
             let referencia = this.np_referencia.value;
-            let formapago = this.np_forma_pago_id.value;
+            let formaPago = this.np_forma_pago_id.value;
 
             //Probando en la consola
             console.log(fecha);
@@ -119,7 +119,7 @@ export class IngresoFormComponent {
             console.log(monto);
             console.log(descripcion);
             console.log(referencia);
-            console.log(formapago);
+            console.log(formaPago);
 
             //Creando el JSON con los atributos a enviar a la API
             let body = JSON.stringify({
@@ -128,7 +128,7 @@ export class IngresoFormComponent {
                             monto,
                             descripcion,
                             referencia,
-                            formapago
+                            formaPago
                         });
 
             console.log(body);
