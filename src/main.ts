@@ -23,8 +23,8 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
 import {ROUTER_PROVIDERS} from '@angular/router';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {AUTH_PROVIDERS} from 'angular2-jwt';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
+import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 
 const ENV_PROVIDERS = [];
 
@@ -43,7 +43,15 @@ document.addEventListener('DOMContentLoaded', function main(): void {
   bootstrap(App, [
     ConfigService,
     NgControl,
-    AUTH_PROVIDERS,
+    provide(AuthHttp, {
+    useFactory: (http) => {
+      return new AuthHttp(new AuthConfig({
+        globalHeaders: [//{'Accept':'application/json'},
+                        {'Content-Type':'application/json'}],
+      }), http);
+    },
+    deps: [Http]
+  }),
     ...ENV_PROVIDERS,
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
