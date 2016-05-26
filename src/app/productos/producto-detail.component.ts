@@ -3,7 +3,7 @@
  */
 import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { NgForm }    from '@angular/common';
-import {OnActivate, Router, RouteSegment,ROUTER_DIRECTIVES } from '@angular/router';
+import {OnActivate, Router, RouteSegment, ROUTER_DIRECTIVES } from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {Producto}  from './producto';
@@ -17,7 +17,7 @@ declare var moment: any;
   //templateUrl: './producto-form.component.html'
   //encapsulation: ViewEncapsulation.None,
   templateUrl: './app/productos/producto-detail.component.html',
-  directives: [Widget, NKDatetime,ROUTER_DIRECTIVES]//,
+  directives: [Widget, NKDatetime, ROUTER_DIRECTIVES]//,
   
   //styles: [require('../components/forms-elements/forms-elements.scss')]
 })

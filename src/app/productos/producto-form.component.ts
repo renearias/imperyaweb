@@ -5,6 +5,7 @@ import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { NgForm }    from '@angular/common';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Producto}  from './producto';
 declare var jQuery: any;
 declare var moment: any;
@@ -13,7 +14,7 @@ declare var moment: any;
   selector: 'producto-form',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './app/productos/producto-form.component.html',
-  directives: [Widget, NKDatetime],
+  directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
 export class ProductoFormComponent {
