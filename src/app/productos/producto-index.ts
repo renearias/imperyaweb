@@ -16,7 +16,7 @@ declare var Datatable: any;
 @Component({
 	selector: 'producto-index',
         encapsulation: ViewEncapsulation.None,
-	template: require('./producto-index.html'),
+	templateUrl: './/app/products/producto-index.html',
 	directives: [Widget, ROUTER_DIRECTIVES, DynamicDataTable],
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
 })
