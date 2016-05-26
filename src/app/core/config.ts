@@ -5,7 +5,7 @@ export class ConfigService {
     name: 'Imperya',
     title: 'Imperya - Dashboard',
     version: '1.0.0',
-    urlApi: 'http://imperya/app_dev.php/',
+    urlApi: 'http://imperya.arxis.la/',
     /**
      * Whether to print and alert some log information
      */
