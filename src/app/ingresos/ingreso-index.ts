@@ -22,7 +22,9 @@ export class IngresosIndexPage {
                  {'title': 'Id', 'data': 'id'},
                  columnDateTime('Fecha','fecha'),
                  {'title': 'Monto', 'data': 'monto' },
-                 {'title': 'Cliente', 'data': 'cliente.nombre' }
+                 {'title': 'Cliente', 'data': 'cliente.nombre' },
+                 {'title': 'Forma de Pago', 'data': 'formaPago.formaPago' },
+                 {'title': 'Cobrado Por', 'data': 'collectedby.name' }
                  ];
     routeActions="app/ingresos/";
     constructor(config: ConfigService) {
