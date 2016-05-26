@@ -4,7 +4,7 @@
  * 
  */
 import {Request, Response} from '@angular/http';
-import {RESTClient, GET, PUT, POST, DELETE, BaseUrl, Headers, DefaultHeaders, Path, Body, Query} from '../rest/rest-client';
+import {RESTIngreso, GET, PUT, POST, DELETE, BaseUrl, Headers, DefaultHeaders, Path, Body, Query} from '../rest/rest-ingreso';
 
 import {Todo} from './models/Todo';
 import {SessionFactory} from './sessionFactory';
@@ -15,7 +15,7 @@ import {SessionFactory} from './sessionFactory';
     'Accept': 'application/json',
     'Content-Type': 'application/json'
 })
-export class TodoIngresosRESTClient extends RESTClient {
+export class TodoRESTIngreso extends RESTIngreso {
 
     protected requestInterceptor(req: Request) {
         if (SessionFactory.getInstance().isAuthenticated) {
