@@ -1,4 +1,3 @@
-//import {bootstrapRender} from '@angular/platform-browser-dynamic';
 import {Component, ViewEncapsulation, ComponentResolver, ViewContainerRef, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {AuthHttp} from 'angular2-jwt';
