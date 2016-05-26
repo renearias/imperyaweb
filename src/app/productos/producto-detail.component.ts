@@ -16,7 +16,7 @@ declare var moment: any;
   selector: 'producto-detail',
   //templateUrl: './producto-form.component.html'
   //encapsulation: ViewEncapsulation.None,
-  template: require('./producto-detail.component.html'),
+  templateUrl: './app/productos/producto-detail.component.html',
   directives: [Widget, NKDatetime,ROUTER_DIRECTIVES],
   //styles: [require('../components/forms-elements/forms-elements.scss')]
 })

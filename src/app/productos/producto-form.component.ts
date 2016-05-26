@@ -13,7 +13,7 @@ declare var moment: any;
   selector: 'producto-form',
   //templateUrl: './producto-form.component.html'
   encapsulation: ViewEncapsulation.None,
-  template: require('./producto-form.component.html'),
+  templateUrl: './app/productos/producto-form.component.html',
   directives: [Widget, NKDatetime],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
