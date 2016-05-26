@@ -53,7 +53,7 @@ export class InvoicePage {
 		let options = new RequestOptions({
 			headers: contentHeadersWithToken
         });
-                this.http.get(urlApi + 'api/contactos', options)
+                this.http.get(urlApi + 'api/clientes', options)
                     .subscribe(
                      response => {
 			console.log(response);

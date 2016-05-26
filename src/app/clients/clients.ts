@@ -165,7 +165,7 @@ export class ClientsPage {
             headers: contentHeadersWithToken
         });
 
-        this.authHttp.get(urlApi + 'api/contactos', options)
+        this.authHttp.get(urlApi + 'api/clientes', options)
             .subscribe(
             response => {
                 this.contacts_array = response.json();
@@ -304,7 +304,7 @@ export class ClientsPage {
             });
 
 
-            this.authHttp.patch(urlApi + 'api/contactos/' + id, body, options)
+            this.authHttp.patch(urlApi + 'api/clientes/' + id, body, options)
                 .subscribe(
                 response => {
                     console.log(response);
@@ -407,7 +407,7 @@ export class ClientsPage {
             });
 
 
-            this.authHttp.post(urlApi + 'api/contactos', body, options)
+            this.authHttp.post(urlApi + 'api/clientes', body, options)
                 .subscribe(
                 response => {
                     console.log(response);

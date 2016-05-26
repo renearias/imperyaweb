@@ -156,7 +156,7 @@ export class IngresoFormComponent {
        }*/
     }
     getClientsFromApi(): void {
-        this.authHttp.get(urlApi + 'api/contactos')
+        this.authHttp.get(urlApi + 'api/clientes')
             .subscribe(
             response => {
                 this.clients_array = response.json();
