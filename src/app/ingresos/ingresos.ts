@@ -14,7 +14,8 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {IngresosIndexPage} from './ingreso-index';
 import {IngresoFormComponent} from './ingreso-form.component';
 import {IngresoDetailComponent} from './ingreso-detail.component';
-
+import {IngresoRESTClient} from './ingreso-rest.client';
+import {IngresoService} from './ingreso.service';
 
 @Routes([
   { path: '/', component: IngresosIndexPage },
@@ -25,11 +26,10 @@ import {IngresoDetailComponent} from './ingreso-detail.component';
     selector: 'ingresos',
     directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES, NKDatetime, IngresosIndexPage],
     templateUrl: 'app/ingresos/ingresos.html',
-    //providers: [HTTP_BINDINGS],
+    viewProviders: [FormBuilder, IngresoService, IngresoRESTClient],
     host: {
     class: 'ingresos-page app'
-    },
-    viewProviders: [ FormBuilder ],
+    }
 })
 export class IngresosPage {
 /*
