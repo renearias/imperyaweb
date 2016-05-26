@@ -6,7 +6,7 @@ import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 @Component({
 	selector: 'products',
-	template: require('./products.html'),
+	templateUrl: './app/productos/products.html',
         directives: [ROUTER_DIRECTIVES, ProductoFormComponent, ProductosIndexPage]
 })
 @Routes([
