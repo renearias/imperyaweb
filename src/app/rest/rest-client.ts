@@ -22,8 +22,7 @@ Table of Contents:
 */
 
 import {Inject} from "@angular/core";
-import {
-Http, Headers as AngularHeaders,
+import {Headers as AngularHeaders,
 Request, RequestOptions, RequestMethod as RequestMethods,
 Response,
 URLSearchParams
@@ -39,7 +38,7 @@ import {Observable} from "rxjs/Observable";
 */
 export class RESTClient {
 
-    public constructor( @Inject(Http) protected http: AuthHttp) {
+    public constructor( @Inject(AuthHttp) protected authHttp: AuthHttp) {
     }
 
     protected getBaseUrl(): string {
@@ -241,24 +240,22 @@ function methodBuilder(method: number) {
                 });
 
                 var req = new Request(options);
-
+                
                 // intercept the request
                 this.requestInterceptor(req);
                 // make the request and store the observable for later transformation
-                var observable: Observable<Response> = this.http.request(req);
-
+                var observable: Observable<Response> = this.authHttp.request(req);
                 // transform the obserable in accordance to the @Produces decorator
                 if (descriptor.isJSON) {
-                  observable = observable.map(res => res.json());
+                  observable.subscribe(res => {observable = res.json()});
                 }
-
                 // intercept the response
                 observable = this.responseInterceptor(observable);
-
+                
                 return observable;
             };
-
             return descriptor;
+            
         };
     };
 }
