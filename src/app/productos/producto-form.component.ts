@@ -11,7 +11,6 @@ declare var moment: any;
 
 @Component({
   selector: 'producto-form',
-  //templateUrl: './producto-form.component.html'
   encapsulation: ViewEncapsulation.None,
   templateUrl: './app/productos/producto-form.component.html',
   directives: [Widget, NKDatetime],
