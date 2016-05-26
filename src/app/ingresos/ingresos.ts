@@ -13,22 +13,18 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 
 import {IngresosIndexPage} from './ingreso-index';
 import {IngresoFormComponent} from './ingreso-form.component';
-//import {IngresoFormComponent} from './ingreso-form.component';
-//import {IngresoDetailComponent} from './ingreso-detail.component';
+import {IngresoDetailComponent} from './ingreso-detail.component';
 
 
 @Routes([
   { path: '/', component: IngresosIndexPage },
-  { path: '/new', component: IngresoFormComponent }
-  //{ path: '/:id', component: ProductoDetailComponent }
+  { path: '/new', component: IngresoFormComponent },
+  { path: '/:id', component: IngresoDetailComponent }
 ])
-
-
 @Component({
     selector: 'ingresos',
     directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES, NKDatetime, IngresosIndexPage],
-    
-    templateUrl: 'app/ingresos/ingresos.html', 
+    templateUrl: 'app/ingresos/ingresos.html',
     //providers: [HTTP_BINDINGS],
     host: {
     class: 'ingresos-page app'
@@ -36,7 +32,7 @@ import {IngresoFormComponent} from './ingreso-form.component';
     viewProviders: [ FormBuilder ],
 })
 export class IngresosPage {
-
+/*
     // Mostrar Pagos - Datos
 
     payments_array: any;
@@ -44,7 +40,7 @@ export class IngresosPage {
 
     // Editar Pagos - Datos
 
-    editData = 
+    editData=
     {
         id: '',
         fecha: '',
@@ -65,7 +61,7 @@ export class IngresosPage {
 
     // Editar Pagos - Validación de Formulario 
 
-    fb: FormBuilder;    
+    fb: FormBuilder;
 
     editarIngresoForm: ControlGroup;
 
@@ -104,7 +100,7 @@ export class IngresosPage {
         //this.getPaymentsFromApi();
 
         // Editar Pagos - Contructor
-        this.getClientsFromApi();        
+        this.getClientsFromApi();
         
         // Editar Pagos/Crear Pagos - Validación de Formulario
         this.fb = fb;
@@ -115,14 +111,11 @@ export class IngresosPage {
     getPaymentsFromApi(): void {
 
         let moment = require('moment');
-        
         this.authHttp.get(urlApi + 'api/ingresos')
             .subscribe(
             response => {
-                console.log(response.json()); 
-                
+                console.log(response.json());
                 this.payments_array = response.json();
-                
                 console.log('Listado de pagos');
                 this.payments_array.forEach(function(payment){
                     payment.fecha = moment(payment.fecha).format('DD-MM-YYYY hh:mm a');
@@ -145,8 +138,8 @@ export class IngresosPage {
 
         //Revisamos que pago corresponde al id seleccionado
         this.payments_array.forEach(function(payment) {
-            if (payment.id == id) {
-                old_data = payment //Lo asinamos a nuestra variable
+            if (payment.id === id) {
+                old_data = payment; //Lo asinamos a nuestra variable
             }
         });
 
@@ -180,7 +173,6 @@ export class IngresosPage {
         // console.log(this.editData.referencia)
         // console.log(this.editData.forma_pago_id)
     }
-
     getClientsFromApi(): void {
         this.authHttp.get(urlApi + 'api/clientes')
             .subscribe(
@@ -207,11 +199,11 @@ export class IngresosPage {
         let minute = moment(this.editData.fecha).format('mm')
 
         let fecha = {
-            "year": year,
-            "month": month,
-            "day": day,
-            "hour": hour,
-            "minute": minute
+            'year': year,
+            'month': month,
+            'day': day,
+            'hour': hour,
+            'minute': minute
         }
 
         // console.log(day)
@@ -302,9 +294,7 @@ export class IngresosPage {
             'np_referencia': this.np_referencia,
             'np_forma_pago': this.np_forma_pago_id
         });
-
     }
-  
     newPayment() {
       
       console.log('Antes de la validación');
@@ -312,7 +302,6 @@ export class IngresosPage {
         
         console.log('Entró en el if');
             let moment = require('moment')
-
             //Convirtiendo fecha a JSON
             let day = moment(this.np_fecha.value).format('DD')
             let month = moment(this.np_fecha.value).format('MM')
@@ -351,9 +340,7 @@ export class IngresosPage {
                             referencia,
                             formapago
                         });
-
             console.log(body);
-             
              this.authHttp.post(urlApi + 'api/ingresos', body)
                    .subscribe(
                     response => {
@@ -370,8 +357,7 @@ export class IngresosPage {
                      }
                      );
        //}
-    }
-    
+    } 
     deletePayment(id: number) {
         console.log('Eliminar Pago id#: ' + id);
 
@@ -392,7 +378,6 @@ export class IngresosPage {
         //     );
         // }
     }
-
     goToCreatePayment(){
         this.listaPagoBox = true;
         this.editarPagoBox = true;
@@ -400,7 +385,6 @@ export class IngresosPage {
         this.crearPagoBtn = true;
         this.goBackBtn = false;
     }
-
     goBack(){
         this.listaPagoBox = false;
         this.editarPagoBox = true;
@@ -422,9 +406,9 @@ export class IngresosPage {
     // ingresoData.formadepago.updateValue('');
 
     //}
+    */
 
 }
-
 
 /*
 NOTA: 

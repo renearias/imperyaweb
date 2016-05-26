@@ -21,7 +21,6 @@ declare var moment: any;
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
 export class IngresoFormComponent {
-  
   submitted: boolean = false;
   clients_array: Array<any> = [];
   formas_pago: Object[] = [
@@ -41,7 +40,6 @@ export class IngresoFormComponent {
     np_descripcion: Control;
     np_referencia: Control;
     np_forma_pago_id: Control;
-    
     constructor(private fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
 
         this.getClientsFromApi();
@@ -77,12 +75,10 @@ export class IngresoFormComponent {
             'np_referencia': this.np_referencia,
             'np_forma_pago': this.np_forma_pago_id
         });
-
     }
-  
-  onSubmit() { 
-                console.log("fue submit");
-                this.submitted = true; 
+  onSubmit() {
+                console.log('fue submit');
+                this.submitted = true;
              }
   // TODO: Remove this when we're done
   newPayment() {
@@ -98,15 +94,15 @@ export class IngresoFormComponent {
 
             //Datos para enviar a la API
             let fecha = {
-                    "date":{
-                            "year": year,
-                            "month": month,
-                            "day": day},
-                     "time":{
-                             "hour": hour,
-                             "minute": minute
+                   'date': {
+                            'year': year,
+                            'month': month,
+                            'day': day},
+                    'time': {
+                             'hour': hour,
+                             'minute': minute
                      }
-            }
+            };
             let cliente = this.np_cliente_id.value;
             let monto = this.np_monto.value;
             let descripcion = this.np_descripcion.value;
@@ -132,7 +128,6 @@ export class IngresoFormComponent {
                         });
 
             console.log(body);
-             
              this.authHttp.post(urlApi + 'api/ingresos', body)
                    .subscribe(
                     response => {
