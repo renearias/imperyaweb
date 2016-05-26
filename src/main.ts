@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function main(): void {
     useFactory: (http) => {
       return new AuthHttp(new AuthConfig({
         globalHeaders: [//{'Accept':'application/json'},
-                        {'Content-Type':'application/json'}],
+                        {'Content-Type': 'application/json'}],
       }), http);
     },
     deps: [Http]

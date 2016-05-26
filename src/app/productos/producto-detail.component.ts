@@ -3,7 +3,7 @@
  */
 import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { NgForm }    from '@angular/common';
-import { OnActivate, Router, RouteSegment,ROUTER_DIRECTIVES } from '@angular/router';
+import {OnActivate, Router, RouteSegment,ROUTER_DIRECTIVES } from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {Producto}  from './producto';
@@ -41,9 +41,6 @@ export class ProductoDetailComponent implements OnActivate {
                                                         });
     this.selectedId=id;
     
-  } 
-  tipos: Array<string> = ['Bien', 'Servicio'];
-  //model: Producto = new Producto(2, 'Producto X', 0, this.tipos[1], moment().format('YYYY-MM-DDThh:mm'));
-  submitted: boolean= false;
-  
+  }
 }
+

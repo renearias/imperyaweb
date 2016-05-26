@@ -6,27 +6,26 @@ declare var jQuery: any;
 @Directive({ selector: '[dynamic-datatable]'})
 export class DynamicDataTable {
     $el: any;
-    _urlApi: string="";
-    _routeActions: string="";
+    _urlApi: string = '';
+    _routeActions: string = '';
     el: HTMLElement;
     private _columns: any = [];
     constructor( el: ElementRef, private router: Router) {
         this.el = el.nativeElement;
         this.$el = jQuery(this.el);
    }
-   @Input() set routeActions(routeActions:any){
+   @Input() set routeActions(routeActions: any){
           this._routeActions = routeActions || this._routeActions;
         }
    @Input() set columns(columns: Array<any>){
        this._columns = columns || this._columns;
         }
-   @Input() set urlApi(urlApi:string){
+   @Input() set urlApi(urlApi: string){
           this._urlApi = urlApi || this._urlApi;
-        }     
-        
-    ngOnInit(): void {
-        this._columns.push(columnAction(this._routeActions))
-        var routerI=this.router;
+        }
+   ngOnInit(): void {
+        this._columns.push(columnAction(this._routeActions));
+        var routerI = this.router;
         var oTable = this.$el.dataTable(
                 {
                     //'order': [[ 0, 'asc' ]],
@@ -45,7 +44,7 @@ export class DynamicDataTable {
                     'ajax': {
                         'url': this._urlApi,
                         'type': 'GET',
-                        'beforeSend': function (request) {
+                        'beforeSend': function (request){
                             request.setRequestHeader('Accept', 'application/json');
                             var token = localStorage.getItem('id_token');
                             request.setRequestHeader('Authorization', 'Bearer ' + token);
@@ -56,18 +55,16 @@ export class DynamicDataTable {
                 .on('draw.dt', function (e, datatable, row){
                         let tableActions = jQuery('.wraper-actions a');
                         var i;
-                        for (i = 0; i < tableActions.length; i++) { 
-                            tableActions[i].addEventListener("click", function(event){
+                        for (i = 0; i < tableActions.length; i++) {
+                            tableActions[i].addEventListener('click', function(event){
                                 event.preventDefault();
-                                var link=this.getAttribute("href");
+                                var link = this.getAttribute('href');
                                 routerI.navigate([link]);
-                                
                             });
                         }
-                        
                 })
-                .on( 'responsive-display', function ( e, datatable, row, showHide, update ) {
-                                    if (showHide) {
+                .on( 'responsive-display', function ( e, datatable, row, showHide, update ){
+                        if (showHide) {
                                        // {% include "SgDatatablesBundle:Datatable:editable.html.twig" %}
                                     }
                                 });

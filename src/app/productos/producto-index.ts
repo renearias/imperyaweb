@@ -22,20 +22,17 @@ declare var Datatable: any;
 export class ProductosIndexPage {
     urlApi: string;
     router: any;
-    columns:any=[
+    columns: any = [
                  {'title': 'Id', 'data': 'id'},
                  {'title': 'Descripcion Corta', 'data': 'descripcionCorta' },
                  {'title': 'Stock', 'data': 'stock' }
                  ];
-    routeActions="app/productos/";
+    routeActions = 'app/productos/';
     constructor(config: ConfigService, router: Router, private element: ElementRef, private location: Location) {
-        this.urlApi = config.config.urlApi+'api/productos';
-        this.router=router;
+        this.urlApi = config.config.urlApi + 'api/productos';
+        this.router = router;
    }
-   
    ngOnInit(): void {
-                                
-     
     /*let searchInput = jQuery('#table-search-input');
     searchInput
       .focus((e) => {

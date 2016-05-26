@@ -7,6 +7,7 @@ import 'zone.js/dist/zone';
 if ('production' === process.env.ENV) {
   require('rxjs/add/operator/map');
   require('rxjs/add/operator/mergeMap');
+  require('rxjs/add/operator/toPromise');
 
 } else {
 
@@ -16,6 +17,7 @@ if ('production' === process.env.ENV) {
   require('zone.js/dist/long-stack-trace-zone');
   require('rxjs/add/operator/map');
   require('rxjs/add/operator/mergeMap');
+  require('rxjs/add/operator/toPromise');
 }
 
 // For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
