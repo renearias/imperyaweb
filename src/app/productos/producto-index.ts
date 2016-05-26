@@ -1,4 +1,3 @@
-//import {bootstrapRender} from '@angular/platform-browser-dynamic';
 import {Component, ViewEncapsulation, ComponentResolver, ViewContainerRef, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {AuthHttp} from 'angular2-jwt';
@@ -16,7 +15,7 @@ declare var Datatable: any;
 @Component({
 	selector: 'producto-index',
         encapsulation: ViewEncapsulation.None,
-	template: require('./producto-index.html'),
+	templateUrl: './app/productos/producto-index.html',
 	directives: [Widget, ROUTER_DIRECTIVES, DynamicDataTable],
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
 })

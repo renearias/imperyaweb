@@ -6,7 +6,7 @@ import {Navbar} from './navbar/navbar';
 import {ChatSidebar} from './chat-sidebar/chat-sidebar';
 import {AnotherPage} from './../another/another';
 import {Dashboard} from './../dashboard/dashboard';
-import {ProductsPage} from './../products/products';
+import {ProductsPage} from './../productos/products';
 import {InvoicePage} from './../invoice/invoice';
 import {ClientsPage} from './../clients/clients';
 import {ProvidersPage} from './../providers/providers';
