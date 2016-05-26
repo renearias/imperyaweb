@@ -32,15 +32,13 @@ export class ProductoDetailComponent implements OnActivate {
   routerOnActivate(curr: RouteSegment): void {
     let id = +curr.getParam('id');
     //this.service.getProducto(id).then(producto => this.model = producto);
-    this.model=this.service.getProducto(id)
-                            .subscribe(
-                                response => {  console.log(response);
-                                            this.model=response;
-                                            },
-                                error => {
-                                        console.log(error);
-                                        return error;
-                                });
+    this.model=this.service.getProducto(id).subscribe(
+                                                        response => { 
+                                                            this.model = response.json();
+                                                        },
+                                                        error => {
+                                                                console.log(error);
+                                                        });
     this.selectedId=id;
     
   } 
