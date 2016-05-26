@@ -5,7 +5,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 import {ConfigService} from '../core/config';
 import {DynamicDataTable} from '../components/tables-dynamic/dynamic-datatable';
 import {columnDateTime} from '../components/tables-dynamic/columnAction';
-import {IngresoRESTIngreso} from './ingresos.service';
+import {IngresoRESTClient} from './ingreso-rest.client';
+import {IngresoService} from './ingreso.service';
 declare var jQuery: any;
 declare var Datatable: any;
 
@@ -14,7 +15,7 @@ declare var Datatable: any;
         encapsulation: ViewEncapsulation.None,
 	template: require('./ingreso-index.html'),
 	directives: [Widget, ROUTER_DIRECTIVES, DynamicDataTable],
-        viewProviders: [IngresoRESTIngreso],
+        viewProviders: [IngresoService, IngresoRESTClient],
         styles: [require('../components/tables-dynamic/tables-dynamic.scss')]
 })
 export class IngresosIndexPage {
@@ -29,7 +30,7 @@ export class IngresosIndexPage {
                  {'title': 'Cobrado Por', 'data': 'collectedby.name'}
                  ];
     routeActions = 'app/ingresos/';
-    constructor(config: ConfigService, ingresoRESTingreso: IngresoRESTIngreso) {
+    constructor(config: ConfigService, ingresoRESTingreso: IngresoRESTClient) {
         this.urlApi = config.config.urlApi + 'api/ingresos';
    }
    ngOnInit(): void {
