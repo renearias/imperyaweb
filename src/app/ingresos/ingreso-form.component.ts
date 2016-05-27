@@ -8,6 +8,8 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {AuthHttp} from 'angular2-jwt';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {urlApi} from '../http/http';
+import { IngresoService }  from './ingreso.service.ts';
+import {Inject} from '@angular/core';
 //import {Producto}  from './producto';
 declare var jQuery: any;
 declare var moment: any;
@@ -18,6 +20,7 @@ declare var moment: any;
   encapsulation: ViewEncapsulation.None,
   template: require('./ingreso-form.component.html'),
   directives: [Widget, NKDatetime],
+   // providers:[IngresoService],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
 export class IngresoFormComponent {
@@ -40,12 +43,20 @@ export class IngresoFormComponent {
     np_descripcion: Control;
     np_referencia: Control;
     np_forma_pago_id: Control;
+    
     constructor(private fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
 
         this.getClientsFromApi();
         this.buildForm();
 
     }
+    
+    /*constructor(@Inject(IngresoService) public ingresoservice:IngresoService, private fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
+
+        this.getClientsFromApi();
+        this.buildForm();
+
+    }*/
 
   /*ngAfterViewInit(): void {
     jQuery('.select2').select2();
@@ -128,6 +139,7 @@ export class IngresoFormComponent {
                         });
 
             console.log(body);
+           // this.ingresoservice.postIngreso(body);
              this.authHttp.post(urlApi + 'api/ingresos', body)
                    .subscribe(
                     response => {
@@ -151,6 +163,7 @@ export class IngresoFormComponent {
        }*/
     }
     getClientsFromApi(): void {
+        //this.ingresoservice.getIngresos();
         this.authHttp.get(urlApi + 'api/clientes')
             .subscribe(
             response => {
