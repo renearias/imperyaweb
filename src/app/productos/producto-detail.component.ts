@@ -1,9 +1,9 @@
 /* 
  *  Rene Arias
  */
-import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import {Component, ViewEncapsulation, AfterViewInit, Injector } from '@angular/core';
 import { NgForm }    from '@angular/common';
-import {OnActivate, Router, RouteSegment, ROUTER_DIRECTIVES } from '@angular/router';
+import {OnActivate, Router, RouteSegment, RouteTree, ROUTER_DIRECTIVES } from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {Producto}  from './producto';
@@ -27,10 +27,13 @@ export class ProductoDetailComponent implements OnActivate {
    model:any;
    constructor(config: ConfigService,private router: Router, private service: ProductoService) {
         this.urlApi = config.config.urlApi;
+       /// console.log(url);
         
    }
-  routerOnActivate(curr: RouteSegment): void {
-    let id = +curr.getParam('id');
+  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
+    
+    //let id = +curr.getParam('id');
+    let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
     //this.service.getProducto(id).then(producto => this.model = producto);
     this.model=this.service.getProducto(id).subscribe(
                                                         response => { 
@@ -39,7 +42,7 @@ export class ProductoDetailComponent implements OnActivate {
                                                         error => {
                                                                 console.log(error);
                                                         });
-    this.selectedId=id;
+    //this.selectedId=id;
     
   }
 }
