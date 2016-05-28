@@ -27,4 +27,14 @@ export class IngresoService {
     //return ingresoPromise;
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
+  // Guardar ingresos
+  postIngreso( ingreso: Ingreso){
+      
+      this.ingresoRESTClient.postIngreso(ingreso);
+  }
+  // Obtener todos los ingresos registrados
+  getIngresos( sort?: string){
+      
+      this.ingresoRESTClient.getIngresos();
+  }
 }
