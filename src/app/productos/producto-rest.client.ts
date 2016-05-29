@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {AuthHttp} from 'angular2-jwt';
 import {Observable} from "rxjs/Observable";
 import {Response} from '@angular/http';
-import {RESTClient, GET, PUT, POST, DELETE, BaseUrl, DefaultHeaders, Path, Body, Query} from '../rest/rest-client';
+import {RESTClient, GET, PUT, PATCH, POST, DELETE, BaseUrl, DefaultHeaders, Path, Body, Query} from '../rest/rest-client';
 
 import {urlApi} from  '../http/http';
 import {Producto} from './producto';
@@ -41,6 +41,9 @@ export class ProductoRESTClient extends RESTClient {
 
     @PUT("productos/{id}")
     public putProductoById( @Path("id") id: number | string, @Body producto: Producto): Observable<Response> { return null; };
+    
+    @PATCH("productos/{id}")
+    public patchProductoById( @Path("id") id: number | string, @Body producto: Producto): Observable<Response> { return null; };
 
     @DELETE("productos/{id}")
     public deleteProductoById( @Path("id") id: number | string): Observable<Response> { return null; };

@@ -27,4 +27,10 @@ export class ProductoService {
       return this.productoRESTClient.postProducto(producto);
     
   }
+  editarProducto(producto: Producto) {
+      let id = producto['id'];
+      producto.prepareToSend();
+      return this.productoRESTClient.putProductoById(id,producto);
+    
+  }
 }

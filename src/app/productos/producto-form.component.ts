@@ -22,6 +22,7 @@ export class ProductoFormComponent implements OnActivate{
   tipos: Array<string> = ['Bien', 'Servicio'];
   //model: any;
   model: Producto;
+  editable: boolean= false;
   submitted: boolean= false;
   constructor(private router: Router, private service: ProductoService) {
         
@@ -50,6 +51,7 @@ export class ProductoFormComponent implements OnActivate{
         this.service.getProducto(id).subscribe(
                                                        response => { 
                                                             this.model=new Producto(response.json())
+                                                            this.editable=true;
                                                             jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
                                                             },
                                                         error => {
@@ -69,8 +71,9 @@ export class ProductoFormComponent implements OnActivate{
   }
   onSubmit() {
    this.submitted = true; 
-   console.log('se aplasto esto');
-   this.service.crearProducto(this.model).subscribe(
+   if (this.editable)
+   {
+            this.service.editarProducto(this.model).subscribe(
                                                        response => { 
                                                                 console.log(response);
                                                                 console.log('se envi2o');
@@ -80,7 +83,21 @@ export class ProductoFormComponent implements OnActivate{
                                                                 console.log(error.json());
                                                                 
                                                         });
-   console.log('se salto envio');
+   }else{
+   
+        this.service.crearProducto(this.model).subscribe(
+                                                       response => { 
+                                                                console.log(response);
+                                                                console.log('se envi2o');
+                                                       },
+                                                        error => {
+                                                                console.log(error);
+                                                                console.log(error.json());
+                                                                
+                                                        });
+       
+   }
+   
    }
   // TODO: Remove this when we're done
   get diagnostic(){

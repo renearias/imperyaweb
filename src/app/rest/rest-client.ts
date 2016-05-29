@@ -11,6 +11,7 @@ Table of Contents:
     @GET(url: String)
     @POST(url: String)
     @PUT(url: String)
+    @PATCH(url: String)
     @DELETE(url: String)
     @Headers(object)
     @Produces(MediaType)
@@ -275,6 +276,11 @@ export var POST = methodBuilder(RequestMethods.Post);
  * @param {string} url - resource url of the method
  */
 export var PUT = methodBuilder(RequestMethods.Put);
+/**
+ * PATCH method
+ * @param {string} url - resource url of the method
+ */
+export var PATCH = methodBuilder(RequestMethods.Patch);
 /**
  * DELETE method
  * @param {string} url - resource url of the method
