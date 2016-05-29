@@ -13,7 +13,7 @@
         </div>
       </header>
       <div class="widget-body">
-        <form class="form-horizontal form-label-left" role="form">
+        <form class="form-horizontal form-label-left" (ngSubmit)="onSubmit()"  role="form">
             <fieldset>
             <legend>Ingrese los datos</legend>
             {{diagnostic}}
@@ -23,6 +23,12 @@
         <input type="text" class="form-control" required  [(ngModel)]="model.descripcion" >
         </div>
       </div>
+      <div class="form-group row">
+        <label class="col-md-4 col-xs-12 form-control-label" for="descripcion_corta">Descripcion Corta</label>
+         <div class="col-md-8 col-xs-12">
+        <input type="text" class="form-control" required  [(ngModel)]="model.descripcionCorta" >
+        </div>
+      </div>      
       <div class="form-group row">
         <label class="col-md-4 col-xs-12 form-control-label" for="stock">Stock</label>
          <div class="col-md-8 col-xs-12">
@@ -47,7 +53,7 @@
          <div class="form-group row">
         <label class="col-md-4 col-xs-12 form-control-label" for="fechaAlta">Fecha</label>
          <div class="col-md-8 col-xs-12">
-                <input type="datetime-local" class="form-control" [(ngModel)]="model.fechaAlta">
+                <input type="date" class="form-control" [(ngModel)]="model.fechaAlta">
          </div>
         </div>   
            </fieldset>     

@@ -20,15 +20,14 @@ declare var moment: any;
 })
 export class ProductoFormComponent implements OnActivate{
   tipos: Array<string> = ['Bien', 'Servicio'];
-  model: any;
+  //model: any;
+  model: Producto;
   submitted: boolean= false;
   constructor(private router: Router, private service: ProductoService) {
         
         
    }
-  private refreshValue(value: any) {
-    this.model.tipo = value;
-  }
+  
   ngAfterViewInit(): void {
     jQuery('.select2').select2();
     jQuery('.select2').on(
@@ -42,21 +41,22 @@ export class ProductoFormComponent implements OnActivate{
     let isNew = currTree._root.children[0].children[0].children[0].value.stringifiedUrlSegments;
     if (isNew=='new')
     {
-        this.model=new Producto(1, '', 0, this.tipos[1], moment().format('YYYY-MM-DDThh:mm'));
+        this.model=new Producto('');
     }else
     {
         //let id = +curr.getParam('id');
         let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
-        this.model = this.service.getProducto(id).subscribe(
-                                                        response => { 
-                                                            this.model = response.json();
-                                                        },
+        this.model=new Producto('');
+        this.service.getProducto(id).subscribe(
+                                                       response => { 
+                                                            this.model=new Producto(response.json())
+                                                            jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
+                                                            },
                                                         error => {
                                                                 console.log(error);
                                                         });
     }
     
-    //this.service.getProducto(id).then(producto => this.model = producto);
     /*this.model=this.service.getProducto(id).subscribe(
                                                         response => { 
                                                             this.model = response.json();
@@ -67,7 +67,21 @@ export class ProductoFormComponent implements OnActivate{
     
     
   }
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+   this.submitted = true; 
+   console.log('se aplasto esto');
+   this.service.crearProducto(this.model).subscribe(
+                                                       response => { 
+                                                                console.log(response);
+                                                                console.log('se envi2o');
+                                                       },
+                                                        error => {
+                                                                console.log(error);
+                                                                console.log(error.json());
+                                                                
+                                                        });
+   console.log('se salto envio');
+   }
   // TODO: Remove this when we're done
   get diagnostic(){
       return JSON.stringify(this.model);
