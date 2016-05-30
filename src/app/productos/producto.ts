@@ -43,13 +43,15 @@ export class Producto {
             this[snakeToCamel(Object.keys(r)[i])] = r[Object.keys(r)[i]];
         }
       }
-      this.fechaAlta = moment().format('YYYY-MM-DDThh:mm');
+      this.fechaAlta = moment().format('YYYY-MM-DD');
   }
-  public prepareToSend()
+  public prepareToSend(): Producto
   {
-      this.fechaAlta=dateToApiDate(this.fechaAlta);
-      delete this['id'];
-      delete this['atributos'];
+      let productoPrepared: Producto = new Producto(this);
+      productoPrepared.fechaAlta=dateToApiDate(this.fechaAlta);
+      delete productoPrepared['id'];
+      delete productoPrepared['atributos'];
+      return productoPrepared;
   }
   
 }

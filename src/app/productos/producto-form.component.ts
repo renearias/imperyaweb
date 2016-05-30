@@ -23,6 +23,8 @@ export class ProductoFormComponent implements OnActivate{
   //model: any;
   model: Producto;
   editable: boolean= false;
+  labelForm: string= 'Crear';
+  labelButton: string= 'Crear';
   submitted: boolean= false;
   constructor(private router: Router, private service: ProductoService) {
         
@@ -48,6 +50,8 @@ export class ProductoFormComponent implements OnActivate{
         //let id = +curr.getParam('id');
         let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
         this.model=new Producto('');
+        this.labelForm= 'Editar';
+        this.labelButton= 'Actualizar';
         this.service.getProducto(id).subscribe(
                                                        response => { 
                                                             this.model=new Producto(response.json())
