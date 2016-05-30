@@ -8,7 +8,6 @@ import {IngresoDetailComponent}  from './ingreso-detail.component';
 import {IngresoService}  from './ingreso.service';
 import {Ingreso}  from './ingreso';
 
-
 @Component({
   selector: 'ingreso-detail',
   template:"<router-outlet></router-outlet>",
@@ -21,5 +20,3 @@ import {Ingreso}  from './ingreso';
 export class IngresoShowComponent {
   
 }
-
-

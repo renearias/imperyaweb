@@ -23,6 +23,8 @@ declare var moment: any;
 export class IngresoFormComponent implements OnActivate{
   model:Ingreso;
   editable: boolean= false;
+  labelForm: string= 'Crear';
+  labelButton: string= 'Crear';
   submitted: boolean= false;
   clients_array: Array<any> = [];
   formas_pago: Object[] = [
@@ -49,13 +51,6 @@ export class IngresoFormComponent implements OnActivate{
         this.buildForm();
 
     }
-    
-    /*constructor(@Inject(IngresoService) public ingresoservice:IngresoService, private fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
-
-        this.getClientsFromApi();
-        this.buildForm();
-
-    }*/
 
   ngAfterViewInit(): void {
     jQuery('.select2').select2();
@@ -98,11 +93,12 @@ export class IngresoFormComponent implements OnActivate{
         //let id = +curr.getParam('id');
         let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
         this.model=new Ingreso('');
+        this.labelForm= 'Editar';
+        this.labelButton= 'Actualizar';
         this.service.getIngreso(id).subscribe(
                                                        response => { 
                                                             this.model=new Ingreso(response.json())
                                                             this.editable=true;
-                                                            jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
                                                             },
                                                         error => {
                                                                 console.log(error);

@@ -1,0 +1,127 @@
+<!-- Agregar Clientes -->
+<div class="row">
+    <div class="col-md-12">
+        <section widget class="widget">
+            <header>
+                <h4>
+                    Crear <span class="fw-semi-bold">Cliente</span>
+                </h4>
+                <div class="widget-controls">
+                    <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </header>
+            <div class="widget-body">
+                <form [ngFormModel]="clientForm" (ngSubmit)="onSubmit()" role="form" class="col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <div class="row padding">
+                                    <div class="col-md-6">
+                                        <label>Código</label>
+                                        <input [ngFormControl]="model.codigo" type="text" class="form-control" placeholder="Código" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Tipo de Persona</label>
+                                        <select [(ngModel)]="model.tipopersonaid.nombre" class="form-control">
+                                            <option *ngFor="let id_type_p of id_types_person" [value]="id_type_p.value" [selected]="id_type_p.value">{{id_type_p.name}}</option>
+                                        </select>                                         
+                                    </div>                                    
+                                </div>
+
+                                <div class="row padding">
+                                    <div class="col-md-6">
+                                        <label>Nombre</label>
+                                        <input [ngFormControl]="model.nombre" type="text" class="form-control" placeholder="Introduzca el nombre" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Identificación</label>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <select [(ngModel)]="model.tipoidentifcacionid.nombre" class="form-control">
+                                                   <option *ngFor="let id_t of id_types" [value]="id_t.value" [selected]="id_t.value">{{id_t.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input [ngFormControl]="id_person" type="text" class="form-control" placeholder="Identificación" required>
+                                            </div>
+                                        </div>                                      
+                                    </div>
+                                </div>
+                                <div class="row padding">
+                                    <div class="col-md-12">
+                                        <label>Dirección</label>
+                                        <input [ngFormControl]="model.direccion" type="text" class="form-control" placeholder="Dirección" required>                                   
+                                    </div>
+                                </div>
+                                <div class="row padding">
+                                    <div class="col-md-6">
+                                        <label>Teléfono</label>
+                                        <input [ngFormControl]="model.telefonos" type="text" class="form-control" placeholder="Teléfono" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Fax</label>
+                                        <input [ngFormControl]="model.fax" type="text" class="form-control" placeholder="Fax" required>
+                                    </div>
+                                </div>
+                                <div class="row padding">
+                                    <div class="col-md-6">
+                                        <label>Cuidad</label>
+                                        <input [ngFormControl]="model.ciudad" type="text" class="form-control" placeholder="Ciudad" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>País</label>
+                                        <input [ngFormControl]="model.pais" type="text" class="form-control" placeholder="País">
+                                    </div>
+                                </div>
+                                <div class="row padding">
+                                    <div class="col-md-4">
+                                        <label>Nombre Comercial</label>
+                                        <input [ngFormControl]="model.nombrecomercial" type="text" class="form-control" placeholder="Nombre Comercial" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Registro Empresarial</label>
+                                        <input [ngFormControl]="model.registroempresarial" type="text" class="form-control" placeholder="Registro Empresarial" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Contacto</label>
+                                        <input [ngFormControl]="model.contacto" type="text" class="form-control" placeholder="Contacto" required>
+                                    </div>
+                                </div>
+                                <div class="row padding">
+                                    <div class="col-md-4">
+                                        <label>Correo Electrónico</label>
+                                        <input [ngFormControl]="model.email" type="email"class="form-control" placeholder="Correo Electrónico" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Actividad Económica</label>
+                                        <input [ngFormControl]="economic_activity" type="text" class="form-control" placeholder="Actividad Económica">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Tipo de contribuyente</label>       
+                                        <select [(ngModel)]="taxpayer" class="form-control">
+                                            <option *ngFor=" let taxp of taxpayers" [value]="taxp.name" [selected]="taxp.name">{{taxp.name}}</option>
+                                        </select>                                          
+                                    </div>
+                                </div>
+                                <div class="row padding">
+                                    <div class="col-md-12">
+                                        <label>Obsersaciones</label>
+                                        <input [ngFormControl]="notes" type="text" class="form-control" placeholder="Observaciones">
+                                    </div>
+                                </div>                     
+
+                                <div class="row padding">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-default">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /row -->
+                </form>
+            </div> <!-- /widget-body --> 
+        </section>
+    </div>
+</div>

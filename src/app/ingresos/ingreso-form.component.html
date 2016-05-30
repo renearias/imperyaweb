@@ -4,7 +4,7 @@
       <header>
         <h6>
           <i class="fa fa-money"></i>  
-          Crear <span class="fw-semi-bold">Ingreso</span>
+          {{labelForm}}<span class="fw-semi-bold">Ingreso</span>
         </h6>
         <div class="widget-controls">
           <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label>Fecha de ingreso</label>
                         <div>
-                            <input [ngFormControl]="np_fecha" required type="datetime-local" class="form-control"> 
+                            <input [ngFormControl]="model.fecha" required type="datetime-local" class="form-control"> 
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Monto</label>
-                        <input [ngFormControl]="np_monto" required type="number" step="0.01" class="form-control" id="monto"
+                        <input [ngFormControl]="model.monto" required type="number" step="0.01" class="form-control" id="monto"
                             placeholder="Introduzca el monto">
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Descripción</label>
-                        <input [ngFormControl]="np_descripcion" required type="text" class="form-control" id="descripcion"
+                        <input [ngFormControl]="model.descripcion" required type="text" class="form-control" id="descripcion"
                             placeholder="Descripción">
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Referencia</label>
-                        <input [ngFormControl]="np_referencia" required type="text" class="form-control" id="referencia"
+                        <input [ngFormControl]="model.referencia" required type="text" class="form-control" id="referencia"
                             placeholder="Introduzca la referencia">
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label>Forma de pago </label>
                         <div>
-                            <select [ngFormControl]="np_forma_pago_id" required class="form-control input-lg">
+                            <select [ngFormControl]="model.formapago" required class="form-control input-lg">
                                 <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
                                 [selected]="forma_p.value">{{forma_p.name}}</option>
                             </select>
@@ -83,7 +83,7 @@
                 </div>
             </div>
            
-            <button type="submit" class="btn btn-default">Guardar</button>
+            <button type="submit" class="btn btn-default">{{labelButton}}</button>
         </form>
       </div>
     </section>

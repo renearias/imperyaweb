@@ -2,13 +2,16 @@
  *  Abner Saavedra
  */
 import {dateToApiDate} from '../components/helpers/dateTimeFunctions';
+import {FormasPagos} from '../models/formas-pagos'
+import {Cliente} from '../clients/cliente'
 import {snakeToCamel} from '../components/helpers/stringFunctions';
 declare var moment: any;
 
 export class Ingreso {
   
+    public forma_pago: FormasPagos;
     public id: number;
-    public cliente: string;
+    public cliente: Cliente;
     public fecha: any;
     public monto: number;
     public descripcion: string;
