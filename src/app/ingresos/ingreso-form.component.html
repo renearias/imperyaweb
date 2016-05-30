@@ -13,13 +13,13 @@
         </div>
       </header>
       <div class="widget-body">
-         <form [ngFormModel]="nuevoIngresoForm" (submit)="onSubmit()" role="form" class="col-md-offset-2">          
+         <form (submit)="onSubmit()" role="form" class="col-md-offset-2">          
             <div class="row">
                 <div class="col-md-10">              
                     <div class="form-group">
                         <label>Fecha de ingreso</label>
                         <div>
-                            <input [ngFormControl]="model.fecha" required type="datetime-local" class="form-control"> 
+                            <input [(ngModel)]="model.fecha" required type="datetime-local" class="form-control"> 
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label>Cliente</label>
                         <div>
-                            <select [ngFormControl]="np_cliente_id" required class="form-control input-lg" placehoder='Seleccione Cliente' >
+                            <select [(ngModel)]="model.id_cliente" required class="form-control input-lg" placehoder='Seleccione Cliente' >
                                 <option value=""></option>
                                 <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
                             </select> 
@@ -43,7 +43,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Monto</label>
-                        <input [ngFormControl]="model.monto" required type="number" step="0.01" class="form-control" id="monto"
+                        <input [(ngModel)]="model.monto" required type="number" step="0.01" class="form-control" id="monto"
                             placeholder="Introduzca el monto">
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Descripción</label>
-                        <input [ngFormControl]="model.descripcion" required type="text" class="form-control" id="descripcion"
+                        <input [(ngModel)]="model.descripcion" required type="text" class="form-control" id="descripcion"
                             placeholder="Descripción">
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Referencia</label>
-                        <input [ngFormControl]="model.referencia" required type="text" class="form-control" id="referencia"
+                        <input [(ngModel)]="model.referencia" required type="text" class="form-control" id="referencia"
                             placeholder="Introduzca la referencia">
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label>Forma de pago </label>
                         <div>
-                            <select [ngFormControl]="model.formapago" required class="form-control input-lg">
+                            <select [(ngModel)]="model.forma_pago.id" required class="form-control input-lg">
                                 <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
                                 [selected]="forma_p.value">{{forma_p.name}}</option>
                             </select>
