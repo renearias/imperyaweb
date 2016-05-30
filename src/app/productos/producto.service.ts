@@ -23,14 +23,10 @@ export class ProductoService {
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
   crearProducto(producto: Producto) {
-      producto.prepareToSend();
-      return this.productoRESTClient.postProducto(producto);
-    
+      return this.productoRESTClient.postProducto(producto.prepareToSend());
   }
   editarProducto(producto: Producto) {
       let id = producto['id'];
-      producto.prepareToSend();
-      return this.productoRESTClient.putProductoById(id,producto);
-    
+      return this.productoRESTClient.putProductoById(id,producto.prepareToSend());
   }
 }
