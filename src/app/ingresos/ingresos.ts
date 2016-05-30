@@ -24,7 +24,7 @@ import {IngresoService} from './ingreso.service';
 ])
 @Component({
     selector: 'ingresos',
-    directives: [Widget, ROUTER_DIRECTIVES, FORM_DIRECTIVES, NKDatetime, IngresosIndexPage],
+    directives: [Widget, ROUTER_DIRECTIVES, IngresoFormComponent, FORM_DIRECTIVES, NKDatetime, IngresosIndexPage],
     templateUrl: 'app/ingresos/ingresos.html',
     viewProviders: [FormBuilder, IngresoService, IngresoRESTClient],
     host: {

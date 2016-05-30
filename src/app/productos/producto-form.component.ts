@@ -73,6 +73,8 @@ export class ProductoFormComponent implements OnActivate{
    this.submitted = true; 
    if (this.editable)
    {
+       let algo = this.model.descripcion;
+       console.log('Descripción del producto a editar:' + algo);
             this.service.editarProducto(this.model).subscribe(
                                                        response => { 
                                                                 console.log(response);

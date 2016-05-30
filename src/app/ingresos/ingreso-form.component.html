@@ -13,7 +13,7 @@
         </div>
       </header>
       <div class="widget-body">
-         <form [ngFormModel]="nuevoIngresoForm" (submit)="newPayment()" role="form" class="col-md-offset-2">          
+         <form [ngFormModel]="nuevoIngresoForm" (submit)="onSubmit()" role="form" class="col-md-offset-2">          
             <div class="row">
                 <div class="col-md-10">              
                     <div class="form-group">
@@ -89,3 +89,5 @@
     </section>
   </div>
 </div>
+<a class="btn btn-default" href="#" [routerLink]="['/app/ingresos']">Regresar a la Lista</a>
+

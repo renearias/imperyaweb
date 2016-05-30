@@ -18,11 +18,27 @@
             </thead>
             <tbody>
                <tr>
-                  <td>{{selectedId}}</td> 
-               </tr>   
-            </tbody>    
+                   <th>Id </th><td>{{model.id}}</td>
+               </tr>    
+               <tr>
+                   <th>Fecha</th><td>{{model.fecha}}</td>
+               </tr>
+               <tr>
+                   <th>Descripcion </th><td>{{model.descripcion}}</td>
+               </tr>    
+               <tr>
+                   <th>Referencia</th><td>{{model.referencia}}</td>
+               </tr>
+               <tr>
+                   <th>Tipo de pago</th><td>{{model.tipoPago}}</td>
+               </tr>    
+               <tr>
+                   <th>Monto</th><td>{{model.monto}}</td>
+               </tr> 
+            </tbody>     
         </table>
       </div>
     </section>
   </div>
 </div>
+<a class="btn btn-default" href="#" [routerLink]="['/app/ingresos']">Regresar a la Lista</a>

@@ -3,28 +3,27 @@
  */
 import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { NgForm, FormBuilder, Control, ControlGroup, Validators}    from '@angular/common';
+import {OnActivate, Router, RouteTree, RouteSegment, ROUTER_DIRECTIVES } from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {AuthHttp} from 'angular2-jwt';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {urlApi} from '../http/http';
 import { IngresoService }  from './ingreso.service.ts';
-import {Inject} from '@angular/core';
-//import {Producto}  from './producto';
+import {Ingreso} from './ingreso'
 declare var jQuery: any;
 declare var moment: any;
 
 @Component({
   selector: 'ingreso-form',
-  //templateUrl: './producto-form.component.html'
   encapsulation: ViewEncapsulation.None,
-  template: require('./ingreso-form.component.html'),
-  directives: [Widget, NKDatetime],
-   // providers:[IngresoService],
+  templateUrl: './app/ingresos/ingreso-form.component.html',
+  directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
-export class IngresoFormComponent {
-  submitted: boolean = false;
+export class IngresoFormComponent implements OnActivate{
+  model:Ingreso;
+  editable: boolean= false;
+  submitted: boolean= false;
   clients_array: Array<any> = [];
   formas_pago: Object[] = [
         { name: 'Efectivo', value: 1 },
@@ -44,7 +43,7 @@ export class IngresoFormComponent {
     np_referencia: Control;
     np_forma_pago_id: Control;
     
-    constructor(private fb: FormBuilder, public router: Router, public authHttp: AuthHttp) {
+    constructor(private fb: FormBuilder, public router: Router, public authHttp: AuthHttp, private service: IngresoService) {
 
         this.getClientsFromApi();
         this.buildForm();
@@ -58,14 +57,14 @@ export class IngresoFormComponent {
 
     }*/
 
-  /*ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     jQuery('.select2').select2();
     jQuery('.select2').on(
         'change',
         (e) => {this.model[e.target.name] = jQuery(e.target).val();
       }
     );
-  }*/
+  }
   // Editar Pagos/Crear Pagos - Validación de Formulario
     buildForm(): void {
 
@@ -87,10 +86,72 @@ export class IngresoFormComponent {
             'np_forma_pago': this.np_forma_pago_id
         });
     }
+    
+    routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
+    
+    let isNew = currTree._root.children[0].children[0].children[0].value.stringifiedUrlSegments;
+    if (isNew=='new')
+    {
+        this.model=new Ingreso('');
+    }else
+    {
+        //let id = +curr.getParam('id');
+        let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
+        this.model=new Ingreso('');
+        this.service.getIngreso(id).subscribe(
+                                                       response => { 
+                                                            this.model=new Ingreso(response.json())
+                                                            this.editable=true;
+                                                            jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
+                                                            },
+                                                        error => {
+                                                                console.log(error);
+                                                        });
+    }
+    
+    /*this.model=this.service.getProducto(id).subscribe(
+                                                        response => { 
+                                                            this.model = response.json();
+                                                        },
+                                                        error => {
+                                                                console.log(error);
+                                                        });*/
+    
+    
+  }
   onSubmit() {
-                console.log('fue submit');
-                this.submitted = true;
-             }
+   this.submitted = true; 
+   if (this.editable)
+   {
+       let monto = this.model.monto;
+       console.log("Monto editable: " + monto);
+            this.service.editarIngreso(this.model).subscribe(
+                                                       response => { 
+                                                                console.log(response);
+                                                                console.log('se envi2o');
+                                                       },
+                                                        error => {
+                                                                console.log(error);
+                                                                console.log(error.json());
+                                                                
+                                                        });
+   }else{
+   
+        this.service.crearIngreso(this.model).subscribe(
+                                                       response => { 
+                                                                console.log(response);
+                                                                console.log('se envi2o');
+                                                       },
+                                                        error => {
+                                                                console.log(error);
+                                                                console.log(error.json());
+                                                                
+                                                        });
+       
+   }
+   
+ }
+    
   // TODO: Remove this when we're done
   newPayment() {
         console.log('aqui va');
