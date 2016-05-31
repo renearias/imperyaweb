@@ -26,6 +26,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
   submitted: boolean= false;
   router: Router;
   service: EntityServiceInterface;
+  errors: any;
   constructor(router: Router, service: EntityServiceInterface) {
        this.router= router;
        this.service= service;
@@ -96,14 +97,26 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
     this.model.constructor(body);
     return body || { };
    }
-   handleError (error: any) {
+   handleError (error: Response) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
-  } 
+    let errors = error.json();
+    if (errors.code==400)
+    {this.errors=errors}
+    //let errMsg = (error.message) ? error.message :
+    //  error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    //console.error(errMsg); // log to console instead
+    //return Observable.throw(errMsg);
+    return errors || [];
+  }
+  getFieldErrors(field: string){
+      if (typeof(this.errors)=='undefined')
+      { return [] }
+      else
+      {
+      return this.errors.errors.children[field].errors;
+      }
+  }
 }
 
 
