@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Producto} from './producto';
+import {EntityInterface} from '../models/entity-interface';
 import {AuthHttp} from 'angular2-jwt';
 import {urlApi} from  '../http/http';
-import {ProductoRESTClient} from './producto-rest.client';
+import {EntityInterfaceRESTClient} from './entity-rest.client';
 import {EntityServiceInterface} from '../services/entity-service-interface';
 
 let PRODUCTOS = [
@@ -10,25 +10,25 @@ let PRODUCTOS = [
 ];
 let heroesPromise = Promise.resolve(PRODUCTOS);
 @Injectable()
-export class ProductoService implements EntityServiceInterface{
+export class EntityInterfaceService implements EntityServiceInterface{
     
-  constructor(private authHttp: AuthHttp, private productoRESTClient: ProductoRESTClient){
+  constructor(private authHttp: AuthHttp, private entityRESTClient: EntityInterfaceRESTClient){
       
   }
   getAll() { return heroesPromise; }
   get(id: number | string) {
       
-    return this.productoRESTClient.getOneById(id);
+    return this.entityRESTClient.getOneById(id);
                       
-    //return productoPromise;
+    //return entityPromise;
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
-  crear(producto: Producto) {
-      return this.productoRESTClient.post(producto.prepareToSend());
+  crear(entity: EntityInterface) {
+      return this.entityRESTClient.post(entity.prepareToSend());
   }
-  editar(producto: Producto) {
-      let id = producto['id'];
-      return this.productoRESTClient.putOneById(id,producto.prepareToSend());
+  editar(entity: EntityInterface) {
+      let id = entity['id'];
+      return this.entityRESTClient.putOneById(id,entity.prepareToSend());
   }
   eliminar(id: number) {
       

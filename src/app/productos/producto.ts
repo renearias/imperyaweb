@@ -8,9 +8,9 @@ import {EntityInterface} from '../models/entity-interface';
 declare var moment: any;
 export class Producto extends Entity implements EntityInterface {
     public id: number;
-    public descripcion:	string = '';
-    public stock: number = 0;
-    public tipo: string = '';
+    public descripcion:	string;
+    public stock: number;
+    public tipo: string;
     //public fechaAlta: any;
     public referencia: string;
     public impuesto: number;

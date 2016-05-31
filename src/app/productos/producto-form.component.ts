@@ -23,7 +23,7 @@ declare var moment: any;
 export class ProductoFormComponent extends EntityFormComponent implements EntityFormComponentInterface{
   tipos: Array<string> = ['Bien', 'Servicio'];
   //model: any;
-  model: Producto;
+  model: Producto= new Producto('');
   service: ProductoService;
   constructor(router: Router, service: ProductoService) {
     super(router,service)    
@@ -37,62 +37,16 @@ export class ProductoFormComponent extends EntityFormComponent implements Entity
       }
     );
   }
-  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
-    
-    let isNew = currTree._root.children[0].children[0].children[0].value.stringifiedUrlSegments;
-    if (isNew=='new')
-    {
-        this.model=new Producto('');
-    }else
-    {
-        //let id = +curr.getParam('id');
-        let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
-        this.model=new Producto('');
-        this.labelForm= 'Editar';
-        this.labelButton= 'Actualizar';
-        this.service.get(id).subscribe(
-                                                       response => { 
-                                                            this.model=new Producto(response.json())
-                                                            this.editable=true;
-                                                            jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
-                                                            },
-                                                        error => {
-                                                                console.log(error);
-                                                        });
-    }
+  onPreEditLoadActions(){
+      jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
   }
   onSubmit() {
-   this.submitted = true; 
-   if (this.editable)
-   {
-       let algo = this.model.descripcion;
-       console.log('Descripción del producto a editar:' + algo);
-            this.service.editar(this.model).subscribe(
-                                                       response => { 
-                                                                console.log(response);
-                                                                console.log('se envi2o');
-                                                       },
-                                                        error => {
-                                                                console.log(error);
-                                                                console.log(error.json());
-                                                                
-                                                        });
-   }else{
-   
-        this.service.crear(this.model).subscribe(
-                                                       response => { 
-                                                                console.log(response);
-                                                                console.log('se envi2o');
-                                                       },
-                                                        error => {
-                                                                console.log(error);
-                                                                console.log(error.json());
-                                                                
-                                                        });
-       
-   }
    
    }
+   
+
+
+  
   // TODO: Remove this when we're done
   get diagnostic(){
       return JSON.stringify(this.model);

@@ -9,6 +9,9 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {Producto}  from './producto';
 import {ProductoService}  from './producto.service';
 import {ConfigService} from '../core/config';
+import {Observable} from "rxjs/Observable";
+import {Response} from '@angular/http';
+
 declare var jQuery: any;
 declare var moment: any;
 
@@ -35,15 +38,27 @@ export class ProductoDetailComponent implements OnActivate {
     //let id = +curr.getParam('id');
     let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
     //this.service.getProducto(id).then(producto => this.model = producto);
-    this.model=this.service.get(id).map(
-                                                        response => { 
-                                                            this.model = response.json();
+    this.model=this.service.get(id).subscribe(
+                                               response => { 
+                                                            this.extractData(response)
                                                         },
-                                                        error => {
-                                                                console.log(error);
+                                               error => {
+                                                            this.handleError(error);
                                                         });
     //this.selectedId=id;
     
   }
+  private extractData(res: Response) {
+    let body = res.json();
+    this.model= body || { };
+  }
+  private handleError (error: any) {
+    // In a real world app, we might use a remote logging infrastructure
+    // We'd also dig deeper into the error to get a better message
+    let errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg); // log to console instead
+    return Observable.throw(errMsg);
+  } 
 }
 
