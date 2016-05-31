@@ -1,8 +1,8 @@
 /*
  * Abner Saavedra
  */
- import {Tipoidentificacion} from '../models/tipo-identificacion'
- import {TipoPersona} from '../models/tipo-persona'
+ import {Tipoidentificacion} from '../models/tipo-identificacion';
+ import {TipoPersona} from '../models/tipo-persona';
  import {snakeToCamel} from '../components/helpers/stringFunctions';
  
  export class Cliente{
@@ -29,7 +29,7 @@
       if (typeof(r) != 'undefined')
       {
         var i=0;
-        for (i=0; i<Object.keys(r).length;i++)
+        for (i=0; i<Object.keys(r).length; i++)
         {
             this[snakeToCamel(Object.keys(r)[i])] = r[Object.keys(r)[i]];
         }
