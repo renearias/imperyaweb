@@ -6,7 +6,7 @@ import {Entity} from '../models/entity';
 import {EntityInterface} from '../models/entity-interface';
 
 declare var moment: any;
-export class Producto extends Entity implements EntityInterface{
+export class Producto extends Entity implements EntityInterface {
     public id: number;
     public descripcion:	string;
     public stock: number;

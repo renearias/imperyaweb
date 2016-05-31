@@ -17,16 +17,16 @@ export class FacturaService {
   getFacturas() { return heroesPromise; }
   getFactura(id: number | string) {
       
-    return this.facturaRESTClient.getFacturaById(id);
+    return this.facturaRESTClient.getOneById(id);
                       
     //return productoPromise;
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
   crearFactura(factura: Factura) {
-      return this.facturaRESTClient.postFactura(factura.prepareToSend());
+      return this.facturaRESTClient.post(factura.prepareToSend());
   }
   editarFactura(factura: Factura) {
       let id = factura['id'];
-      return this.facturaRESTClient.putFacturaById(id,factura.prepareToSend());
+      return this.facturaRESTClient.putOneById(id,factura.prepareToSend());
   }
 }

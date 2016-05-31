@@ -14,19 +14,23 @@ export class ClienteService {
   constructor(private authHttp: AuthHttp, private clienteRESTClient: ClienteRESTClient){
       
   }
-  getClientes() { return heroesPromise; }
+  getClientes() { 
+  
+      return this.clienteRESTClient.getAll(); 
+  
+  }
   getCliente(id: number | string) {
       
-    return this.clienteRESTClient.getClienteById(id);
+    return this.clienteRESTClient.getOneById(id);
                       
     //return clientePromise;
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
   crearCliente(cliente: Cliente) {
-      return this.clienteRESTClient.postCliente(cliente.prepareToSend());
+      return this.clienteRESTClient.post(cliente.prepareToSend());
   }
   editarCliente(cliente: Cliente) {
       let id = cliente['id'];
-      return this.clienteRESTClient.putClienteById(id,cliente.prepareToSend());
+      return this.clienteRESTClient.putOneById(id,cliente.prepareToSend());
   }
 }
