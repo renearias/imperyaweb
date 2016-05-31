@@ -15,11 +15,8 @@ declare var moment: any;
 
 @Component({
   selector: 'ingreso-detail',
-  //templateUrl: './ingreso-form.component.html'
-  //encapsulation: ViewEncapsulation.None,
   templateUrl: './app/ingresos/ingreso-detail.component.html',
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
-  //styles: [require('../components/forms-elements/forms-elements.scss')]
 })
 export class IngresoDetailComponent implements OnActivate {
    urlApi: string;

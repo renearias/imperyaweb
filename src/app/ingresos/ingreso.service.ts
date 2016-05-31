@@ -15,7 +15,7 @@ export class IngresoService {
   }
   getIngreso(id: number | string) {
       
-    return this.ingresoRESTClient.getIngresoById(id);
+      return this.ingresoRESTClient.getOneById(id);
                       
     //return ingresoPromise;
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
@@ -23,18 +23,18 @@ export class IngresoService {
   // Guardar ingresos
   crearIngreso( ingreso: Ingreso){
       ingreso.prepareToSend();
-      return this.ingresoRESTClient.postIngreso(ingreso);
+      return this.ingresoRESTClient.post(ingreso);
   }
   // Obtener todos los ingresos registrados
   getIngresos( sort?: string){
       
-     return this.ingresoRESTClient.getIngresos();
+      return this.ingresoRESTClient.getAll();
   }
   //Editar un ingreso seleccionado de la lista de ingresos
   editarIngreso(ingreso: Ingreso) {
       let id = ingreso['id'];
       ingreso.prepareToSend();
-      return this.ingresoRESTClient.putIngresoById(id,ingreso);
+      return this.ingresoRESTClient.putOneById(id,ingreso);
     
   }
 }

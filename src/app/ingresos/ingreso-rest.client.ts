@@ -2,7 +2,8 @@ import {Injectable} from "@angular/core";
 import {AuthHttp} from 'angular2-jwt';
 import {Observable} from "rxjs/Observable";
 import {Response} from '@angular/http';
-import {RESTClient, GET, PUT, POST, DELETE, BaseUrl, DefaultHeaders, Path, Body, Query} from '../rest/rest-client';
+import {RESTClient, GET, PUT,PATCH, POST, DELETE, BaseUrl, DefaultHeaders, Path, Body, Query} from '../rest/rest-client';
+import {EntityRESTClientInterface} from '../rest/entity-rest-client-interface';
 
 import {urlApi} from  '../http/http';
 import {Ingreso} from './ingreso';
@@ -13,7 +14,7 @@ import {Ingreso} from './ingreso';
     'Accept': 'application/json',
     'Content-Type': 'application/json'
 })
-export class IngresoRESTClient extends RESTClient {
+export class IngresoRESTClient extends RESTClient implements EntityRESTClientInterface {
 
     /*protected requestInterceptor(req: Request) {
         if (SessionFactory.getInstance().isAuthenticated) {
@@ -31,18 +32,21 @@ export class IngresoRESTClient extends RESTClient {
     
 
     @GET("ingresos/")
-    public getIngresos( @Query("sort") sort?: string): Observable<Response> { return null; };
+    public getAll( @Query("sort") sort?: string): Observable<Response> { return null; };
 
     @GET("ingresos/{id}")
-    public getIngresoById( @Path("id") id: number | string): Observable<Response> { return null; };
+    public getOneById( @Path("id") id: number | string): Observable<Response> { return null; };
 
     @POST("ingresos")
-    public postIngreso( @Body ingreso: Ingreso): Observable<Response> { return null; };
+    public post( @Body ingreso: Ingreso): Observable<Response> { return null; };
 
     @PUT("ingresos/{id}")
-    public putIngresoById( @Path("id") id: number | string, @Body ingreso: Ingreso): Observable<Response> { return null; };
+    public putOneById( @Path("id") id: number | string, @Body ingreso: Ingreso): Observable<Response> { return null; };
+    
+    @PATCH("ingresos/{id}")
+    public patchOneById( @Path("id") id: number | string, @Body ingreso: Ingreso): Observable<Response> { return null; };
 
     @DELETE("ingresos/{id}")
-    public deleteIngresoById( @Path("id") id: number | string): Observable<Response> { return null; };
+    public deleteOneById( @Path("id") id: number | string): Observable<Response> { return null; };
 
 }

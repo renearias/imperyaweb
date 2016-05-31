@@ -5,9 +5,11 @@ import {dateToApiDate} from '../components/helpers/dateTimeFunctions';
 import {FormasPagos} from '../models/formas-pagos'
 import {Cliente} from '../clients/cliente'
 import {snakeToCamel} from '../components/helpers/stringFunctions';
+import {Entity} from '../models/entity';
+import {EntityInterface} from '../models/entity-interface';
 declare var moment: any;
 
-export class Ingreso {
+export class Ingreso extends Entity implements EntityInterface {
   
     public forma_pago: FormasPagos;
     public id: number;
@@ -21,24 +23,18 @@ export class Ingreso {
    
     constructor( r?:any, public fecha?: any ) {
         
-        this.id_cliente = this.cliente.id;
-  
-  if (typeof(r) != 'undefined')
-      {
-        var i=0;
-        for (i=0; i<Object.keys(r).length;i++)
-        {
-            this[snakeToCamel(Object.keys(r)[i])] = r[Object.keys(r)[i]];
-        }
-      }
+      super(r); 
       this.fecha = moment().format('YYYY-MM-DDThh:mm');
+      this.id_cliente = this.cliente.id;
     }
     
     public prepareToSend()
   {
+      let ingresoPrepared: Ingreso = new Ingreso(this);
       this.fecha=dateToApiDate(this.fecha);
       delete this['id'];
       delete this['atributos'];
+      return ingresoPrepared;
   }
 }
 

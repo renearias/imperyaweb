@@ -3,6 +3,7 @@ import {AuthHttp} from 'angular2-jwt';
 import {Observable} from "rxjs/Observable";
 import {Response} from '@angular/http';
 import {RESTClient, GET, PUT, PATCH, POST, DELETE, BaseUrl, DefaultHeaders, Path, Body, Query} from '../rest/rest-client';
+import {EntityRESTClientInterface} from '../rest/entity-rest-client-interface'
 
 import {urlApi} from  '../http/http';
 import {Cliente} from './cliente';
@@ -31,21 +32,21 @@ export class ClienteRESTClient extends RESTClient {
     
 
     @GET("clientes/")
-    public getClientes( @Query("sort") sort?: string): Observable<Response> { return null; };
+    public getAll( @Query("sort") sort?: string): Observable<Response> { return null; };
 
     @GET("clientes/{id}")
-    public getClienteById( @Path("id") id: number | string): Observable<Response> { return null; };
+    public getOneById( @Path("id") id: number | string): Observable<Response> { return null; };
 
     @POST("clientes")
-    public postCliente( @Body cliente: Cliente): Observable<Response> { return null; };
+    public post( @Body cliente: Cliente): Observable<Response> { return null; };
 
     @PUT("clientes/{id}")
-    public putClienteById( @Path("id") id: number | string, @Body cliente: Cliente): Observable<Response> { return null; };
+    public putOneById( @Path("id") id: number | string, @Body cliente: Cliente): Observable<Response> { return null; };
     
     @PATCH("clientes/{id}")
-    public patchClienteById( @Path("id") id: number | string, @Body cliente: Cliente): Observable<Response> { return null; };
+    public patchOneById( @Path("id") id: number | string, @Body cliente: Cliente): Observable<Response> { return null; };
 
     @DELETE("clientes/{id}")
-    public deleteClienteById( @Path("id") id: number | string): Observable<Response> { return null; };
+    public deleteOneById( @Path("id") id: number | string): Observable<Response> { return null; };
 
 }

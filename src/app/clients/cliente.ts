@@ -3,9 +3,10 @@
  */
  import {Tipoidentificacion} from '../models/tipo-identificacion';
  import {TipoPersona} from '../models/tipo-persona';
- import {snakeToCamel} from '../components/helpers/stringFunctions';
+ import {Entity} from '../models/entity';
+ import {EntityInterface} from '../models/entity-interface';
  
- export class Cliente{
+ export class Cliente extends Entity implements EntityInterface {
      
      public tipoidentificacionid: Tipoidentificacion;
      public tipopersonaid: TipoPersona;
@@ -26,14 +27,7 @@
      constructor( r?:any)
   {
       
-      if (typeof(r) != 'undefined')
-      {
-        var i=0;
-        for (i=0; i<Object.keys(r).length; i++)
-        {
-            this[snakeToCamel(Object.keys(r)[i])] = r[Object.keys(r)[i]];
-        }
-      }
+      super(r);
   }
   public prepareToSend(): Cliente
   {
