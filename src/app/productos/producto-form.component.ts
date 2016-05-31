@@ -22,7 +22,6 @@ declare var moment: any;
 })
 export class ProductoFormComponent extends EntityFormComponent implements EntityFormComponentInterface{
   tipos: Array<string> = ['Bien', 'Servicio'];
-  //model: any;
   model: Producto= new Producto('');
   service: ProductoService;
   constructor(router: Router, service: ProductoService) {
@@ -40,14 +39,6 @@ export class ProductoFormComponent extends EntityFormComponent implements Entity
   onPreEditLoadActions(){
       jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
   }
-  onSubmit() {
-   
-   }
-   
-
-
-  
-  // TODO: Remove this when we're done
   get diagnostic(){
       return JSON.stringify(this.model);
       }

@@ -28,7 +28,7 @@ export class ProductosIndexPage {
                  {'title': 'Stock', 'data': 'stock' }
                  ];
     routeActions = 'app/productos/';
-    constructor(config: ConfigService, router: Router, private element: ElementRef, private location: Location) {
+    constructor(config: ConfigService, router: Router) {
         this.urlApi = config.config.urlApi + 'api/productos';
         this.router = router;
    }
