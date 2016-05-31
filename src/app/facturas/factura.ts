@@ -4,7 +4,7 @@
 import {dateToApiDate} from '../components/helpers/dateTimeFunctions';
 import {snakeToCamel} from '../components/helpers/stringFunctions';
 declare var moment: any;
-export class Factura {
+export class Factura extends Entity implements EntityInterface{
     public idcliente: number;
     public legal: number;
     public sub_total: string;

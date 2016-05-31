@@ -13,7 +13,7 @@ import {Factura} from './factura';
     'Accept': 'application/json',
     'Content-Type': 'application/json'
 })
-export class FacturaRESTClient extends RESTClient {
+export class FacturaRESTClient extends RESTClient implements EntityRESTClientInterface{
     public constructor( protected authHttp: AuthHttp) {
         super(authHttp);
     }
