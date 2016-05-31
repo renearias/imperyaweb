@@ -29,7 +29,7 @@
       if (typeof(r) != 'undefined')
       {
         var i=0;
-        for (i=0; i<Object.keys(r).length;i++)
+        for (i=0; i<Object.keys(r).length; i++)
         {
             this[snakeToCamel(Object.keys(r)[i])] = r[Object.keys(r)[i]];
         }

@@ -30,22 +30,22 @@ export class ClienteRESTClient extends RESTClient {
     }
     
 
-    @GET("clients/")
+    @GET("clientes/")
     public getClientes( @Query("sort") sort?: string): Observable<Response> { return null; };
 
-    @GET("clients/{id}")
+    @GET("clientes/{id}")
     public getClienteById( @Path("id") id: number | string): Observable<Response> { return null; };
 
-    @POST("clients")
+    @POST("clientes")
     public postCliente( @Body cliente: Cliente): Observable<Response> { return null; };
 
-    @PUT("clients/{id}")
+    @PUT("clientes/{id}")
     public putClienteById( @Path("id") id: number | string, @Body cliente: Cliente): Observable<Response> { return null; };
     
-    @PATCH("clients/{id}")
+    @PATCH("clientes/{id}")
     public patchClienteById( @Path("id") id: number | string, @Body cliente: Cliente): Observable<Response> { return null; };
 
-    @DELETE("clients/{id}")
+    @DELETE("clientes/{id}")
     public deleteClienteById( @Path("id") id: number | string): Observable<Response> { return null; };
 
 }

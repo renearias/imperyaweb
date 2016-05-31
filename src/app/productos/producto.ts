@@ -5,7 +5,7 @@ import {dateToApiDate} from '../components/helpers/dateTimeFunctions';
 import {snakeToCamel} from '../components/helpers/stringFunctions';
 declare var moment: any;
 export class Producto {
-    //public id: number = 0;
+    public id: number;
     public descripcion:	string = '';
     public stock: number = 0;
     public tipo: string = '';
