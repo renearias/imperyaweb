@@ -14,7 +14,7 @@ import {Cliente} from './cliente';
     'Accept': 'application/json',
     'Content-Type': 'application/json'
 })
-export class ClienteRESTClient extends RESTClient {
+export class ClienteRESTClient extends RESTClient implements EntityRESTClientInterface {
 
     /*protected requestInterceptor(req: Request) {
         if (SessionFactory.getInstance().isAuthenticated) {
