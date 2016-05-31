@@ -1,16 +1,15 @@
 import {Injectable} from '@angular/core';
-import {Producto} from './producto';
 import {AuthHttp} from 'angular2-jwt';
 import {urlApi} from  '../http/http';
-import {ProductoRESTClient} from './producto-rest.client';
+import {EntityInterface} from  '../models/entity-interface';
+import {EntityRESTClientInterface} from '../rest/entity-rest-client-interface';
 
-  export interface EntityServiceInterface {
-    
-  constructor(private authHttp: AuthHttp, private entityRESTClient: EntityRESTClient){
-      
-  }
-  get(id: number | string) {  }
-  crear(entity: Entity) {  }
-  editar(entity: Entity) {  }
+export interface EntityServiceInterface {
+  
+  getAll(id: number | string): any;
+  get(id: number | string): any;
+  crear(entity: EntityInterface): any;
+  editar(entity: EntityInterface): any;
+  eliminar(id: number | string): any;
 }
 

@@ -6,8 +6,8 @@ import {Navbar} from './navbar/navbar';
 import {ChatSidebar} from './chat-sidebar/chat-sidebar';
 import {AnotherPage} from './../another/another';
 import {Dashboard} from './../dashboard/dashboard';
-import {ProductsPage} from './../productos/products';
-import {InvoicePage} from './../invoice/invoice';
+import {ProductosPage} from './../productos/productos';
+import {FacturasPage} from './../facturas/facturas';
 import {ClientsPage} from './../clients/clients';
 import {ProvidersPage} from './../providers/providers';
 import {OrdersPage} from './../orders/orders';
@@ -39,8 +39,8 @@ declare var Tether: any;
 @Routes([
   { path: '/dashboard', component: Dashboard },
   { path: '/another-page', component: AnotherPage},
-  { path: '/productos', component: ProductsPage},
-  { path: '/facturas', component: InvoicePage},
+  { path: '/productos', component: ProductosPage},
+  { path: '/facturas', component: FacturasPage},
   { path: '/clientes', component: ClientsPage},
   { path: '/proovedores', component: ProvidersPage},
   { path: '/orders', component: OrdersPage},

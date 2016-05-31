@@ -8,6 +8,8 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {OnActivate, Router, RouteTree, RouteSegment, ROUTER_DIRECTIVES } from '@angular/router';
 import {Producto}  from './producto';
 import {ProductoService}  from './producto.service';
+import {EntityFormComponentInterface} from '../components/crud/entity-form.component-interface';
+import {EntityFormComponent} from '../components/crud/entity-form.component';
 declare var jQuery: any;
 declare var moment: any;
 
@@ -18,17 +20,13 @@ declare var moment: any;
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
-export class ProductoFormComponent implements OnActivate{
+export class ProductoFormComponent extends EntityFormComponent implements EntityFormComponentInterface{
   tipos: Array<string> = ['Bien', 'Servicio'];
   //model: any;
   model: Producto;
-  editable: boolean= false;
-  labelForm: string= 'Crear';
-  labelButton: string= 'Crear';
-  submitted: boolean= false;
-  constructor(private router: Router, private service: ProductoService) {
-        
-        
+  service: ProductoService;
+  constructor(router: Router, service: ProductoService) {
+    super(router,service)    
    }
   
   ngAfterViewInit(): void {
@@ -52,7 +50,7 @@ export class ProductoFormComponent implements OnActivate{
         this.model=new Producto('');
         this.labelForm= 'Editar';
         this.labelButton= 'Actualizar';
-        this.service.getProducto(id).subscribe(
+        this.service.get(id).subscribe(
                                                        response => { 
                                                             this.model=new Producto(response.json())
                                                             this.editable=true;
@@ -62,16 +60,6 @@ export class ProductoFormComponent implements OnActivate{
                                                                 console.log(error);
                                                         });
     }
-    
-    /*this.model=this.service.getProducto(id).subscribe(
-                                                        response => { 
-                                                            this.model = response.json();
-                                                        },
-                                                        error => {
-                                                                console.log(error);
-                                                        });*/
-    
-    
   }
   onSubmit() {
    this.submitted = true; 
@@ -79,7 +67,7 @@ export class ProductoFormComponent implements OnActivate{
    {
        let algo = this.model.descripcion;
        console.log('Descripción del producto a editar:' + algo);
-            this.service.editarProducto(this.model).subscribe(
+            this.service.editar(this.model).subscribe(
                                                        response => { 
                                                                 console.log(response);
                                                                 console.log('se envi2o');
@@ -91,7 +79,7 @@ export class ProductoFormComponent implements OnActivate{
                                                         });
    }else{
    
-        this.service.crearProducto(this.model).subscribe(
+        this.service.crear(this.model).subscribe(
                                                        response => { 
                                                                 console.log(response);
                                                                 console.log('se envi2o');

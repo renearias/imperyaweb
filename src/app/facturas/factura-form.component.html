@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-6">
+    <section widget class="widget">
+      <header>
+        <h6>
+          <i class="fa fa-factura-hunt"></i>  
+          {{labelForm}} <span class="fw-semi-bold">Factura</span>
+        </h6>
+        <div class="widget-controls">
+          <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+          <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+          <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>
+      </header>
+      <div class="widget-body">
+        <form class="form-horizontal form-label-left" (ngSubmit)="onSubmit()"  role="form">
+          <fieldset>
+            <legend>Ingrese los datos</legend>
+            <div class="form-group row">
+              <label class="col-md-4 col-xs-12 form-control-label" for="descripcion">Cliente</label>
+               <div class="col-md-8 col-xs-12">
+              <input type="text" class="form-control" required  [(ngModel)]="model.id_cliente" >
+              </div>
+            </div>
+            <!-- <div class="form-group row">
+              <label class="col-md-4 col-xs-12 form-control-label" for="descripcion_corta">Descripcion Corta</label>
+               <div class="col-md-8 col-xs-12">
+              <input type="text" class="form-control" required  [(ngModel)]="model.descripcionCorta" >
+              </div>
+            </div>      
+            <div class="form-group row">
+              <label class="col-md-4 col-xs-12 form-control-label" for="stock">Stock</label>
+               <div class="col-md-8 col-xs-12">
+              <input type="text" class="form-control" [(ngModel)]="model.stock">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-xs-12 form-control-label" for="tipo">Tipo</label>
+              <div class="col-md-8 col-xs-12">
+              <select data-minimum-results-for-search="10"
+                      data-placeholder="Seleccione Tipo..."
+                      class="select2 form-control"
+                      tabindex="-1"
+                      name="tipo"
+                      required
+                      [(ngModel)]="model.tipo">
+                <option value=""></option>  
+                <option *ngFor="let t of tipos" [value]="t">{{t}}</option>
+              </select>
+              </div>    
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-xs-12 form-control-label" for="fechaAlta">Fecha</label>
+              <div class="col-md-8 col-xs-12">
+                <input type="date" class="form-control" [(ngModel)]="model.fechaAlta">
+              </div>
+            </div>    -->
+          </fieldset>     
+          <button type="submit" class="btn btn-default">{{labelButton}}</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+<a class="btn btn-default" href="#" [routerLink]="['/app/facturas']">Regresar a la Lista</a>
