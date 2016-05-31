@@ -16,6 +16,7 @@ import 'ng2-datetime/src/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js
 import 'ng2-datetime/src/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js';
 
 import 'pace';
+import 'rxjs/add/operator/map';
 
 import {provide, enableProdMode} from '@angular/core';
 import {NgControl} from '@angular/common';
