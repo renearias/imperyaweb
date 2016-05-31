@@ -28,6 +28,7 @@
       
       if (typeof(r) != 'undefined')
       {
+        console.log(Object.keys(r))
         var i=0;
         for (i=0; i<Object.keys(r).length;i++)
         {
