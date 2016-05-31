@@ -8,7 +8,7 @@ import {ClienteRESTClient}  from './cliente-rest.client';
 import {AuthHttp} from 'angular2-jwt';
 
 @Component({
-	selector: 'products',
+	selector: 'clientes',
 	templateUrl: './app/clients/clients.html',
         directives: [ROUTER_DIRECTIVES, ClienteFormComponent, ClientesIndexPage],
         viewProviders: [ClienteService, ClienteRESTClient],

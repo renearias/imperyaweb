@@ -8,8 +8,8 @@ import {ProductoRESTClient}  from './producto-rest.client';
 import {AuthHttp} from 'angular2-jwt';
 
 @Component({
-	selector: 'products',
-	templateUrl: './app/productos/products.html',
+	selector: 'productos',
+	templateUrl: './app/productos/productos.html',
         directives: [ROUTER_DIRECTIVES, ProductoFormComponent, ProductosIndexPage],
         viewProviders: [ProductoService, ProductoRESTClient],
 })
@@ -18,5 +18,5 @@ import {AuthHttp} from 'angular2-jwt';
   { path: '/new', component: ProductoFormComponent },
   { path: '/:id', component: ProductoShowComponent },
 ])
-export class ProductsPage {
+export class ProductosPage {
 }
