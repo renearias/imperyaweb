@@ -35,7 +35,7 @@ export class ProductoDetailComponent implements OnActivate {
     //let id = +curr.getParam('id');
     let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
     //this.service.getProducto(id).then(producto => this.model = producto);
-    this.model=this.service.getProducto(id).map(
+    this.model=this.service.get(id).map(
                                                         response => { 
                                                             this.model = response.json();
                                                         },
