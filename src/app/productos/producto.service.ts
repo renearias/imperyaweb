@@ -17,16 +17,16 @@ export class ProductoService {
   getProductos() { return heroesPromise; }
   getProducto(id: number | string) {
       
-    return this.productoRESTClient.getProductoById(id);
+    return this.productoRESTClient.getOneById(id);
                       
     //return productoPromise;
       //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
   crearProducto(producto: Producto) {
-      return this.productoRESTClient.postProducto(producto.prepareToSend());
+      return this.productoRESTClient.post(producto.prepareToSend());
   }
   editarProducto(producto: Producto) {
       let id = producto['id'];
-      return this.productoRESTClient.putProductoById(id,producto.prepareToSend());
+      return this.productoRESTClient.putOneById(id,producto.prepareToSend());
   }
 }
