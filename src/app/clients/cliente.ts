@@ -1,8 +1,8 @@
 /*
  * Abner Saavedra
  */
- import {Tipoidentificacion} from '../models/tipo-identificacion'
- import {TipoPersona} from '../models/tipo-persona'
+ import {Tipoidentificacion} from '../models/tipo-identificacion';
+ import {TipoPersona} from '../models/tipo-persona';
  import {snakeToCamel} from '../components/helpers/stringFunctions';
  
  export class Cliente{
