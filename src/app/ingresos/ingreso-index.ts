@@ -27,11 +27,24 @@ export class IngresosIndexPage {
                  {'title': 'Forma de Pago', 'data': 'formaPago.formaPago'},
                  {'title': 'Cobrado Por', 'data': 'collectedby.name'}
                  ];
+     footercallback: any;
+    
     routeActions = 'app/ingresos/';
     constructor(config: ConfigService ) {
         this.urlApi = config.config.urlApi + 'api/ingresos';
    }
    ngOnInit(): void {
+       
+       this.footercallback = function footerCallback( tfoot, data, start, end, display ){
+        
+        var api = this.api();
+        $( api.column( 2 ).footer() ).html(
+        api.column( 2 ).data().reduce( function ( a, b ) {
+            return a + b;
+        }, 0 )
+    );
+        
+    };
 
   }
 }
