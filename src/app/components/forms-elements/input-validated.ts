@@ -15,7 +15,7 @@ declare var jQuery: any;
 declare var moment: any;
 
 @Component({
-  selector: 'parsley-error-list',
+  selector: 'input-validated',
   template: require('./input-validated.html'),
   directives: [FORM_DIRECTIVES]
   })
