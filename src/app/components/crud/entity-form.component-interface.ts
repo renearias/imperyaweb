@@ -18,13 +18,13 @@ export interface EntityFormComponentInterface extends OnActivate{
   submitted: boolean;
   router: Router;
   service: EntityServiceInterface;
-  extractData(res: Response);
-  handleError (error: any);
-  onSubmit();
-  onCreateAction();
-  onPreEditAction(id: number | string);
-  onPreEditLoadActions();
-  onEditAction(); 
+  onPreEditAction(id: number | string): any;
+  onPreEditLoadActions(): any;
+  extractData(res: Response): any;
+  handleError (error: Response): any;
+  onSubmit(): any;
+  onCreateAction(res: Response): any;
+  onEditAction(res: Response): any;
 }
 interface EntityFormComponentInterfaceConstructor {
     new (router: Router): EntityFormComponentInterface;

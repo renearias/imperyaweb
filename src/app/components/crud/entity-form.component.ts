@@ -82,7 +82,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
 
    }
    }
-   onCreateAction(){};
+   onCreateAction(res: Response){};
    onPreEditAction(id: number | string){
        this.labelForm= 'Editar';
        this.labelButton= 'Actualizar';
@@ -97,7 +97,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
                                                   });
    }; 
    onPreEditLoadActions(){};
-   onEditAction(){}; 
+   onEditAction(res: Response){}; 
    extractData(res: Response) {
     let body = res.json();
     this.model.constructor(body);
