@@ -24,7 +24,9 @@ export class InputValidated implements OnInit{
   @Input() inputName: any;  
   @Input() inputValue: any;
   @Input() inputType: string ='text';
+  @Input() inputErrors: any;
   @Input() form :NgForm;
+  
   @Output() inputValueChange: EventEmitter<any> = new EventEmitter();
   ngOnInit(){
       this.form.control.addControl(this.inputName,new Control('',Validators.required));
@@ -32,7 +34,6 @@ export class InputValidated implements OnInit{
   onChange(newValue) {
     this.inputValue = newValue;
     this.inputValueChange.emit(newValue);
-    
   }
   
 }

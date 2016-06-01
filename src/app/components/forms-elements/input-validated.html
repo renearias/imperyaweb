@@ -4,6 +4,6 @@
                              [ngFormControl]="form.controls[inputName]"
                              #{{inputName}}="ngForm"
                              required>
-<ul [hidden]="form.controls[inputName].valid || form.controls[inputName].pristine" class="parsley-errors-list filled">
+<ul [hidden]="(form.controls[inputName].valid) || form.controls[inputName].pristine" class="parsley-errors-list filled">
                 <li class="parsley-required">Este valor es requerido.</li>
 </ul>

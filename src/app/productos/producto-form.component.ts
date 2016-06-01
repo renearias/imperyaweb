@@ -27,7 +27,7 @@ export class ProductoFormComponent extends EntityFormComponent implements Entity
   service: ProductoService;
   errors: any;
   constructor(router: Router, service: ProductoService, cdr: ChangeDetectorRef) {
-    super(router,service,cdr)    
+    super(router, service, cdr)    
    }
   ngAfterViewInit(): void {
     jQuery('.select2').select2();
