@@ -31,9 +31,9 @@ export class DynamicDataTable {
         this._columns.push(columnAction(this._routeActions));
         var routerI = this.router;
         var footerCallback = this._footerCallback;
-        var footer = this.$el.tfoot({
+        /*var footer = this.$el.tfoot({
             
-        });
+        });*/
         var oTable = this.$el.dataTable(
                 {
                     //'order': [[ 0, 'asc' ]],
