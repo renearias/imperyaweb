@@ -63,7 +63,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
         if (this.editable)
         {
             let message = Messenger().post({
-                          message: "Actualizando registro...",
+                          message: "Actualizando registro <i class='fa fa-spinner animated rotateSpin'></i>",
                           type: "info"
                         })
             this.service.editar(this.model)

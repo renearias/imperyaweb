@@ -12,6 +12,23 @@
 @import "../../../../node_modules/bootstrap/scss/mixins";
 @import "../ui-notifications/ui-notifications";
 
+@keyframes rotateSpin {
+  from {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, -360deg);
+    //opacity: 0;
+  }
+
+  to {
+    transform-origin: center;
+    transform: none;
+   // opacity: 1;
+  }
+}
+
+.rotateSpin {
+  animation-name: rotateSpin;
+}
 /***********************************/
 /**            ERRORS            **/
 /***********************************/
