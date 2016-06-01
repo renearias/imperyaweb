@@ -14,6 +14,7 @@ import {EntityFormComponentInterface} from './entity-form.component-interface';
 import {Observable} from "rxjs/Observable";
 import {Response} from '@angular/http';
 declare var jQuery: any;
+declare var Messenger: any;
 declare var moment: any;
 
 
@@ -61,10 +62,14 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
         this.submitted = true;
         if (this.editable)
         {
+            let message = Messenger().post({
+                          message: "Actualizando registro...",
+                          type: "info"
+                        })
             this.service.editar(this.model)
                         .subscribe(
                                    response => { 
-                                       this.onEditAction(response);
+                                       this.onEditAction(response, message);
                                    },
                                     error => {
                                             this.handleError(error);
@@ -100,19 +105,39 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
                                                   });
    }; 
    onPreEditLoadActions(){};
-   onEditAction(res: Response){}; 
+   onEditAction(res: Response, message?){
+       
+       message.update({
+                          message: "El registro se actualizó correctamente",
+                          type: "success",
+                          showCloseButton: true
+                        })
+   }; 
    extractData(res: Response) {
     let body = res.json();
     this.model.constructor(body);
     return body || { };
    }
    onDeleteAction(id: number | string){
+       let message = Messenger().post({
+                          message: "Eliminando registro...",
+                          type: "info"
+                        })
        this.service.eliminar(id).subscribe(
                                        response => { 
+                                                message.update({
+                                                      message: "Registro eliminado correctamente",
+                                                      type: "error",
+                                                      showCloseButton: true
+                                                    })
                                                 this.router.navigate(['/app',this.routeSegment])
                                               },
                                         error =>{
-                                                  console.log('Ocurrio un error al Eliminar')
+                                                  message.update({
+                                                      message: "Ocurrió un error al eliminar",
+                                                      type: "error",
+                                                      showCloseButton: true
+                                                    })
                                                   //this.handleError(error);
                                                });
    }

@@ -8,6 +8,11 @@ import {RegisterPage} from './app/register/register';
 import {token} from './app/http/http';
 import {Auth} from './app/auth';
 declare var jQuery: any;
+declare var Messenger: any;
+
+let theme = 'air';
+//jQuery.globalMessenger({ theme: theme });
+Messenger.options = { theme: theme  };
 
 @Component({
   selector: 'body',

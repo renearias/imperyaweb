@@ -15,8 +15,8 @@ import 'select2/select2.js';
 import 'ng2-datetime/src/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js';
 import 'ng2-datetime/src/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js';
 
-import 'messenger/build/js/messenger.js';
-import 'messenger/docs/welcome/javascripts/location-sel.js';
+import 'messenger/build/js/messenger.min.js';
+//import 'messenger/docs/welcome/javascripts/location-sel.js';
 
 import 'pace';
 import 'rxjs/add/operator/map';

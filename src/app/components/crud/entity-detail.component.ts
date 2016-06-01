@@ -13,6 +13,9 @@ import {EntityDetailComponentInterface} from './entity-detail.component-interfac
 import {Observable} from "rxjs/Observable";
 import {Response} from '@angular/http';
 
+declare var jQuery: any;
+declare var Messenger: any;
+
 export class EntityDetailComponent implements EntityDetailComponentInterface {
    urlApi: string;
    selectedId:number;
@@ -37,12 +40,25 @@ export class EntityDetailComponent implements EntityDetailComponentInterface {
                                                         });
   }
   onDeleteAction(id: number | string){
+       let message = Messenger().post({
+                          message: "Eliminando registro...",
+                          type: "info"
+                        })
        this.service.eliminar(id).subscribe(
                                        response => { 
+                                                message.update({
+                                                      message: "Registro eliminado correctamente",
+                                                      type: "error",
+                                                      showCloseButton: true
+                                                    })
                                                 this.router.navigate(['/app',this.routeSegment])
                                               },
                                         error =>{
-                                                  console.log('Ocurrio un error al Eliminar')
+                                                  message.update({
+                                                      message: "Ocurrió un error al eliminar",
+                                                      type: "error",
+                                                      showCloseButton: true
+                                                    })
                                                   //this.handleError(error);
                                                });
    }
