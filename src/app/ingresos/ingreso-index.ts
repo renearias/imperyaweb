@@ -37,13 +37,6 @@ export class IngresosIndexPage {
        
        this.footerCallback = function footerCallback( tfoot, data, start, end, display ){
         
-        var api = this.api();
-        $( api.column( 2 ).footer() ).html(
-        api.column( 2 ).data().reduce( function ( a, b ) {
-            return a + b;
-        }, 0 )
-    );
-        
     };
 
   }

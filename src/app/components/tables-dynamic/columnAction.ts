@@ -23,6 +23,24 @@ export function columnDateTime(name, field, dateFormat?: string) {
                         }
             };
 }
+
+function footerCallback( tfoot, data, start, end, display ){
+        
+    
+        
+ };
+ 
+ export function tfoot(){
+     
+     var tfootString = '';
+     tfootString += '<tfoot><tr>' +
+                '<th colspan="4" style="text-align:right">'+   + '</th>' +
+                '<th></th>' +
+            '</tr>' +
+        '</tfoot>';
+     
+ }
+
 export function columnAction(ruta) {
      return {
     //'contentPadding': '{{ column.padding }}',
@@ -46,6 +64,7 @@ export function columnAction(ruta) {
                       '';
         actionsString += '</div>'; ///endhtml
         return actionsString;
+        
         }
     }
 };
