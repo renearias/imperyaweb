@@ -27,7 +27,7 @@ export class IngresosIndexPage {
                  {'title': 'Forma de Pago', 'data': 'formaPago.formaPago'},
                  {'title': 'Cobrado Por', 'data': 'collectedby.name'}
                  ];
-     footercallback: any;
+     footerCallback: any;
     
     routeActions = 'app/ingresos/';
     constructor(config: ConfigService ) {
@@ -35,7 +35,7 @@ export class IngresosIndexPage {
    }
    ngOnInit(): void {
        
-       this.footercallback = function footerCallback( tfoot, data, start, end, display ){
+       this.footerCallback = function footerCallback( tfoot, data, start, end, display ){
         
         var api = this.api();
         $( api.column( 2 ).footer() ).html(

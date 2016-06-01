@@ -10,7 +10,7 @@ export class DynamicDataTable {
     _routeActions: string = '';
     el: HTMLElement;
     private _columns: any = [];
-    private _footercallback: any;
+    private _footerCallback: any;
     constructor( el: ElementRef, private router: Router) {
         this.el = el.nativeElement;
         this.$el = jQuery(this.el);
@@ -22,7 +22,7 @@ export class DynamicDataTable {
        this._columns = columns || this._columns;
         }
    @Input() set footer(footer: any){
-          this._footercallback = footer || this._footercallback;
+          this._footerCallback = footer || this._footerCallback;
         }
    @Input() set urlApi(urlApi: string){
           this._urlApi = urlApi || this._urlApi;
@@ -30,7 +30,7 @@ export class DynamicDataTable {
    ngOnInit(): void {
         this._columns.push(columnAction(this._routeActions));
         var routerI = this.router;
-        var footercallback = this._footercallback;
+        var footerCallback = this._footerCallback;
         var footer = this.$el.tfoot({
             
         });
@@ -49,7 +49,7 @@ export class DynamicDataTable {
                     'serverSide': true,
                     'responsive': true,
                     'columns': this._columns,
-                    'footercallback': this._footercallback,
+                    'footercallback': this._footerCallback,
                     'ajax': {
                         'url': this._urlApi,
                         'type': 'GET',
