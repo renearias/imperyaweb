@@ -81,3 +81,4 @@
   </div>
 </div>
 <a class="btn btn-default" href="#" [routerLink]="['/app/productos']">Regresar a la Lista</a>
+<a *ngIf="editable" class="btn btn-default" (click)="onDeleteAction(model.id)">Eliminar</a>

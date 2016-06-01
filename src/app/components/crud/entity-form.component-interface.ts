@@ -17,11 +17,13 @@ export interface EntityFormComponentInterface extends OnActivate{
   labelButton: string;
   submitted: boolean;
   router: Router;
+  routeSegment: string;
   service: EntityServiceInterface;
+  errors: any;
   onPreEditAction(id: number | string): any;
   onPreEditLoadActions(): any;
   extractData(res: Response): any;
-  handleError (error: Response): any;
+  handleError (error: any): any;
   onSubmit(): any;
   onCreateAction(res: Response): any;
   onEditAction(res: Response): any;
