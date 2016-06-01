@@ -1,7 +1,7 @@
 /* 
  *  Rene Arias
  */
-import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import {Component, ViewEncapsulation, AfterViewInit, ChangeDetectorRef} from '@angular/core';
 import { NgForm }    from '@angular/common';
 import {Widget} from '../../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
@@ -26,12 +26,18 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
   submitted: boolean= false;
   router: Router;
   service: EntityServiceInterface;
+  cdr: ChangeDetectorRef;
   errors: any;
-  constructor(router: Router, service: EntityServiceInterface) {
+  constructor(router: Router, service: EntityServiceInterface, cdr: ChangeDetectorRef) {
        this.router= router;
        this.service= service;
+       this.cdr= cdr;
+
    }
-  
+   
+  ngOnInit() {
+    this.cdr.detectChanges();
+  }
   ngAfterViewInit(): void {
     jQuery('.select2').select2();
     jQuery('.select2').on(

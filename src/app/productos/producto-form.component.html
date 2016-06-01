@@ -13,26 +13,36 @@
         </div>
       </header>
       <div class="widget-body">
-        <form class="form-horizontal form-label-left" (ngSubmit)="onSubmit()"  role="form">
+        <form class="form-horizontal form-label-left" (ngSubmit)="onSubmit()"  #form="ngForm" role="form">
             <fieldset>
             <legend>Ingrese los datos</legend>
-            <!-- {{diagnostic}} -->
+            {{diagnostic}}
       <div class="form-group row">
         <label class="col-md-4 col-xs-12 form-control-label" for="descripcion">Descripcion</label>
          <div class="col-md-8 col-xs-12">
-        <input type="text" class="form-control" required  [(ngModel)]="model.descripcion" >
+        <input type="text" class="form-control" required  [(ngModel)]="model.descripcion" ngControl="descripcion" #descripcion="ngForm" >
+        <ul [hidden]="descripcion.valid || descripcion.pristine" class="parsley-errors-list filled">
+                <li class="parsley-required">Este valor es requerido.</li>
+        </ul>       
         </div>
       </div>
       <div class="form-group row">
         <label class="col-md-4 col-xs-12 form-control-label" for="descripcion_corta">Descripcion Corta</label>
          <div class="col-md-8 col-xs-12">
         <input type="text" class="form-control" required  [(ngModel)]="model.descripcionCorta" >
+        
         </div>
       </div>      
       <div class="form-group row">
-        <label class="col-md-4 col-xs-12 form-control-label" for="stock">Stock</label>
+        <label class="col-md-4 col-xs-12 form-control-label" for="stock">
+            Stock
+             <span class="help-block">
+                                     El valor debe ser numerico
+             </span>
+        </label>
          <div class="col-md-8 col-xs-12">
-        <input type="text" class="form-control" [(ngModel)]="model.stock">
+            
+            <parsley-error-list  [form]="form" [inputName]="'stock'" [inputType]="'number'" [(inputValue)]="model.stock"></parsley-error-list>
         </div>
       </div>
         <div class="form-group row">
@@ -43,11 +53,17 @@
                   class="select2 form-control"
                   tabindex="-1"
                   name="tipo"
+                  ngControl="tipo"
+                  #tipo="ngForm"
                   required
                   [(ngModel)]="model.tipo">
             <option value=""></option>  
             <option *ngFor="let t of tipos" [value]="t">{{t}}</option>
           </select>
+          <ul [hidden]="tipo.valid || tipo.pristine || getFieldErrors('tipo').length==0" class="parsley-errors-list filled">
+                <li class="parsley-required">Este valor es requerido.</li>
+                <li class="parsley-error" *ngFor="let e of getFieldErrors('tipo')">{{e}}</li>
+            </ul>   
           </div>    
         </div>
          <div class="form-group row">
@@ -57,7 +73,7 @@
          </div>
         </div>   
            </fieldset>     
-      <button type="submit" class="btn btn-default">{{labelButton}}</button>
+      <button [disabled]="!form.valid" type="submit" class="btn btn-default">{{labelButton}}</button>
       
     </form>
       </div>
