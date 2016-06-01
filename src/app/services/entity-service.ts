@@ -1,27 +1,17 @@
 import {Injectable} from '@angular/core';
 import {EntityInterface} from '../models/entity-interface';
-import {AuthHttp} from 'angular2-jwt';
-import {urlApi} from  '../http/http';
-import {EntityInterfaceRESTClient} from './entity-rest.client';
+import {EntityRESTClientInterface} from '../rest/entity-rest-client-interface';
 import {EntityServiceInterface} from '../services/entity-service-interface';
 
-let PRODUCTOS = [
-
-];
-let heroesPromise = Promise.resolve(PRODUCTOS);
 @Injectable()
-export class EntityInterfaceService implements EntityServiceInterface{
+export abstract class EntityService implements EntityServiceInterface{
     
-  constructor(private authHttp: AuthHttp, private entityRESTClient: EntityInterfaceRESTClient){
+  constructor(public entityRESTClient: EntityRESTClientInterface){
       
   }
-  getAll() { return heroesPromise; }
+  getAll() { return []; }
   get(id: number | string) {
-      
     return this.entityRESTClient.getOneById(id);
-                      
-    //return entityPromise;
-      //.then(heroes => heroes.filter(h => h.id === +id)[0]);
   }
   crear(entity: EntityInterface) {
       return this.entityRESTClient.post(entity.prepareToSend());
@@ -30,7 +20,7 @@ export class EntityInterfaceService implements EntityServiceInterface{
       let id = entity['id'];
       return this.entityRESTClient.putOneById(id,entity.prepareToSend());
   }
-  eliminar(id: number) {
-      
+  eliminar(id: number | string) {
+      return this.entityRESTClient.deleteOneById(id);
   }
 }

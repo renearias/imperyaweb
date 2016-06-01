@@ -25,6 +25,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
   labelButton: string= 'Crear';
   submitted: boolean= false;
   router: Router;
+  routeSegment: string;
   service: EntityServiceInterface;
   cdr: ChangeDetectorRef;
   errors: any;
@@ -32,7 +33,6 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
        this.router= router;
        this.service= service;
        this.cdr= cdr;
-
    }
    
   ngOnInit() {
@@ -47,7 +47,8 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
     );
   }
   routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
-     let isNew = currTree._root.children[0].children[0].children[0].value.stringifiedUrlSegments;
+    let isNew = currTree._root.children[0].children[0].children[0].value.stringifiedUrlSegments;
+    this.routeSegment = currTree._root.children[0].children[0].value.stringifiedUrlSegments;
     if (isNew!='new')
     {
         //let id = +curr.getParam('id');
@@ -63,8 +64,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
             this.service.editar(this.model)
                         .subscribe(
                                    response => { 
-                                            console.log(response);
-                                            console.log('se envi2o');
+                                       this.onEditAction(response);
                                    },
                                     error => {
                                             this.handleError(error);
@@ -73,8 +73,7 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
             this.service.crear(this.model)
                         .subscribe(
                                    response => { 
-                                            console.log(response);
-                                            console.log('se envi2o');
+                                            this.onCreateAction(response);
                                    },
                                     error => {
                                             this.handleError(error);
@@ -82,7 +81,11 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
 
    }
    }
-   onCreateAction(){};
+   onCreateAction(res: Response){
+        let body = res.json();
+        this.router.navigate(['/app',this.routeSegment, body.id])
+        //return body || { };
+   };
    onPreEditAction(id: number | string){
        this.labelForm= 'Editar';
        this.labelButton= 'Actualizar';
@@ -97,11 +100,21 @@ export abstract class EntityFormComponent implements EntityFormComponentInterfac
                                                   });
    }; 
    onPreEditLoadActions(){};
-   onEditAction(){}; 
+   onEditAction(res: Response){}; 
    extractData(res: Response) {
     let body = res.json();
     this.model.constructor(body);
     return body || { };
+   }
+   onDeleteAction(id: number | string){
+       this.service.eliminar(id).subscribe(
+                                       response => { 
+                                                this.router.navigate(['/app',this.routeSegment])
+                                              },
+                                        error =>{
+                                                  console.log('Ocurrio un error al Eliminar')
+                                                  //this.handleError(error);
+                                               });
    }
    handleError (error: Response) {
     // In a real world app, we might use a remote logging infrastructure
