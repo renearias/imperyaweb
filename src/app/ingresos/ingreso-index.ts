@@ -49,7 +49,7 @@ export class IngresosIndexPage {
     
     routeActions = 'app/ingresos/';
     constructor(config: ConfigService ) {
-        this.urlApi = config.config.urlApi + 'api/ingresos';
+        this.urlApi = config.config.urlApi + 'api/ingresos/results';
    }
    ngOnInit(): void {
        

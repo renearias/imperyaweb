@@ -37,7 +37,7 @@ export class FacturasIndexPage {
                  ];
     routeActions = 'app/facturas/';
     constructor(config: ConfigService, router: Router, private element: ElementRef, private location: Location) {
-        this.urlApi = config.config.urlApi + 'api/facturas';
+        this.urlApi = config.config.urlApi + 'api/facturas/results';
         this.router = router;
    }
    ngOnInit(): void {

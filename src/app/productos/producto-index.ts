@@ -33,7 +33,7 @@ export class ProductosIndexPage {
                  ];
     routeActions = 'app/productos/';
     constructor(config: ConfigService, router: Router) {
-        this.urlApi = config.config.urlApi + 'api/productos';
+        this.urlApi = config.config.urlApi + 'api/productos/results';
         this.router = router;
    }
    ngOnInit(): void {
