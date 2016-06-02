@@ -9,7 +9,9 @@ export abstract class EntityService implements EntityServiceInterface{
   constructor(public entityRESTClient: EntityRESTClientInterface){
       
   }
-  getAll() { return []; }
+  getAll() {
+   return this.entityRESTClient.getAll(); 
+   }
   get(id: number | string) {
     return this.entityRESTClient.getOneById(id);
   }
