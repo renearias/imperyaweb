@@ -27,7 +27,26 @@ export class IngresosIndexPage {
                  {'title': 'Forma de Pago', 'data': 'formaPago.formaPago'},
                  {'title': 'Cobrado Por', 'data': 'collectedby.name'}
                  ];
-     footerCallback: any;
+     footerCallback: any = function ( tfoot, data, start, end, display ) {
+                                                var api = this.api(), data;
+
+                                        var intVal = function (i: any) {
+                                            return +i
+                                        };
+                                        // Total over this page
+                                        var pageTotal = api
+                                            .column( 2, { page: 'current'} )
+                                            .data()
+                                            .reduce( function (a, b) {
+                                                return intVal(a) + intVal(b);
+                                            }, 0 );
+                                        console.log(pageTotal);
+                                        // Update footer
+                                        jQuery("#ingresos_datatable").find("tfoot").html('<tr><td colspan="7"> Total = $'+(Math.round(pageTotal*100)/100)+'</td></tr>');
+                                        jQuery(api.column(2).footer()).html(
+                                            '$'+(Math.round(pageTotal*100)/100)
+                                        );
+                                    }
     
     routeActions = 'app/ingresos/';
     constructor(config: ConfigService ) {
@@ -35,10 +54,6 @@ export class IngresosIndexPage {
    }
    ngOnInit(): void {
        
-       this.footerCallback = function footerCallback( tfoot, data, start, end, display ){
-        
-    };
-
   }
 }
 

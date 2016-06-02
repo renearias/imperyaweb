@@ -10,7 +10,7 @@ export class DynamicDataTable {
     _routeActions: string = '';
     el: HTMLElement;
     private _columns: any = [];
-    private _footerCallback: any;
+    private _footerCallback: any = null;
     constructor( el: ElementRef, private router: Router) {
         this.el = el.nativeElement;
         this.$el = jQuery(this.el);
@@ -21,7 +21,7 @@ export class DynamicDataTable {
    @Input() set columns(columns: Array<any>){
        this._columns = columns || this._columns;
         }
-   @Input() set footer(footer: any){
+   @Input() set footerCallback(footer: any){
           this._footerCallback = footer || this._footerCallback;
         }
    @Input() set urlApi(urlApi: string){
@@ -49,7 +49,7 @@ export class DynamicDataTable {
                     'serverSide': true,
                     'responsive': true,
                     'columns': this._columns,
-                    'footercallback': this._footerCallback,
+                    'footerCallback': this._footerCallback,
                     'ajax': {
                         'url': this._urlApi,
                         'type': 'GET',
