@@ -25,7 +25,11 @@ export class ProductosIndexPage {
     columns: any = [
                  {'title': 'Id', 'data': 'id'},
                  {'title': 'Descripcion Corta', 'data': 'descripcionCorta' },
-                 {'title': 'Stock', 'data': 'stock' }
+                 {'title': 'Referencia', 'data': 'referencia' },
+                 {'title': 'Descripcion', 'data': 'descripcion' },
+                 {'title': 'Stock', 'data': 'stock' },
+                 {'title': 'Precio PVP', 'data': 'precioPvp' },
+                 {'title': 'tipo', 'data': 'tipo' },
                  ];
     routeActions = 'app/productos/';
     constructor(config: ConfigService, router: Router) {
