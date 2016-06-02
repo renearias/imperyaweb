@@ -34,7 +34,11 @@ export class DynamicDataTable {
         /*var footer = this.$el.tfoot({
             
         });*/
-        var oTable = this.$el.dataTable(
+        
+        // Setup - add a text input to each footer cell
+        
+        
+        var oTable = this.$el.DataTable(
                 {
                     //'order': [[ 0, 'asc' ]],
                     'dom': "<'row'<'col-sm-2'l><'col-sm-4 col-xs-12'B><'col-sm-6 col-xs-12'f>>" +
@@ -49,6 +53,7 @@ export class DynamicDataTable {
                     'serverSide': true,
                     'responsive': true,
                     'columns': this._columns,
+                    //fixedColumns:   true,
                     'footerCallback': this._footerCallback,
                     'ajax': {
                         'url': this._urlApi,
@@ -73,10 +78,25 @@ export class DynamicDataTable {
                         }
                 })
                 .on( 'responsive-display', function ( e, datatable, row, showHide, update ){
-                        if (showHide) {
+                        
+                            if (showHide) {
                                        // {% include "SgDatatablesBundle:Datatable:editable.html.twig" %}
                                     }
                                 });
+          var oTableHeader=this.$el.find('thead');
+          var searchLine=oTableHeader.append('<tr role="row"></tr>');
+          this.$el.find('thead th').each( function (i) {
+                           var title = $(this).text();
+                           var width = $(this).width();
+                           searchLine.append('<th><input type="text" placeholder="'+title+'" style="width:100%" data-index="'+i+'" /></th>');
+                        });
+          // Filter event handler
+          jQuery(oTable.table().container()).on( 'keyup', 'thead input', function () {
+                oTable
+                    .column( $(this).data('index') )
+                    .search( this.value )
+                    .draw();
+            } );
     }
 }
 /*            columns: [
