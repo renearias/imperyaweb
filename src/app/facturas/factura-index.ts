@@ -8,6 +8,7 @@ import '../components/tables-dynamic';
 import {columnAction} from '../components/tables-dynamic/columnAction';
 import {ConfigService} from '../core/config';
 import {DynamicDataTable} from '../components/tables-dynamic/dynamic-datatable';
+import {columnDateTime} from '../components/tables-dynamic/columnAction';
 
 declare var jQuery: any;
 declare var Datatable: any;
@@ -24,8 +25,15 @@ export class FacturasIndexPage {
     router: any;
     columns: any = [
                  {'title': 'Id', 'data': 'id'},
-                 {'title': 'Descripcion Corta', 'data': 'descripcionCorta' },
-                 {'title': 'Stock', 'data': 'stock' }
+                 {'title': 'Legal', 'data': 'legal' },
+                 columnDateTime('Emitido','emitido'),
+                 columnDateTime('Vencimiento','vencimiento'),
+                 columnDateTime('Pago','pago'),
+                 {'title': 'Estado', 'data': 'estado' },
+                 {'title': 'Tipo', 'data': 'tipo' },
+                 {'title': 'Cobrado', 'data': 'cobrado' },
+                 {'title': 'Descuento', 'data': 'descuento' },
+                 {'title': 'Total', 'data': 'total' }
                  ];
     routeActions = 'app/facturas/';
     constructor(config: ConfigService, router: Router, private element: ElementRef, private location: Location) {
