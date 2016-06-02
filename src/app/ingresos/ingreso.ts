@@ -19,13 +19,14 @@ export class Ingreso extends Entity implements EntityInterface {
     public monto: number;
     public descripcion: string;
     public referencia: string;
-    public formapago: string;
+    public id_formapago: number;
    
     constructor( r?:any, public fecha?: any ) {
         
       super(r); 
       this.fecha = moment().format('YYYY-MM-DDThh:mm');
       this.id_cliente = this.cliente.id;
+      this.id_formapago = this.forma_pago.id;
     }
     
     public prepareToSend()

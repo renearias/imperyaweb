@@ -13,7 +13,7 @@
         </div>
       </header>
       <div class="widget-body">
-         <form (submit)="onSubmit()" role="form" class="col-md-offset-2">          
+         <form (submit)="onSubmit()" #form="ngForm" role="form" class="col-md-offset-2">          
             <div class="row">
                 <div class="col-md-10">              
                     <div class="form-group">
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label>Forma de pago </label>
                         <div>
-                            <select [(ngModel)]="model.forma_pago.id" required class="form-control input-lg">
+                            <select [(ngModel)]="model.id_formapago" required class="form-control input-lg">
                                 <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
                                 [selected]="forma_p.value">{{forma_p.name}}</option>
                             </select>
@@ -83,11 +83,12 @@
                 </div>
             </div>
            
-            <button type="submit" class="btn btn-default">{{labelButton}}</button>
+            <button [disabled]="!form.valid" type="submit" class="btn btn-default">{{labelButton}}</button>
         </form>
       </div>
     </section>
   </div>
 </div>
 <a class="btn btn-default" [routerLink]="['/app/ingresos']">Regresar a la Lista</a>
+<a *ngIf="editable" class="btn btn-danger" (click)="onDeleteAction(model.id)">Eliminar</a>
 
