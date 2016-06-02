@@ -21,7 +21,7 @@ declare var moment: any;
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES, InputValidated],
   styles: [require('../components/forms-elements/forms-elements.scss')]  
 })
-export class ProductoFormComponent extends EntityFormComponent implements EntityFormComponentInterface{
+export class ProductoFormComponent extends EntityFormComponent implements EntityFormComponentInterface {
   tipos: Array<string> = ['Bien', 'Servicio'];
   model: Producto= new Producto('');
   service: ProductoService;

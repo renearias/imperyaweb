@@ -3,30 +3,13 @@ import {Factura} from './factura';
 import {AuthHttp} from 'angular2-jwt';
 import {urlApi} from  '../http/http';
 import {FacturaRESTClient} from './factura-rest.client';
+import {EntityServiceInterface} from '../services/entity-service-interface';
+import {EntityService} from '../services/entity-service';
 
-let FACTURAS = [
-
-];
-let heroesPromise = Promise.resolve(FACTURAS);
 @Injectable()
-export class FacturaService {
+export class FacturaService extends EntityService implements EntityServiceInterface{
     
-  constructor(private authHttp: AuthHttp, private facturaRESTClient: FacturaRESTClient){
-      
-  }
-  getFacturas() { return heroesPromise; }
-  getFactura(id: number | string) {
-      
-    return this.facturaRESTClient.getOneById(id);
-                      
-    //return productoPromise;
-      //.then(heroes => heroes.filter(h => h.id === +id)[0]);
-  }
-  crearFactura(factura: Factura) {
-      return this.facturaRESTClient.post(factura.prepareToSend());
-  }
-  editarFactura(factura: Factura) {
-      let id = factura['id'];
-      return this.facturaRESTClient.putOneById(id,factura.prepareToSend());
+  constructor(private facturaRESTClient: FacturaRESTClient){
+      super(facturaRESTClient);
   }
 }

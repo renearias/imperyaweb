@@ -12,21 +12,24 @@ declare var moment: any;
 export class Ingreso extends Entity implements EntityInterface {
   
     public forma_pago: FormasPagos;
+    //public id: number;
     public id: number;
     public cliente: Cliente;
-    public id_cliente: number;
+    //public id_cliente: number;
+    public id_cliente: string;
     //public fecha: any;
     public monto: number;
     public descripcion: string;
     public referencia: string;
-    public id_formapago: number;
+    //public id_formapago: number;
+    public id_formapago: string;
    
     constructor( r?:any, public fecha?: any ) {
         
       super(r); 
       this.fecha = moment().format('YYYY-MM-DDThh:mm');
-      this.id_cliente = this.cliente.id;
-      this.id_formapago = this.forma_pago.id;
+      //this.id_cliente = this.cliente.id;
+      //this.id_formapago = this.forma_pago.id;
     }
     
     public prepareToSend()

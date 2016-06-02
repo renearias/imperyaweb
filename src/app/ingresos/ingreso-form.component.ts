@@ -65,7 +65,6 @@ export class IngresoFormComponent extends EntityFormComponent implements EntityF
  onPreEditLoadActions(){
       jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
   }
-  
    getClientsFromApi(): void {
         //this.ingresoservice.getIngresos();
         this.authHttp.get(urlApi + 'api/clientes')
@@ -78,8 +77,6 @@ export class IngresoFormComponent extends EntityFormComponent implements EntityF
             }
         );
     }
-    
-  
   // Editar Pagos/Crear Pagos - Validación de Formulario
     buildForm(): void {
 

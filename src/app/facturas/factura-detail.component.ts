@@ -9,6 +9,8 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {Factura}  from './factura';
 import {FacturaService}  from './factura.service';
 import {ConfigService} from '../core/config';
+import {EntityDetailComponentInterface} from '../components/crud/entity-detail.component-interface';
+import {EntityDetailComponent} from '../components/crud/entity-detail.component';
 declare var jQuery: any;
 declare var moment: any;
 
@@ -17,15 +19,16 @@ declare var moment: any;
   templateUrl: './app/facturas/factura-detail.component.html',
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES]
 })
-export class FacturaDetailComponent implements OnActivate {
+export class FacturaDetailComponent extends EntityDetailComponent implements EntityDetailComponentInterface {
   urlApi: string;
   selectedId:number;
   model:any;
-  constructor(config: ConfigService,private router: Router, private service: FacturaService) {
+  constructor(config: ConfigService, router: Router, service: FacturaService) {
+    super(router,service);
     this.urlApi = config.config.urlApi;        
   }
   
-  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
+  /*routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
     
     let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
     this.model=this.service.getFactura(id).subscribe(
@@ -36,6 +39,6 @@ export class FacturaDetailComponent implements OnActivate {
         console.log(error);
       });
     
-  }
+  }*/
 }
 
