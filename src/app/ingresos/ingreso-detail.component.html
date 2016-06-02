@@ -1,44 +1,44 @@
 <div class="row">
-  <div class="col-md-6">
-    <section widget class="widget">
-      <header>
-        <h6>
-          <i class="fa fa-product-hunt"></i>  
-          Mostrar <span class="fw-semi-bold">Pago</span>
-        </h6>
-        <div class="widget-controls">
-          <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
-          <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-          <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-        </div>
-      </header>
-      <div class="widget-body">
-        <table>
-            <thead>
-            </thead>
-            <tbody>
-               <tr>
-                   <th>Id </th><td>{{model.id}}</td>
-               </tr>    
-               <tr>
-                   <th>Fecha</th><td>{{model.fecha}}</td>
-               </tr>
-               <tr>
-                   <th>Descripcion </th><td>{{model.descripcion}}</td>
-               </tr>    
-               <tr>
-                   <th>Referencia</th><td>{{model.referencia}}</td>
-               </tr>
-               <tr>
-                   <th>Tipo de pago</th><td>{{model.tipoPago}}</td>
-               </tr>    
-               <tr>
-                   <th>Monto</th><td>{{model.monto}}</td>
-               </tr> 
-            </tbody>     
-        </table>
-      </div>
-    </section>
-  </div>
+    <div class="col-md-6">
+        <section widget class="widget">
+            <header>
+                <h6>
+                    <i class="fa fa-product-hunt"></i>  
+                    Mostrar <span class="fw-semi-bold">Pago</span>
+                </h6>
+                <div class="widget-controls">
+                    <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </header>
+            <div class="widget-body">
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Id </th><td>{{model.id}}</td>
+                        </tr>    
+                        <tr>
+                            <th>Fecha</th><td>{{model.fecha}}</td>
+                        </tr>
+                        <tr>
+                            <th>Descripcion </th><td>{{model.descripcion}}</td>
+                        </tr>    
+                        <tr>
+                            <th>Referencia</th><td>{{model.referencia}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo de pago</th><td>{{model.tipoPago}}</td>
+                        </tr>    
+                        <tr>
+                            <th>Monto</th><td>{{model.monto}}</td>
+                        </tr> 
+                    </tbody>     
+                </table>
+            </div>
+        </section>
+    </div>
 </div>
 <a class="btn btn-default" href="#" [routerLink]="['/app/ingresos']">Regresar a la Lista</a>

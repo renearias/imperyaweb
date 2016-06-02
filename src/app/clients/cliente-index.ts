@@ -30,7 +30,7 @@ export class ClientesIndexPage {
                  {'title': 'Registro Empresarial', 'data': 'registroempresarial' }
                  ];
     routeActions = 'app/clients/';
-    constructor(config: ConfigService, router: Router, private element: ElementRef, private location: Location) {
+    constructor(config: ConfigService, router: Router) {
         this.urlApi = config.config.urlApi + 'api/clientes';
         this.router = router;
    }

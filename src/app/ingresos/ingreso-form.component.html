@@ -1,93 +1,93 @@
 <div class="row">
-  <div class="col-md-12">
-    <section widget class="widget">
-      <header>
-        <h6>
-          <i class="fa fa-money"></i>  
-          {{labelForm}}<span class="fw-semi-bold">Ingreso</span>
-        </h6>
-        <div class="widget-controls">
-          <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
-          <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-          <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-        </div>
-      </header>
-      <div class="widget-body">
-         <form (submit)="onSubmit()" #form="ngForm" role="form" class="col-md-offset-2">          
-            <div class="row">
-                <div class="col-md-10">              
-                    <div class="form-group">
-                        <label>Fecha de ingreso</label>
-                        <div>
-                            <input [(ngModel)]="model.fecha" required type="datetime-local" class="form-control"> 
+    <div class="col-md-12">
+        <section widget class="widget">
+            <header>
+                <h6>
+                    <i class="fa fa-money"></i>  
+                    {{labelForm}}<span class="fw-semi-bold">Ingreso</span>
+                </h6>
+                <div class="widget-controls">
+                    <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a data-widgster="collapse" title="Collapse" href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </header>
+            <div class="widget-body">
+                <form (submit)="onSubmit()" #form="ngForm" role="form" class="col-md-offset-2">          
+                    <div class="row">
+                        <div class="col-md-10">              
+                            <div class="form-group">
+                                <label>Fecha de ingreso</label>
+                                <div>
+                                    <input [(ngModel)]="model.fecha" required type="datetime-local" class="form-control"> 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Cliente</label>
-                        <div>
-                            <select [(ngModel)]="model.id_cliente" required class="form-control input-lg" placehoder='Seleccione Cliente' >
-                                <option value=""></option>
-                                <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
-                            </select> 
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Cliente</label>
+                                <div>
+                                    <select [(ngModel)]="model.id_cliente" required class="form-control input-lg" placehoder='Seleccione Cliente' >
+                                        <option value=""></option>
+                                        <option *ngFor="let client of clients_array" [value]="client.id" [selected]="client.id">{{client.nombre}}&nbsp;{{client.identificacion}}</option>
+                                    </select> 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Monto</label>
-                        <input [(ngModel)]="model.monto" required type="number" step="0.01" class="form-control" id="monto"
-                            placeholder="Introduzca el monto">
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Descripción</label>
-                        <input [(ngModel)]="model.descripcion" required type="text" class="form-control" id="descripcion"
-                            placeholder="Descripción">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Referencia</label>
-                        <input [(ngModel)]="model.referencia" required type="text" class="form-control" id="referencia"
-                            placeholder="Introduzca la referencia">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Forma de pago </label>
-                        <div>
-                            <select [(ngModel)]="model.id_formapago" required class="form-control input-lg">
-                                <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
-                                [selected]="forma_p.value">{{forma_p.name}}</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Monto</label>
+                                <input [(ngModel)]="model.monto" required type="number" step="0.01" class="form-control" id="monto"
+                                    placeholder="Introduzca el monto">
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input [(ngModel)]="model.descripcion" required type="text" class="form-control" id="descripcion"
+                                    placeholder="Descripción">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Referencia</label>
+                                <input [(ngModel)]="model.referencia" required type="text" class="form-control" id="referencia"
+                                    placeholder="Introduzca la referencia">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Forma de pago </label>
+                                <div>
+                                    <select [(ngModel)]="model.id_formapago" required class="form-control input-lg">
+                                        <option *ngFor="let forma_p of formas_pago" [value]="forma_p.value" 
+                                            [selected]="forma_p.value">{{forma_p.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button [disabled]="!form.valid" type="submit" class="btn btn-default">{{labelButton}}</button>
+                </form>
             </div>
-           
-            <button [disabled]="!form.valid" type="submit" class="btn btn-default">{{labelButton}}</button>
-        </form>
-      </div>
-    </section>
-  </div>
+        </section>
+    </div>
 </div>
 <a class="btn btn-default" [routerLink]="['/app/ingresos']">Regresar a la Lista</a>
 <a *ngIf="editable" class="btn btn-danger" (click)="onDeleteAction(model.id)">Eliminar</a>
