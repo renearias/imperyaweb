@@ -85,10 +85,19 @@ export class DynamicDataTable {
                                 });
           var oTableHeader=this.$el.find('thead');
           var searchLine=oTableHeader.append('<tr role="row"></tr>');
+          var columnas = this._columns;
           this.$el.find('thead th').each( function (i) {
+                           
+                           
+                           //var title = columnas[i]['title'];
                            var title = $(this).text();
-                           var width = $(this).width();
-                           searchLine.append('<th><input type="text" placeholder="'+title+'" style="width:100%" data-index="'+i+'" /></th>');
+                           if (columnas[i]['searchable']!==false)
+                           {
+                            searchLine.append('<th><input type="text" placeholder="'+title+'" style="width:100%" data-index="'+i+'" /></th>');
+                           }else
+                           {
+                            searchLine.append('<th></th>');
+                           }
                         });
           // Filter event handler
           jQuery(oTable.table().container()).on( 'keyup', 'thead input', function () {

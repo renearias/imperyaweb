@@ -17,7 +17,7 @@ export function columnDateTime(name, field, dateFormat?: string) {
             'data': field,
             'title': name,
             //'orderable': false,
-            //'searchable': false,
+            'searchable': true,
             'render': function(data, type, row, meta) {
                             return render_datetime(data, type, row, meta, dateFormat);
                         }

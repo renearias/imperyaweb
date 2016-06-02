@@ -22,8 +22,8 @@ export class IngresosIndexPage {
     columns: any= [
                  {'title': 'Id', 'data': 'id'},
                  columnDateTime('Fecha', 'fecha'),
-                 {'title': 'Monto', 'data': 'monto' },
-                 {'title': 'Cliente', 'data': 'cliente.nombre' },
+                 {'title': 'Monto', 'data': 'monto'},
+                 {'title': 'Cliente', 'data': 'cliente.nombre'},
                  {'title': 'Forma de Pago', 'data': 'formaPago.formaPago'},
                  {'title': 'Cobrado Por', 'data': 'collectedby.name'}
                  ];
