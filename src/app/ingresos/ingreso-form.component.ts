@@ -1,13 +1,16 @@
 /* 
  *  Rene Arias
  */
-import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import {Component, ViewEncapsulation, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { NgForm, FormBuilder, Control, ControlGroup, Validators}    from '@angular/common';
 import {OnActivate, Router, RouteTree, RouteSegment, ROUTER_DIRECTIVES } from '@angular/router';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {AuthHttp} from 'angular2-jwt';
 import {urlApi} from '../http/http';
+import {EntityFormComponentInterface} from '../components/crud/entity-form.component-interface';
+import {EntityFormComponent} from '../components/crud/entity-form.component';
+import {InputValidated} from '../components/forms-elements/input-validated';
 import { IngresoService }  from './ingreso.service.ts';
 import {Ingreso} from './ingreso'
 declare var jQuery: any;
@@ -20,12 +23,11 @@ declare var moment: any;
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
-export class IngresoFormComponent implements OnActivate{
-  model:Ingreso;
+export class IngresoFormComponent extends EntityFormComponent implements EntityFormComponentInterface{
+  model:Ingreso = new Ingreso('');
+  service: IngresoService;
   editable: boolean= false;
-  labelForm: string= 'Crear';
-  labelButton: string= 'Crear';
-  submitted: boolean= false;
+  authHttp: AuthHttp;
   clients_array: Array<any> = [];
   formas_pago: Object[] = [
         { name: 'Efectivo', value: 1 },
@@ -45,12 +47,12 @@ export class IngresoFormComponent implements OnActivate{
     np_referencia: Control;
     np_forma_pago_id: Control;
     
-    constructor(private fb: FormBuilder, public router: Router, public authHttp: AuthHttp, private service: IngresoService) {
-
-        this.getClientsFromApi();
-        this.buildForm();
-
-    }
+    constructor( public fb: FormBuilder, router: Router, authHttp: AuthHttp, service: IngresoService, cdr: ChangeDetectorRef) {
+    super(router, service, cdr);
+    this.getClientsFromApi();  
+    this.buildForm();
+   }
+    
 
   ngAfterViewInit(): void {
     jQuery('.select2').select2();
@@ -60,6 +62,21 @@ export class IngresoFormComponent implements OnActivate{
       }
     );
   }
+ onPreEditLoadActions(){
+      jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
+  }
+   getClientsFromApi(): void {
+        //this.ingresoservice.getIngresos();
+        this.authHttp.get(urlApi + 'api/clientes')
+            .subscribe(
+            response => {
+                this.clients_array = response.json();
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
   // Editar Pagos/Crear Pagos - Validación de Formulario
     buildForm(): void {
 
@@ -81,6 +98,8 @@ export class IngresoFormComponent implements OnActivate{
             'np_forma_pago': this.np_forma_pago_id
         });
     }
+    
+    /*
     
     routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
     
@@ -105,13 +124,13 @@ export class IngresoFormComponent implements OnActivate{
                                                         });
     }
     
-    /*this.model=this.service.getProducto(id).subscribe(
+    this.model=this.service.getProducto(id).subscribe(
                                                         response => { 
                                                             this.model = response.json();
                                                         },
                                                         error => {
                                                                 console.log(error);
-                                                        });*/
+                                                        });
     
     
   }
@@ -212,23 +231,12 @@ export class IngresoFormComponent implements OnActivate{
                         // this.clearData();
                      }
                      );
-      /* }
+       }
        else
        {
            console.log('es invalido');
            console.log(this.nuevoIngresoForm.errors);
        }*/
-    }
-    getClientsFromApi(): void {
-        //this.ingresoservice.getIngresos();
-        this.authHttp.get(urlApi + 'api/clientes')
-            .subscribe(
-            response => {
-                this.clients_array = response.json();
-            },
-            error => {
-                console.log(error);
-            }
-        );
-    }
+       
 }
+   

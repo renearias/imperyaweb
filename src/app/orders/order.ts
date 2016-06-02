@@ -18,7 +18,7 @@
      
      constructor(){
          
-         this.id_cliente = cliente.id;
+         this.id_cliente = this.cliente.id;
      }
  }
 

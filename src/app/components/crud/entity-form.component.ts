@@ -18,7 +18,7 @@ declare var Messenger: any;
 declare var moment: any;
 
 
-export abstract class EntityFormComponent implements EntityFormComponentInterface{
+export abstract class EntityFormComponent implements EntityFormComponentInterface { 
   
   model: EntityInterface;
   editable: boolean= false;

@@ -9,6 +9,8 @@ import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {Cliente}  from './cliente';
 import {ClienteService}  from './cliente.service';
 import {ConfigService} from '../core/config';
+import {EntityDetailComponentInterface} from '../components/crud/entity-detail.component-interface';
+import {EntityDetailComponent} from '../components/crud/entity-detail.component';
 declare var jQuery: any;
 declare var moment: any;
 
@@ -17,28 +19,14 @@ declare var moment: any;
   templateUrl: './app/clients/cliente-detail.component.html',
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES]
 })
-export class ClienteDetailComponent implements OnActivate {
+export class ClienteDetailComponent extends EntityDetailComponent implements EntityDetailComponentInterface {
    urlApi: string;
    selectedId:number;
    model:any;
-   constructor(config: ConfigService,private router: Router, private service: ClienteService) {
-        this.urlApi = config.config.urlApi;
-       /// console.log(url);
-        
+
+    constructor(router: Router, service: ClienteService) {
+        super(router,service);
    }
-  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
-    
-    
-    let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
-    this.model=this.service.getCliente(id).subscribe(
-                                                        response => { 
-                                                            this.model = response.json();
-                                                        },
-                                                        error => {
-                                                                console.log(error);
-                                                        });
-    //this.selectedId=id;
-    
-  }
+  
 }
 

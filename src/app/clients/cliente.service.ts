@@ -3,34 +3,13 @@ import {Cliente} from './cliente';
 import {AuthHttp} from 'angular2-jwt';
 import {urlApi} from  '../http/http';
 import {ClienteRESTClient} from './cliente-rest.client';
+import {EntityServiceInterface} from '../services/entity-service-interface';
+import {EntityService} from '../services/entity-service';
 
-let CLIENTES = [
-
-];
-let heroesPromise = Promise.resolve(CLIENTES);
 @Injectable()
-export class ClienteService {
+export class ClienteService extends EntityService implements EntityServiceInterface{
     
-  constructor(private authHttp: AuthHttp, private clienteRESTClient: ClienteRESTClient){
-      
-  }
-  getClientes() { 
-  
-      return this.clienteRESTClient.getAll(); 
-  
-  }
-  getCliente(id: number | string) {
-      
-    return this.clienteRESTClient.getOneById(id);
-                      
-    //return clientePromise;
-      //.then(heroes => heroes.filter(h => h.id === +id)[0]);
-  }
-  crearCliente(cliente: Cliente) {
-      return this.clienteRESTClient.post(cliente.prepareToSend());
-  }
-  editarCliente(cliente: Cliente) {
-      let id = cliente['id'];
-      return this.clienteRESTClient.putOneById(id,cliente.prepareToSend());
+  constructor(private clienteRESTClient: ClienteRESTClient){
+      super(clienteRESTClient);
   }
 }

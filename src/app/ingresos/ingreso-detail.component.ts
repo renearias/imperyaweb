@@ -10,6 +10,8 @@ import {Ingreso}  from './ingreso';
 import {IngresoService} from './ingreso.service';
 import {ConfigService} from '../core/config';
 import {AuthHttp} from 'angular2-jwt';
+import {EntityDetailComponentInterface} from '../components/crud/entity-detail.component-interface';
+import {EntityDetailComponent} from '../components/crud/entity-detail.component';
 declare var jQuery: any;
 declare var moment: any;
 
@@ -18,30 +20,17 @@ declare var moment: any;
   templateUrl: './app/ingresos/ingreso-detail.component.html',
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
 })
-export class IngresoDetailComponent implements OnActivate {
+export class IngresoDetailComponent extends EntityDetailComponent implements EntityDetailComponentInterface {
    urlApi: string;
    selectedId: number;
    model: any;
-   constructor(config: ConfigService, private router: Router, private service: IngresoService) {
-       this.urlApi = config.config.urlApi;
+   constructor(config: ConfigService, router: Router, service: IngresoService) {
+       
+        super(router,service);
+        this.urlApi = config.config.urlApi;
        // console.log(url);
         
-   }   
-    routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
-    
-    //let id = +curr.getParam('id');
-    let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
-    //this.service.getIngreso(id).then(ingreso => this.model = ingreso);
-    this.model = this.service.getIngreso(id).subscribe(
-                                                        response => { 
-                                                            this.model = response.json();
-                                                        },
-                                                        error => {
-                                                                console.log(error);
-                                                        });
-    //this.selectedId=id;
-    
-  }
+   }  
     
 }
 

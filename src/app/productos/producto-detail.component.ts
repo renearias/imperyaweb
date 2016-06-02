@@ -26,7 +26,7 @@ declare var moment: any;
   
   //styles: [require('../components/forms-elements/forms-elements.scss')]
 })
-export class ProductoDetailComponent extends EntityDetailComponent implements EntityDetailComponentInterface  {
+export class ProductoDetailComponent extends EntityDetailComponent implements EntityDetailComponentInterface {
 
    //model:Producto;
    model:any;

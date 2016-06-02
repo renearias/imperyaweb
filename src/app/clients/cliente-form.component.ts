@@ -1,13 +1,16 @@
 /* 
  *  Abner Saavedra
  */
-import {Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import {Component, ViewEncapsulation, AfterViewInit, ChangeDetectorRef} from '@angular/core';
 import { NgForm }    from '@angular/common';
 import {Widget} from '../core/widget/widget';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 import {OnActivate, Router, RouteTree, RouteSegment, ROUTER_DIRECTIVES } from '@angular/router';
 import {Cliente}  from './cliente';
 import {ClienteService}  from './cliente.service';
+import {EntityFormComponentInterface} from '../components/crud/entity-form.component-interface';
+import {EntityFormComponent} from '../components/crud/entity-form.component';
+import {InputValidated} from '../components/forms-elements/input-validated';
 declare var jQuery: any;
 declare var moment: any;
 
@@ -18,15 +21,14 @@ declare var moment: any;
   directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
   styles: [require('../components/forms-elements/forms-elements.scss')]
 })
-export class ClienteFormComponent implements OnActivate{
+export class ClienteFormComponent extends EntityFormComponent implements EntityFormComponentInterface {
   model: Cliente;
   editable: boolean= false;
   labelForm: string= 'Crear';
   labelButton: string= 'Crear';
   submitted: boolean= false;
-  constructor(private router: Router, private service: ClienteService) {
-        
-        
+ constructor(router: Router, service: ClienteService, cdr: ChangeDetectorRef) {
+    super(router, service, cdr)    
    }
   
   ngAfterViewInit(): void {
@@ -37,72 +39,9 @@ export class ClienteFormComponent implements OnActivate{
       }
     );
   }
-  routerOnActivate(curr: RouteSegment, prev: RouteSegment, currTree: RouteTree): void {
-    
-    let isNew = currTree._root.children[0].children[0].children[0].value.stringifiedUrlSegments;
-    if (isNew=='new')
-    {
-        this.model=new Cliente();
-    }else
-    {
-        //let id = +curr.getParam('id');
-        let id = currTree._root.children[0].children[0].children[0].value.getParam('id');
-        this.model= new Cliente();
-        this.labelForm= 'Editar';
-        this.labelButton= 'Actualizar';
-        this.service.getCliente(id).subscribe(
-                                                       response => { 
-                                                            this.model= new Cliente(response.json())
-                                                            this.editable=true;
-                                                            jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
-                                                            },
-                                                        error => {
-                                                                console.log(error);
-                                                        });
-    }
-    
-    /*this.model=this.service.getCliente(id).subscribe(
-                                                        response => { 
-                                                            this.model = response.json();
-                                                        },
-                                                        error => {
-                                                                console.log(error);
-                                                        });*/
-    
-    
+   onPreEditLoadActions(){
+      jQuery(".select2[name='tipo']").select2("val", this.model["tipo"]);
   }
-  onSubmit() {
-   this.submitted = true; 
-   if (this.editable)
-   {
-       let algo = this.model.nombre;
-       console.log('Descripción del cliente a editar:' + algo);
-            this.service.editarCliente(this.model).subscribe(
-                                                       response => { 
-                                                                console.log(response);
-                                                                console.log('se envi2o');
-                                                       },
-                                                        error => {
-                                                                console.log(error);
-                                                                console.log(error.json());
-                                                                
-                                                        });
-   }else{
-   
-        this.service.crearCliente(this.model).subscribe(
-                                                       response => { 
-                                                                console.log(response);
-                                                                console.log('se envi2o');
-                                                       },
-                                                        error => {
-                                                                console.log(error);
-                                                                console.log(error.json());
-                                                                
-                                                        });
-       
-   }
-   
-   }
   // TODO: Remove this when we're done
   get diagnostic(){
       return JSON.stringify(this.model);

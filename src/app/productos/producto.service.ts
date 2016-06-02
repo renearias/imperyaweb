@@ -5,7 +5,7 @@ import {EntityServiceInterface} from '../services/entity-service-interface';
 import {EntityService} from '../services/entity-service';
 
 @Injectable()
-export class ProductoService extends EntityService implements EntityServiceInterface{
+export class ProductoService extends EntityService implements EntityServiceInterface {
     
   constructor(private productoRESTClient: ProductoRESTClient){
       super(productoRESTClient);
