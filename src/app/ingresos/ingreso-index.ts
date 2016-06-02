@@ -42,7 +42,7 @@ export class IngresosIndexPage {
                                             }, 0 );
                                         console.log(pageTotal);
                                         // Update footer
-                                        jQuery("#ingresos_datatable").find("tfoot").html('<tr><td colspan="7"> Total = $'+(Math.round(pageTotal*100)/100)+'</td></tr>');
+                                        jQuery("#ingresos_datatable").find("tfoot").html('<tr><td colspan="7"><strong> Total = $'+(Math.round(pageTotal*100)/100)+'</strong></td></tr>');
                                         jQuery(api.column(2).footer()).html(
                                             '$'+(Math.round(pageTotal*100)/100)
                                         );
