@@ -12,6 +12,7 @@ import {EntityFormComponentInterface} from '../components/crud/entity-form.compo
 import {EntityFormComponent} from '../components/crud/entity-form.component';
 import { IngresoService }  from './ingreso.service.ts';
 import { ClienteService }  from '../clients/cliente.service.ts';
+import {InputValidated} from '../components/forms-elements/input-validated';
 import {Ingreso} from './ingreso'
 declare var jQuery: any;
 declare var moment: any;
@@ -20,7 +21,7 @@ declare var moment: any;
   selector: 'ingreso-form',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './app/ingresos/ingreso-form.component.html',
-  directives: [Widget, NKDatetime, ROUTER_DIRECTIVES],
+  directives: [Widget, NKDatetime, ROUTER_DIRECTIVES, InputValidated],
   styles: [require('../components/forms-elements/forms-elements.scss')],
 })
 export class IngresoFormComponent extends EntityFormComponent implements EntityFormComponentInterface{
@@ -28,8 +29,8 @@ export class IngresoFormComponent extends EntityFormComponent implements EntityF
   service: IngresoService;
   clients_array: Array<any> = [];
   formas_pago: Object[] = [
-        { name: 'Efectivo', value: 1 },
-        { name: 'Banco', value: 2}
+        { id:1, name: 'Efectivo'},
+        { id:2, name: 'Banco'}
     ];
     
     constructor(router: Router, authHttp: AuthHttp, service: IngresoService, cdr: ChangeDetectorRef, private clientesService: ClienteService) {

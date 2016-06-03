@@ -18,22 +18,28 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Id </th><td>{{model.id}}</td>
+                            <th>Id </th><td> {{model.id}}</td>
                         </tr>    
                         <tr>
-                            <th>Fecha</th><td>{{model.fecha}}</td>
+                            <th>Fecha</th><td> {{model.fecha}}</td>
                         </tr>
                         <tr>
-                            <th>Descripcion </th><td>{{model.descripcion}}</td>
-                        </tr>    
-                        <tr>
-                            <th>Referencia</th><td>{{model.referencia}}</td>
+                            <th>Cliente</th><td> {{model.cliente?.nombre}}</td>
                         </tr>
                         <tr>
-                            <th>Tipo de pago</th><td>{{model.tipoPago}}</td>
+                            <th>Descripcion </th><td> {{model.descripcion}}</td>
                         </tr>    
                         <tr>
-                            <th>Monto</th><td>{{model.monto}}</td>
+                            <th>Referencia</th><td> {{model.referencia}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo de pago</th><td> {{model.forma_pago?.forma_pago}}</td>
+                        </tr>    
+                        <tr>
+                            <th>Monto</th><td> {{model.monto}}</td>
+                        </tr> 
+                        <tr>
+                            <th>Cobrado Por</th><td> {{model.collectedby?.name}}</td>
                         </tr> 
                     </tbody>     
                 </table>
