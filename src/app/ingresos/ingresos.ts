@@ -5,14 +5,14 @@ import {IngresoShowComponent} from './ingreso-show.component';
 import {IngresoRESTClient} from './ingreso-rest.client';
 import {IngresoService} from './ingreso.service';
 import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
-import {AuthHttp} from 'angular2-jwt';
-import {NKDatetime} from 'ng2-datetime/ng2-datetime';
+import { ClienteService }  from '../clients/cliente.service.ts';
+import { ClienteRESTClient }  from '../clients/cliente-rest.client.ts';
 
 @Component({
     selector: 'ingresos',
     directives: [ROUTER_DIRECTIVES, IngresoFormComponent,IngresosIndexPage],
     templateUrl: 'app/ingresos/ingresos.html',
-    viewProviders: [IngresoService, IngresoRESTClient],
+    viewProviders: [IngresoService, IngresoRESTClient, ClienteService,ClienteRESTClient]
 })
 @Routes([
   { path: '/', component: IngresosIndexPage },

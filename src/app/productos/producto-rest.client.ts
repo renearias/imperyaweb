@@ -31,7 +31,7 @@ export class ProductoRESTClient extends RESTClient implements EntityRESTClientIn
     }
     
 
-    @GET("productos/")
+    @GET("productos")
     public getAll( @Query("sort") sort?: string): Observable<Response> { return null; };
 
     @GET("productos/{id}")

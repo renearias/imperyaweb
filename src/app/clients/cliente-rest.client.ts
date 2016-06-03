@@ -31,7 +31,7 @@ export class ClienteRESTClient extends RESTClient implements EntityRESTClientInt
     }
     
 
-    @GET("clientes/")
+    @GET("clientes")
     public getAll( @Query("sort") sort?: string): Observable<Response> { return null; };
 
     @GET("clientes/{id}")

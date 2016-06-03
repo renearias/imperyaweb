@@ -1,7 +1,7 @@
 /* 
  *  Abner Saavedra
  */
-import {dateToApiDate} from '../components/helpers/dateTimeFunctions';
+import {dateTimeToApiDateTime} from '../components/helpers/dateTimeFunctions';
 import {FormasPagos} from '../models/formas-pagos'
 import {Factura} from '../facturas/factura'
 import {Cliente} from '../clients/cliente'
@@ -11,12 +11,13 @@ import {EntityInterface} from '../models/entity-interface';
 declare var moment: any;
 
 export class Ingreso extends Entity implements EntityInterface {
-  
-    public factura: Factura;
+    
+    public id: number;
+    //public factura: Factura;
     public facturas: Array<Factura>;
     public forma_pago: FormasPagos;
-    public id: number;
-    public cliente: Cliente;
+    //public forma_pago: number;
+    //public cliente: Cliente;
     public collectedby: any;
     public modifiedby: any;
     public id_cliente: number;
@@ -29,16 +30,16 @@ export class Ingreso extends Entity implements EntityInterface {
         
       super(r); 
       this.fecha = moment().format('YYYY-MM-DDThh:mm');
-      this.id_cliente = this.cliente.id;
-      this.id_formapago = this.forma_pago.id;
+      //this.id_cliente = this.cliente.id;
+      //this.id_formapago = this.forma_pago.id;
     }
     
     public prepareToSend()
   {
       let ingresoPrepared: Ingreso = new Ingreso(this);
-      this.fecha=dateToApiDate(this.fecha);
+      this.fecha=dateTimeToApiDateTime(this.fecha);
       delete this['id'];
-      delete this['atributos'];
+      
       return ingresoPrepared;
   }
 }
