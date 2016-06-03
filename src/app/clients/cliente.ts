@@ -10,7 +10,7 @@
      
      public tipoidentificacionid: Tipoidentificacion;
      public tipopersonaid: TipoPersona;
-     public id: number;
+     public id: number|any;
      public codigo: string;
      public identificacion: string;
      public nombre: string;

@@ -26,8 +26,12 @@ export class Ingreso extends Entity implements EntityInterface {
     constructor( r?:any ) {
       super(r); 
       this.fecha = moment().format('YYYY-MM-DDThh:mm');
+      //this.cliente = r.cliente.id;
       //this.id_cliente = this.cliente.id;
       //this.id_formapago = this.forma_pago.id;
+      //if (typeof (r.cliente.id) != 'undefined'){
+        //  r.cliente.id = this.cliente.id;   
+      //};
     }
     
     public prepareToSend()
